@@ -1,12 +1,16 @@
 const { isValidObjectId, Types } = require("mongoose"),
   _ = require("lodash");
-const Product = require("../models/Product");
-
-const { userAddressValidator } = require("../scripts/schemaValidators/user"),
+const Courier = require("../models/Courier");
+const {
+    userAddressValidator,
+    userOrderValidator,
+  } = require("../scripts/schemaValidators/user"),
   db = require("../models");
 
 const User = db.user,
-  Address = db.address;
+  Address = db.address,
+  Product = db.product,
+  Order = db.order;
 
 exports.getUser = async (req, res, next) => {
   return res.status(200).send({
@@ -55,7 +59,7 @@ exports.getAddress = (req, res, next) => {
 exports.addAddress = async (req, res, next) => {
   const { address } = req.body;
   const {
-    fullname,
+    name,
     phoneNumber,
     country,
     state,
@@ -68,7 +72,7 @@ exports.addAddress = async (req, res, next) => {
   } = address;
 
   const validation = userAddressValidator.safeParse({
-    fullname,
+    name,
     phoneNumber,
     country,
     state,
@@ -128,7 +132,7 @@ exports.addAddress = async (req, res, next) => {
       }
 
       const newAddress = new Address({
-        fullname,
+        name,
         phoneNumber,
         country,
         state,
@@ -174,7 +178,6 @@ exports.addAddress = async (req, res, next) => {
                 return res.status(500).send({
                   message: "There was an error submitting your request",
                 });
-              // console.log(user._doc);
               User.aggregate(
                 [...aggregateOptions, { $unset: ["Addresses.isDeleted"] }],
                 (err, aggregation) => {
@@ -204,7 +207,6 @@ exports.addAddress = async (req, res, next) => {
           return res.status(500).send({
             message: "There was an error submitting your request",
           });
-        // console.log(user._doc);
         User.aggregate(
           [...aggregateOptions, { $unset: ["Addresses.isDeleted"] }],
           (err, aggregation) => {
@@ -299,7 +301,6 @@ exports.updateDefaultAddress = (req, res, next) => {
             }
           )
           .exec((err, user) => {
-            console.log(err);
             if (err)
               return res.status(500).send({
                 message: "There was an error submitting your request",
@@ -378,7 +379,6 @@ exports.deleteAddress = (req, res, next) => {
         }
       )
       .exec((err, user) => {
-        console.log(err);
         if (err)
           return res.status(500).send({
             message: "There was an error submitting your request",
@@ -402,6 +402,11 @@ exports.addProductToCart = (req, res, next) => {
     });
   }
 
+  if (req.query.qty && isNaN(req.query.qty))
+    return res.status(500).send({ message: "Invalid quantity" });
+
+  const quantity = req.query.qty ? parseInt(req.query.qty) : 1;
+
   if (!isValidObjectId(req.params.id)) {
     return res.status(500).send({
       message: "Invalid Id",
@@ -420,49 +425,74 @@ exports.addProductToCart = (req, res, next) => {
 
       const productId = Types.ObjectId(req.params.id);
 
-      User.findOneAndUpdate(
-        { _id: req.user.id },
-        [
-          {
-            $set: {
-              Cart: {
-                $cond: [
-                  { $in: [productId, "$Cart.Product"] },
-                  {
-                    $map: {
-                      input: "$Cart",
-                      in: {
-                        $cond: [
-                          { $eq: ["$$this.Product", productId] },
-                          {
-                            Product: "$$this.Product",
-                            qty: { $add: ["$$this.qty", 1] },
-                          },
-                          "$$this",
-                        ],
-                      },
-                    },
-                  },
-                  {
-                    $concatArrays: [
-                      "$Cart",
-                      [{ Product: productId, qty: 1 }],
-                    ],
-                  },
-                ],
-              },
-            },
-          },
-        ],
-        {
-          new: true,
-        }
-      ).exec((err, user) => {
+      if (product._doc.stock < quantity) {
+        return res
+          .status(400)
+          .send({ message: "Shop does not have enough stock" });
+      }
+
+      return User.findById(req.user.id).exec((err, user) => {
         if (err)
           return res.status(500).send({
             message: "There was an error submitting your request",
           });
-        return res.status(200).send({ user });
+
+        const filteredProductCart = user._doc.Cart.filter(
+          (v) => v.Product.toHexString() === productId.toHexString()
+        );
+
+        if (
+          filteredProductCart.length !== 0 &&
+          product.stock < filteredProductCart[0].qty + quantity
+        )
+          return res
+            .status(400)
+            .send({ message: "Shop does not have enough stock" });
+
+        User.findOneAndUpdate(
+          { _id: req.user.id },
+          [
+            {
+              $set: {
+                Cart: {
+                  $cond: [
+                    { $in: [productId, "$Cart.Product"] },
+                    {
+                      $map: {
+                        input: "$Cart",
+                        in: {
+                          $cond: [
+                            { $eq: ["$$this.Product", productId] },
+                            {
+                              Product: "$$this.Product",
+                              qty: { $add: ["$$this.qty", quantity] },
+                            },
+                            "$$this",
+                          ],
+                        },
+                      },
+                    },
+                    {
+                      $concatArrays: [
+                        "$Cart",
+                        [{ Product: productId, qty: quantity }],
+                      ],
+                    },
+                  ],
+                },
+              },
+            },
+          ],
+          {
+            new: true,
+          }
+        ).exec((err, user) => {
+          if (err)
+            return res.status(500).send({
+              message: "There was an error submitting your request",
+            });
+          return res.status(200).send({ user });
+        });
       });
     }
   );
@@ -477,6 +507,354 @@ exports.getCartItem = (req, res, next) => {
           message: "There was an error submitting your request",
         });
 
+      return res.status(200).send({ Cart: user._doc.Cart });
+    });
+};
+
+exports.deleteCartItem = (req, res, next) => {
+  if (!req.params.id) {
+    return res.status(400).send({
+      message: "Invalid Parameter",
+    });
+  }
+
+  if (req.query.qty && isNaN(req.query.qty))
+    return res.status(500).send({ message: "Invalid quantity" });
+
+  const quantity = req.query.qty ? parseInt(req.query.qty) : 1;
+
+  if (!isValidObjectId(req.params.id)) {
+    return res.status(500).send({
+      message: "Invalid Id",
+    });
+  }
+
+  const productId = Types.ObjectId(req.params.id);
+
+  return User.findById(req.user.id).exec((err, user) => {
+    if (err)
+      return res.status(500).send({
+        message: "There was an error submitting your request",
+      });
+
+    const filteredProductCart = user._doc.Cart.filter(
+      (v) => v.Product.toHexString() === productId.toHexString()
+    );
+
+    if (filteredProductCart.length == 0)
+      return res.status(500).send({ message: "Invalid Product Id" });
+
+    if (
+      filteredProductCart.length !== 0 &&
+      filteredProductCart[0].qty < quantity
+    )
+      return res.status(400).send({ message: "Invalid Quantity" });
+
+    User.findOneAndUpdate(
+      { _id: req.user.id },
+      [
+        {
+          $addFields: {
+            Cart: {
+              $reduce: {
+                input: "$Cart",
+                initialValue: [],
+                in: {
+                  $cond: [
+                    {
+                      $and: [
+                        { $eq: ["$$this.Product", productId] },
+                        { $gt: ["$$this.qty", quantity] },
+                      ],
+                    },
+                    {
+                      $concatArrays: [
+                        "$$value",
+                        [
+                          {
+                            $mergeObjects: [
+                              "$$this",
+                              { qty: { $add: ["$$this.qty", -quantity] } },
+                            ],
+                          },
+                        ],
+                      ],
+                    },
+                    {
+                      $cond: [
+                        { $eq: ["$$this.Product", productId] },
+                        "$$value",
+                        { $concatArrays: ["$$value", ["$$this"]] },
+                      ],
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        },
+      ],
+      {
+        new: true,
+      }
+    ).exec((err, user) => {
+      if (err)
+        return res.status(500).send({
+          message: "There was an error submitting your request",
+        });
       return res.status(200).send({ user });
     });
+  });
+};
+
+exports.orderItem = (req, res, next) => {
+  const { ids, billToAddressId, shipToAddressId, paymentType, courier } =
+    req.body;
+  const validation = userOrderValidator.safeParse({
+    ids,
+    billToAddressId,
+    shipToAddressId,
+    paymentType,
+    courier,
+  });
+
+  if (!validation.success) {
+    return res.status(400).send({
+      message: `${validation.error.issues[0].path[0]}: ${validation.error.issues[0].message}`,
+    });
+  }
+
+  Courier.findById(courier).exec((err, courier) => {
+    if (err)
+      return res.status(500).send({
+        message: "There was an error submitting your request",
+      });
+
+    if (!courier)
+      return res.status(500).send({
+        message: "Courier not found",
+      });
+
+    return User.findById(req.user.id).exec((err, user) => {
+      if (err)
+        return res.status(500).send({
+          message: "There was an error submitting your request",
+        });
+
+      const billToAddress = user._doc.Addresses.filter(
+        (v) => v._id.toHexString() === billToAddressId
+      );
+      const shipToAddress = user._doc.Addresses.filter(
+        (v) => v._id.toHexString() === shipToAddressId
+      );
+
+      if (billToAddress.length === 0 || shipToAddress.length === 0)
+        return res.status(500).send({
+          message: "Invalid Address Id",
+        });
+
+      const cartItems = user._doc.Cart.filter((v1) => {
+        return ids.some((v2) => {
+          return v1.Product.toHexString() === v2;
+        });
+      });
+
+      if (cartItems.length !== ids.length)
+        return res.status(404).send({ message: "Cart Items not found" });
+
+      const cartItemsId = cartItems.map((v) => v.Product);
+
+      Product.aggregate([
+        {
+          $match: {
+            _id: { $in: cartItemsId },
+            isDeleted: false,
+          },
+        },
+        {
+          $lookup: {
+            from: "shops",
+            localField: "Shop",
+            foreignField: "_id",
+            as: "Shop",
+          },
+        },
+        {
+          $unset: ["Reviews"],
+        },
+        { $group: { _id: "$Shop", Products: { $push: "$$ROOT" } } },
+        { $unwind: "$_id" },
+        {
+          $project: {
+            _id: 0,
+            Shop: {
+              $mergeObjects: ["$_id", { Orders: "$Products" }],
+            },
+            totalProducts: { $size: "$Products" },
+          },
+        },
+        {
+          $unset: [
+            "Shop.Orders.Shop",
+            "Shop.Orders.searchTerms",
+            "Shop.Orders.Departments",
+          ],
+        },
+      ]).exec((err, product) => {
+        if (err)
+          return res.status(500).send({
+            message: "There was an error submitting your request",
+          });
+
+        const groupedByShops = product;
+
+        const aggregateTotalProductsQty = groupedByShops
+          .map((item) => item.totalProducts)
+          .reduce((prev, next) => prev + next);
+
+        if (!groupedByShops || aggregateTotalProductsQty !== ids.length)
+          return res.status(404).send({ message: "Products not found" });
+
+        const invalidQtyProducts = [];
+        const productsForUpdate = [];
+
+        groupedByShops.map((v1) => {
+          v1.Shop.Orders.map((v2) => {
+            const res = cartItems.filter(
+              (v3) => v3.Product.toHexString() === v2._id.toHexString()
+            );
+
+            v2.thumbnail = "test";
+            v2.orderQty = res[0].qty;
+
+            productsForUpdate.push({
+              updateOne: {
+                filter: { _id: v2._id },
+                update: { $inc: { stock: -v2.orderQty } },
+              },
+            });
+
+            if (v2.orderQty > v2.stock) invalidQtyProducts.push(v2);
+          });
+        });
+
+        if (invalidQtyProducts.length > 0)
+          return res.status(404).send({
+            err: "NoStock",
+            productId: invalidQtyProducts[0]._id,
+            message: `${invalidQtyProducts[0].name} doesn't have enough stock: Stock: ${invalidQtyProducts[0].stock}`,
+          });
+        0;
+        const newOrders = groupedByShops.map((v1) => {
+          return new Order({
+            Shop: v1.Shop,
+            User: {
+              ...user._doc,
+              Addresses: { billTo: billToAddress[0], shipTo: shipToAddress[0] },
+            },
+            paymentType,
+            Courier: courier,
+            Discount: null,
+            StatusLog: [{ code: 1, status: "To be payed" }],
+          });
+        });
+
+        const remainingCartItem = user._doc.Cart.filter((v1) => {
+          return !ids.some((v2) => {
+            return v1.Product.toHexString() === v2;
+          });
+        });
+
+        // return res.status(200).send({ newProducts });
+        return Order.insertMany(newOrders, (err, orders) => {
+          if (err)
+            return res.status(500).send({
+              message: "There was an error submitting your request",
+            });
+
+          return Product.bulkWrite(productsForUpdate, (err, newProducts) => {
+            if (err)
+              return res.status(500).send({
+                message: "There was an error submitting your request",
+              });
+
+            return user
+              .updateOne({ Cart: remainingCartItem })
+              .exec((err, updatedUser) => {
+                if (err)
+                  return res.status(500).send({
+                    message: "There was an error submitting your request",
+                  });
+
+                return res.status(200).send({
+                  message: "Successfully ordered your items",
+                });
+              });
+          });
+        });
+      });
+    });
+  });
+};
+
+exports.cancelOrder = (req, res, next) => {
+  const { id } = req.params;
+  if (!isValidObjectId(id)) {
+    return res.status(500).send({
+      message: "Invalid Id",
+    });
+  }
+
+  Order.findOne({ _id: id, "User._id": req.user.id, isCancelled: false }).exec(
+    (err, order) => {
+      if (err)
+        return res.status(500).send({
+          message: "There was an error submitting your request",
+        });
+
+      if (!order)
+        return res.status(404).send({
+          message: "Order not found",
+        });
+
+      if (order.isAccepted)
+        return res.status(500).send({
+          message: "Order cannot be cancelled",
+        });
+
+      order.updateOne({ isCancelled: true }).exec((err, newOrder) => {
+        if (err)
+          return res.status(500).send({
+            message: "There was an error submitting your request",
+          });
+
+        if (!newOrder)
+          return res.status(404).send({
+            message: "Order not found",
+          });
+
+        const productsForUpdate = [];
+
+        order.Shop.Orders.map((val) => {
+          productsForUpdate.push({
+            updateOne: {
+              filter: { _id: val._id },
+              update: { $inc: { stock: val.orderQty } },
+            },
+          });
+        });
+
+        return Product.bulkWrite(productsForUpdate, (err, newProducts) => {
+          if (err)
+            return res.status(500).send({
+              message: "There was an error submitting your request",
+            });
+
+          return res
+            .status(200)
+            .send({ message: "Successfully cancelled order" });
+        });
+      });
+    }
+  );
 };

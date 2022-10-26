@@ -1,8 +1,10 @@
 const db = require("../models");
-const Department = db.department;
+const Department = db.department,
+  Courier = db.courier;
 
 const setup = (req, res) => {
   addDepartments();
+  addCouriers();
 };
 
 const addDepartments = () => {
@@ -32,6 +34,20 @@ const addDepartments = () => {
           console.log("added departments");
         }
       );
+    }
+  });
+};
+
+const addCouriers = () => {
+  Courier.estimatedDocumentCount((err, count) => {
+    if (!err && count === 0) {
+      Courier.insertMany([{ name: "JMT" }], (err) => {
+        if (err) {
+          console.log("error", err);
+        }
+
+        console.log("added couriers");
+      });
     }
   });
 };

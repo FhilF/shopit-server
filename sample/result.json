@@ -1,0 +1,219 @@
+[
+  {
+    "_id": {
+      "_id": "63529bbd6175ec7ca8e9b246",
+      "name": "New Shop",
+      "address": {
+        "country": "Philippines",
+        "state": "Nueva Ecija",
+        "city": "Cabanatuan City",
+        "zipCode": "3100",
+        "addressLine1": "Kapitan Pepe"
+      },
+      "phoneNumber": "123456789",
+      "category": ["test"],
+      "createdAt": "2022-10-21T13:16:45.262Z",
+      "updatedAt": "2022-10-21T13:16:45.262Z",
+      "__v": 0
+    },
+    "Products": [
+      {
+        "_id": "63529bd16175ec7ca8e9b24e",
+        "name": "Product3 Name2",
+        "stock": 5,
+        "price": 5.25,
+        "description": "Product Description",
+        "brand": "Product Brand",
+        "searchTerms": ["Product Terms"],
+        "Shop": [
+          {
+            "_id": "63529bbd6175ec7ca8e9b246",
+            "name": "New Shop",
+            "address": {
+              "country": "Philippines",
+              "state": "Nueva Ecija",
+              "city": "Cabanatuan City",
+              "zipCode": "3100",
+              "addressLine1": "Kapitan Pepe"
+            },
+            "phoneNumber": "123456789",
+            "category": ["test"],
+            "createdAt": "2022-10-21T13:16:45.262Z",
+            "updatedAt": "2022-10-21T13:16:45.262Z",
+            "__v": 0
+          }
+        ],
+        "Departments": ["Computers", "Automotive"],
+        "isDeleted": false,
+        "Reviews": [],
+        "createdAt": "2022-10-21T13:17:05.498Z",
+        "updatedAt": "2022-10-21T13:17:05.498Z",
+        "__v": 0
+      }
+    ]
+  },
+  {
+    "_id": {
+      "_id": "6348f6d4251c41303272a1a9",
+      "name": "test",
+      "address": {
+        "country": "Philippines",
+        "state": "Nueva Ecija",
+        "city": "Cabanatuan City",
+        "zipCode": "3100",
+        "addressLine1": "Kapitan Pepe"
+      },
+      "phoneNumber": "123456789",
+      "category": ["test"],
+      "createdAt": "2022-10-14T05:42:44.410Z",
+      "updatedAt": "2022-10-14T05:42:44.410Z",
+      "__v": 0
+    },
+    "Products": [
+      {
+        "_id": "63491f4af8df03041aa69cc8",
+        "name": "Product Name",
+        "stock": 8,
+        "price": 5.25,
+        "description": "Product Description",
+        "brand": "Product Brand",
+        "searchTerms": ["Product Terms"],
+        "Shop": [
+          {
+            "_id": "6348f6d4251c41303272a1a9",
+            "name": "test",
+            "address": {
+              "country": "Philippines",
+              "state": "Nueva Ecija",
+              "city": "Cabanatuan City",
+              "zipCode": "3100",
+              "addressLine1": "Kapitan Pepe"
+            },
+            "phoneNumber": "123456789",
+            "category": ["test"],
+            "createdAt": "2022-10-14T05:42:44.410Z",
+            "updatedAt": "2022-10-14T05:42:44.410Z",
+            "__v": 0
+          }
+        ],
+        "Departments": ["Computers", "Automotive"],
+        "Reviews": [],
+        "isDeleted": false,
+        "createdAt": "2022-10-14T08:35:22.898Z",
+        "updatedAt": "2022-10-17T06:39:35.091Z",
+        "__v": 0
+      },
+      {
+        "_id": "634cf98c13f8d3dd365a0646",
+        "name": "Product Name1",
+        "stock": 2,
+        "price": 5.25,
+        "description": "Product Description",
+        "brand": "Product Brand",
+        "searchTerms": ["Product Terms"],
+        "Shop": [
+          {
+            "_id": "6348f6d4251c41303272a1a9",
+            "name": "test",
+            "address": {
+              "country": "Philippines",
+              "state": "Nueva Ecija",
+              "city": "Cabanatuan City",
+              "zipCode": "3100",
+              "addressLine1": "Kapitan Pepe"
+            },
+            "phoneNumber": "123456789",
+            "category": ["test"],
+            "createdAt": "2022-10-14T05:42:44.410Z",
+            "updatedAt": "2022-10-14T05:42:44.410Z",
+            "__v": 0
+          }
+        ],
+        "Departments": ["Computers", "Automotive"],
+        "Reviews": [
+          {
+            "userId": "634e55b8fac0d4103f0e7ff9",
+            "name": "yeye",
+            "review": "test",
+            "imageUrls": [],
+            "rate": 1,
+            "isDeleted": true,
+            "_id": "634ea0997e794923646f2172",
+            "updatedAt": "2022-10-19T06:08:04.287Z",
+            "createdAt": "2022-10-18T12:48:25.722Z"
+          },
+          {
+            "userId": "634e55b8fac0d4103f0e7ff9",
+            "name": "yeye",
+            "review": "Nice",
+            "imageUrls": [],
+            "rate": 4,
+            "isDeleted": false,
+            "_id": "634ea0bff0c5984455ba36ba",
+            "updatedAt": "2022-10-19T06:19:41.642Z",
+            "createdAt": "2022-10-18T12:49:03.965Z"
+          },
+          {
+            "userId": "634e55b8fac0d4103f0e7ff9",
+            "name": "yeye",
+            "review": "test",
+            "imageUrls": [],
+            "rate": 1,
+            "isDeleted": true,
+            "_id": "634ea1b6f4cd6ed3fcb5a3d2",
+            "updatedAt": "2022-10-19T06:06:33.048Z",
+            "createdAt": "2022-10-18T12:53:10.973Z"
+          },
+          {
+            "userId": "634e55b8fac0d4103f0e7ff9",
+            "name": "yeye",
+            "review": "test",
+            "imageUrls": [],
+            "rate": 1,
+            "isDeleted": true,
+            "_id": "634ea3828f7f3585124431d7",
+            "updatedAt": "2022-10-19T06:07:14.281Z",
+            "createdAt": "2022-10-18T13:00:50.783Z"
+          }
+        ],
+        "isDeleted": false,
+        "createdAt": "2022-10-17T06:43:24.135Z",
+        "updatedAt": "2022-10-19T06:19:41.642Z",
+        "__v": 0
+      },
+      {
+        "_id": "63529456108062b0569c18d0",
+        "name": "Product2 Name1",
+        "stock": 5,
+        "price": 5.25,
+        "description": "Product Description",
+        "brand": "Product Brand",
+        "searchTerms": ["Product Terms"],
+        "Shop": [
+          {
+            "_id": "6348f6d4251c41303272a1a9",
+            "name": "test",
+            "address": {
+              "country": "Philippines",
+              "state": "Nueva Ecija",
+              "city": "Cabanatuan City",
+              "zipCode": "3100",
+              "addressLine1": "Kapitan Pepe"
+            },
+            "phoneNumber": "123456789",
+            "category": ["test"],
+            "createdAt": "2022-10-14T05:42:44.410Z",
+            "updatedAt": "2022-10-14T05:42:44.410Z",
+            "__v": 0
+          }
+        ],
+        "Departments": ["Computers", "Automotive"],
+        "isDeleted": false,
+        "Reviews": [],
+        "createdAt": "2022-10-21T12:45:10.524Z",
+        "updatedAt": "2022-10-21T12:45:10.524Z",
+        "__v": 0
+      }
+    ]
+  }
+]

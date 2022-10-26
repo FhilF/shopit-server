@@ -13,6 +13,8 @@ db.address = require("./Address");
 db.department = require("./Department");
 db.product = require("./Product");
 db.productReview = require("./ProductReview");
+db.order = require("./Order");
+db.courier = require("./Courier");
 db.ROLES = ["user", "admin", "moderator"];
 
 module.exports = db;

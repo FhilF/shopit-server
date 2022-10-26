@@ -3,10 +3,13 @@ const {
     shopAddValidator,
     shopUpdateValidator,
   } = require("../scripts/schemaValidators/shop"),
-  db = require("../models");
+  db = require("../models"),
+  orderStatus = require("../lib/orderStatus");
 
 const User = db.user,
-  Shop = db.shop;
+  Shop = db.shop,
+  Order = db.order,
+  Product = db.product;
 
 exports.getShop = (req, res, next) => {
   User.findOne({ username: req.user.username })
@@ -163,7 +166,176 @@ exports.updateShop = async (req, res, next) => {
     });
 };
 
+exports.cancelOrder = async (req, res, next) => {
+  const { id } = req.params;
+  const { updateproduct } = req.query;
+  if (!isValidObjectId(id)) {
+    return res.status(500).send({
+      message: "Invalid Id",
+    });
+  }
 
+  Order.findOne({
+    _id: id,
+    "Shop._id": req.user.Shop,
+    isCancelled: false,
+    isShipped: true,
+  }).exec((err, order) => {
+    if (err)
+      return res.status(500).send({
+        message: "There was an error submitting your request",
+      });
+
+    if (!order)
+      return res.status(404).send({
+        message: "Order not found",
+      });
+
+    const productsForUpdate = [];
+
+    order.Shop.Orders.map((val) => {
+      productsForUpdate.push({
+        updateOne: {
+          filter: { _id: val._id },
+          update: { $inc: { stock: val.orderQty } },
+        },
+      });
+    });
+
+    order.updateOne(
+      {
+        isCancelled: true,
+        $push: {
+          StatusLog: orderStatus.find((el) => {
+            return el.code === 22;
+          }),
+        },
+      },
+      (err, newOrder) => {
+        if (err)
+          return res.status(500).send({
+            message: "There was an error submitting your request",
+          });
+
+        return new Promise((resolve, reject) => {
+          if (updateproduct === "1") {
+            Product.bulkWrite(productsForUpdate, (err, newProducts) => {
+              if (err) reject(err);
+              resolve();
+            });
+          }
+          resolve();
+        })
+          .then(() => {
+            return res.status(200).send({
+              message: "Successfully cancelled your order",
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+            return res.status(500).send({
+              message: "There was an error submitting your request",
+            });
+          });
+      }
+    );
+  });
+};
+
+exports.acceptOrder = async (req, res, next) => {
+  const { id } = req.params;
+  if (!isValidObjectId(id)) {
+    return res.status(500).send({
+      message: "Invalid Id",
+    });
+  }
+
+  Order.findOne({
+    _id: id,
+    "Shop._id": req.user.Shop,
+    isCancelled: false,
+    isAccepted: false,
+  }).exec((err, order) => {
+    if (err)
+      return res.status(500).send({
+        message: "There was an error submitting your request",
+      });
+
+    if (!order)
+      return res.status(404).send({
+        message: "Order not found",
+      });
+
+    order.updateOne(
+      {
+        isAccepted: true,
+        $push: {
+          StatusLog: orderStatus.find((el) => {
+            return el.code === 3;
+          }),
+        },
+      },
+      (err, newOrder) => {
+        if (err)
+          return res.status(500).send({
+            message: "There was an error submitting your request",
+          });
+
+        return res.status(200).send({
+          message: "Successfully updated order",
+        });
+      }
+    );
+  });
+};
+
+exports.shipOrder = async (req, res, next) => {
+  const { id } = req.params;
+  if (!isValidObjectId(id)) {
+    return res.status(500).send({
+      message: "Invalid Id",
+    });
+  }
+
+  Order.findOne({
+    _id: id,
+    "Shop._id": req.user.Shop,
+    isCancelled: false,
+    isAccepted: true,
+    isShipped: false,
+  }).exec((err, order) => {
+    if (err)
+      return res.status(500).send({
+        message: "There was an error submitting your request",
+      });
+
+    if (!order)
+      return res.status(404).send({
+        message: "Order not found",
+      });
+
+    order.updateOne(
+      {
+        isShipped: true,
+        $push: {
+          StatusLog: orderStatus.find((el) => {
+            return el.code === 4;
+          }),
+        },
+      },
+      (err, newOrder) => {
+        if (err)
+          return res.status(500).send({
+            message: "There was an error submitting your request",
+          });
+
+        return res.status(200).send({
+          message: "Successfully updated order",
+        });
+      }
+    );
+  });
+};
 
 // exports.deleteShop = async (req, res, next) => {
 //   try {

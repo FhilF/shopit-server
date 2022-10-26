@@ -32,11 +32,11 @@ exports.signup = async (req, res, next) => {
           message: "There was an error submitting your request",
         });
       if (user.length > 0) {
-        if (email === test[0]._doc.email)
+        if (email === user[0]._doc.email)
           return res
             .status(400)
             .send({ key: "email", message: "Email is already in use" });
-        if (username === test[0]._doc.username)
+        if (username === user[0]._doc.username)
           return res
             .status(400)
             .send({ key: "username", message: "Username is already in use" });

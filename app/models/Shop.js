@@ -5,6 +5,17 @@ const mongoose = require("mongoose"),
 
 var AddressSchema = new Schema({
   _id: false,
+  namew: {
+    type: String,
+    required: true,
+  },
+  phoneNumber: {
+    type: String,
+    required: true,
+  },
+  telephoneNumber: {
+    type: String,
+  },
   country: {
     type: String,
     required: true,

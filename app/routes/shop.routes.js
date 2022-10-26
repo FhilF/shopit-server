@@ -26,6 +26,11 @@ router.delete(
   "/product/:id/review/:reviewId",
   ProductController.deleteProductReview
 );
+
+router.post("/order/:id/cancel", ShopController.cancelOrder);
+router.post("/order/:id/accept", ShopController.acceptOrder);
+router.post("/order/:id/shipped", ShopController.shipOrder);
+
 // router.delete("/", ShopController.deleteShop);
 
 module.exports = router;

@@ -4,7 +4,7 @@ const mongoose = require("mongoose"),
   Schema = mongoose.Schema;
 
 var AddressSchema = new Schema({
-  fullname: {
+  name: {
     type: String,
     required: true,
   },
