@@ -39,7 +39,20 @@ const UserSchema = new Schema(
       minlength: 6,
       maxlength: 60,
     },
-    name: String,
+    phoneNumber: {
+      countryCode: {
+        type: Number,
+        required: true,
+      },
+      number: {
+        type: Number,
+        required: true,
+      },
+    },
+    name: {
+      type: String,
+      required: true,
+    },
     avatar: String,
     bio: String,
     googleId: {

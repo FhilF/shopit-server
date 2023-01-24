@@ -8,7 +8,12 @@ const {
   Department = db.department;
 
 exports.getDepartments = (req, res, next) => {
-  Department.find()
+  const { parentOnly } = req.query;
+
+  let fields = ["-__v", "-isActive"];
+  if (parentOnly === "1") fields.push("-children");
+
+  Department.find({ isActive: true }, fields.join(" "))
     .sort([["name", 1]])
     .exec((err, departments) => {
       if (err)
@@ -21,8 +26,28 @@ exports.getDepartments = (req, res, next) => {
           message: "Departments doesn't exist",
         });
 
-      res
-        .status(200)
-        .send({ Departments: departments });
+      let depts = departments;
+      if (depts && depts[0].children) {
+        depts = depts.map((v1) => {
+          return {
+            ...v1._doc,
+            parent_id: 0,
+            children: v1._doc.children.map((v2) => {
+              return {
+                ...v2._doc,
+                parent_id: v1._doc._id,
+                children: v2._doc.children.map((v3) => {
+                  return {
+                    ...v3._doc,
+                    parent_id: v2._doc._id,
+                  };
+                }),
+              };
+            }),
+          };
+        });
+      }
+
+      res.status(200).send({ Departments: depts });
     });
 };

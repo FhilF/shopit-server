@@ -6,7 +6,7 @@ const { authMiddleware } = require("../middlewares"),
 const router = Router();
 
 router.get("/", DepartmentController.getDepartments);
-// router.post("/", ShopController.addShop);
+// router.post("/", DepartmentController.addShop);
 // router.patch("/", ShopController.updateShop);
 // router.delete("/", ShopController.deleteShop);
 

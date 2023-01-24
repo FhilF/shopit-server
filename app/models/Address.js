@@ -9,8 +9,14 @@ var AddressSchema = new Schema({
     required: true,
   },
   phoneNumber: {
-    type: String,
-    required: true,
+    countryCode: {
+      type: Number,
+      required: true,
+    },
+    number: {
+      type: Number,
+      required: true,
+    },
   },
   telephoneNumber: {
     type: String,
@@ -19,7 +25,8 @@ var AddressSchema = new Schema({
     type: String,
     required: true,
   },
-  state: {
+  region: { type: String, required: true },
+  province: {
     type: String,
     required: true,
   },
@@ -27,8 +34,9 @@ var AddressSchema = new Schema({
     type: String,
     required: true,
   },
-  district: {
+  barangay: {
     type: String,
+    required: true,
   },
   zipCode: {
     type: String,

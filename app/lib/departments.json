@@ -1,0 +1,6194 @@
+[
+  {
+    "name": "Women Clothes",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/aHpQv71yYafasDqI.png",
+    "children": [
+      {
+        "name": "Tops",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Tanks & Camisoles",
+            "isDisabled": false
+          },
+          {
+            "name": "Tube Tops",
+            "isDisabled": false
+          },
+          {
+            "name": "T-shirts",
+            "isDisabled": false
+          },
+          {
+            "name": "Shirts & Blouses",
+            "isDisabled": false
+          },
+          {
+            "name": "Polo Shirts",
+            "isDisabled": false
+          },
+          {
+            "name": "Bodysuits",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Pants & Leggings",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Leggings & Treggings",
+            "isDisabled": false
+          },
+          {
+            "name": "Pants",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Shorts",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Shorts",
+            "isDisabled": false
+          },
+          {
+            "name": "Skorts",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Skirts",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Jeans",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Dresses",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Wedding Dresses",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Jumpsuits, Playsuits & Overalls",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Jumpsuits",
+            "isDisabled": false
+          },
+          {
+            "name": "Playsuits",
+            "isDisabled": false
+          },
+          {
+            "name": "Overalls",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Jackets, Coats & Vests",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Winter Jackets & Coats",
+            "isDisabled": false
+          },
+          {
+            "name": "Capes",
+            "isDisabled": false
+          },
+          {
+            "name": "Blazers",
+            "isDisabled": false
+          },
+          {
+            "name": "Jackets",
+            "isDisabled": false
+          },
+          {
+            "name": "Vests",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Sweaters & Cardigans",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Hoodies & Sweatshirts",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Sweatshirts",
+            "isDisabled": false
+          },
+          {
+            "name": "Hoodies",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Sets",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Couple Sets",
+            "isDisabled": false
+          },
+          {
+            "name": "Family Sets",
+            "isDisabled": false
+          },
+          {
+            "name": "Individual Sets",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Lingerie & Underwear",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Sets",
+            "isDisabled": false
+          },
+          {
+            "name": "Bras",
+            "isDisabled": false
+          },
+          {
+            "name": "Panties",
+            "isDisabled": false
+          },
+          {
+            "name": "Thermal Innerwear",
+            "isDisabled": false
+          },
+          {
+            "name": "Bra Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Shapewear",
+            "isDisabled": false
+          },
+          {
+            "name": "Safety Pants",
+            "isDisabled": false
+          },
+          {
+            "name": "Sexy Lingerie",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Sleepwear & Pajamas",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Pajamas",
+            "isDisabled": false
+          },
+          {
+            "name": "Night Dresses",
+            "isDisabled": false
+          },
+          {
+            "name": "Kimonos & Robes",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Maternity Wear",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Nursing Bras",
+            "isDisabled": false
+          },
+          {
+            "name": "Maternity Dresses",
+            "isDisabled": false
+          },
+          {
+            "name": "Maternity Tops",
+            "isDisabled": false
+          },
+          {
+            "name": "Breastfeeding Wear",
+            "isDisabled": false
+          },
+          {
+            "name": "Maternity Sets",
+            "isDisabled": false
+          },
+          {
+            "name": "Maternity Bottoms",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Traditional Wear",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Tops",
+            "isDisabled": false
+          },
+          {
+            "name": "Bottoms",
+            "isDisabled": false
+          },
+          {
+            "name": "Sets",
+            "isDisabled": false
+          },
+          {
+            "name": "Dresses",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Costumes",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Fabric",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Cotton",
+            "isDisabled": false
+          },
+          {
+            "name": "Wool",
+            "isDisabled": false
+          },
+          {
+            "name": "Velvet, Silk & Satin",
+            "isDisabled": false
+          },
+          {
+            "name": "Leather",
+            "isDisabled": false
+          },
+          {
+            "name": "Vinyl & Nylon",
+            "isDisabled": false
+          },
+          {
+            "name": "Denim",
+            "isDisabled": false
+          },
+          {
+            "name": "Canvas",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Socks & Stockings",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Socks",
+            "isDisabled": false
+          },
+          {
+            "name": "Pantyhose",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Men Clothes",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/TiIlyIkLe4YUMXoS.png",
+    "children": [
+      {
+        "name": "Jeans",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Hoodies & Sweatshirts",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Hoodies",
+            "isDisabled": false
+          },
+          {
+            "name": "Sweatshirts",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Sweaters & Cardigans",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Jackets, Coats & Vests",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Winter Jackets & Coats",
+            "isDisabled": false
+          },
+          {
+            "name": "Jackets",
+            "isDisabled": false
+          },
+          {
+            "name": "Vests",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Suits",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Suit Sets",
+            "isDisabled": false
+          },
+          {
+            "name": "Suit Jackets & Blazers",
+            "isDisabled": false
+          },
+          {
+            "name": "Suit Pants",
+            "isDisabled": false
+          },
+          {
+            "name": "Suit Vests & Waistcoats",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Pants",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Cargo",
+            "isDisabled": false
+          },
+          {
+            "name": "Joggers",
+            "isDisabled": false
+          },
+          {
+            "name": "Pants",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Shorts",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Tops",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Shirts",
+            "isDisabled": false
+          },
+          {
+            "name": "Polo Shirts",
+            "isDisabled": false
+          },
+          {
+            "name": "T-Shirts",
+            "isDisabled": false
+          },
+          {
+            "name": "Tanks",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Innerwear & Underwear",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Underwear",
+            "isDisabled": false
+          },
+          {
+            "name": "Undershirts",
+            "isDisabled": false
+          },
+          {
+            "name": "Thermal Innerwear",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Sleepwear",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Sets",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Traditional Wear",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Tops",
+            "isDisabled": false
+          },
+          {
+            "name": "Bottoms",
+            "isDisabled": false
+          },
+          {
+            "name": "Sets",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Costumes",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Occupational Attire",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Socks",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Beauty",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/iDJabVsMvoJen4me.png",
+    "children": [
+      {
+        "name": "Hand, Foot & Nail Care",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Hand Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Foot Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Nail Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Hair Care",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Shampoo",
+            "isDisabled": false
+          },
+          {
+            "name": "Hair Colour",
+            "isDisabled": false
+          },
+          {
+            "name": "Hair Treatment",
+            "isDisabled": false
+          },
+          {
+            "name": "Hair and Scalp Conditioner",
+            "isDisabled": false
+          },
+          {
+            "name": "Hair Styling",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Men's Care",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Bath & Body Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Skincare",
+            "isDisabled": false
+          },
+          {
+            "name": "Shaving & Grooming",
+            "isDisabled": false
+          },
+          {
+            "name": "Hair Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Perfumes & Fragrances",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Makeup",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Others",
+            "isDisabled": false
+          },
+          {
+            "name": "Face",
+            "isDisabled": false
+          },
+          {
+            "name": "Eyes",
+            "isDisabled": false
+          },
+          {
+            "name": "Lips",
+            "isDisabled": false
+          },
+          {
+            "name": "Makeup Removers",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Beauty Tools",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Makeup Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Facial Care Tools",
+            "isDisabled": false
+          },
+          {
+            "name": "Body Slimming Tools",
+            "isDisabled": false
+          },
+          {
+            "name": "Hair Removal Tools",
+            "isDisabled": false
+          },
+          {
+            "name": "Hair Tools",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Skincare",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Facial Cleanser",
+            "isDisabled": false
+          },
+          {
+            "name": "Toner",
+            "isDisabled": false
+          },
+          {
+            "name": "Facial Moisturizer",
+            "isDisabled": false
+          },
+          {
+            "name": "Facial Oil",
+            "isDisabled": false
+          },
+          {
+            "name": "Facial Mist",
+            "isDisabled": false
+          },
+          {
+            "name": "Facial Serum & Essence",
+            "isDisabled": false
+          },
+          {
+            "name": "Face Scrub & Peel",
+            "isDisabled": false
+          },
+          {
+            "name": "Face Mask & Packs",
+            "isDisabled": false
+          },
+          {
+            "name": "Eye Treatment",
+            "isDisabled": false
+          },
+          {
+            "name": "Lip Treatment",
+            "isDisabled": false
+          },
+          {
+            "name": "Face Sunscreen",
+            "isDisabled": false
+          },
+          {
+            "name": "After Sun Face Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Blotting Paper",
+            "isDisabled": false
+          },
+          {
+            "name": "Acne Treatment",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Beauty Sets & Packages",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Bath & Body Care",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Body Wash & Soap",
+            "isDisabled": false
+          },
+          {
+            "name": "Body Scrub & Peel",
+            "isDisabled": false
+          },
+          {
+            "name": "Body Masks",
+            "isDisabled": false
+          },
+          {
+            "name": "Body Oil",
+            "isDisabled": false
+          },
+          {
+            "name": "Body Cream, Lotion & Butter",
+            "isDisabled": false
+          },
+          {
+            "name": "Body Deodorants",
+            "isDisabled": false
+          },
+          {
+            "name": "Massage Oil",
+            "isDisabled": false
+          },
+          {
+            "name": "Hair Removal Cream & Wax",
+            "isDisabled": false
+          },
+          {
+            "name": "Sun Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Breast Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Health",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/QLwgvXtE1Hghsjop.png",
+    "children": [
+      {
+        "name": "Food Supplement",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Weight Management",
+            "isDisabled": false
+          },
+          {
+            "name": "Beauty Supplements",
+            "isDisabled": false
+          },
+          {
+            "name": "Fitness",
+            "isDisabled": false
+          },
+          {
+            "name": "Well Being",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Medical Supplies",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Over-the-counter Medicine",
+            "isDisabled": true
+          },
+          {
+            "name": "Traditional Medicine",
+            "isDisabled": false
+          },
+          {
+            "name": "Health Monitors & Tests",
+            "isDisabled": false
+          },
+          {
+            "name": "Scale & Body Fat Analyzers",
+            "isDisabled": false
+          },
+          {
+            "name": "Nasal Care",
+            "isDisabled": false
+          },
+          {
+            "name": "First Aid Supplies",
+            "isDisabled": false
+          },
+          {
+            "name": "Stethoscopes",
+            "isDisabled": false
+          },
+          {
+            "name": "Pain Relievers",
+            "isDisabled": false
+          },
+          {
+            "name": "Laboratory Tools",
+            "isDisabled": false
+          },
+          {
+            "name": "Medical Gloves & Masks",
+            "isDisabled": false
+          },
+          {
+            "name": "Injury & Disability Support",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Personal Care",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Hand Sanitizers",
+            "isDisabled": false
+          },
+          {
+            "name": "Eye Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Ear Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Oral Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Adult Diapers & Incontinence",
+            "isDisabled": false
+          },
+          {
+            "name": "Feminine Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Massage & Therapy Devices",
+            "isDisabled": false
+          },
+          {
+            "name": "Insect Repellents",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Sexual Wellness",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Condoms",
+            "isDisabled": false
+          },
+          {
+            "name": "Lubricants",
+            "isDisabled": false
+          },
+          {
+            "name": "Sex Toys",
+            "isDisabled": false
+          },
+          {
+            "name": "Performance Enhancement",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Fashion Accessories",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/GMhqloiAB6w0nlSm.png",
+    "children": [
+      {
+        "name": "Rings",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Earrings",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Scarves & Shawls",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Gloves",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Hair Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Headbands",
+            "isDisabled": false
+          },
+          {
+            "name": "Hair Ties, Ribbons & Scrunchies",
+            "isDisabled": false
+          },
+          {
+            "name": "Hair Clips & Hair Pins",
+            "isDisabled": false
+          },
+          {
+            "name": "Wigs & Extensions",
+            "isDisabled": false
+          },
+          {
+            "name": "Headpieces, Tiaras & Flower Crowns",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Bracelets & Bangles",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Anklets",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Hats & Caps",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Necklaces",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Eyewear",
+        "isDisabled": false,
+        "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/1G5s44jtn4MUTEDr.png",
+        "children": [
+          {
+            "name": "Sunglasses",
+            "isDisabled": false
+          },
+          {
+            "name": "Frames & Glasses",
+            "isDisabled": false
+          },
+          {
+            "name": "Eyewear Cases & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Investment Precious Metals",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Platinum & K Gold",
+            "isDisabled": false
+          },
+          {
+            "name": "Silver",
+            "isDisabled": false
+          },
+          {
+            "name": "Diamond",
+            "isDisabled": false
+          },
+          {
+            "name": "Jade",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Belts",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Neckties, Bow Ties & Cravats",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Additional Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Brooches & Pins",
+            "isDisabled": false
+          },
+          {
+            "name": "Patches",
+            "isDisabled": false
+          },
+          {
+            "name": "Charms, Pendants & Ornaments",
+            "isDisabled": false
+          },
+          {
+            "name": "Cufflinks",
+            "isDisabled": false
+          },
+          {
+            "name": "Tattoos",
+            "isDisabled": false
+          },
+          {
+            "name": "Masks",
+            "isDisabled": false
+          },
+          {
+            "name": "Handkerchiefs",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Accessories Sets & Packages",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Home Appliances",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/NSfZp0haUDyc0wSA.png",
+    "children": [
+      {
+        "name": "Projectors & Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Projectors & Projector Screens",
+            "isDisabled": false
+          },
+          {
+            "name": "Pointers",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Small Household Appliances",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Foot Baths & Spas",
+            "isDisabled": false
+          },
+          {
+            "name": "Water Flossers",
+            "isDisabled": false
+          },
+          {
+            "name": "Sewing Machines & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Telephones",
+            "isDisabled": false
+          },
+          {
+            "name": "Irons & Steamers",
+            "isDisabled": false
+          },
+          {
+            "name": "Air Treatment",
+            "isDisabled": false
+          },
+          {
+            "name": "Vacuum Cleaners & Floor Care Appliances",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Large Household Appliances",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Washing Machines & Dryers",
+            "isDisabled": false
+          },
+          {
+            "name": "Water Heaters",
+            "isDisabled": false
+          },
+          {
+            "name": "Cooling",
+            "isDisabled": false
+          },
+          {
+            "name": "Futon & Shoe Dryers",
+            "isDisabled": false
+          },
+          {
+            "name": "Heaters",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "TVs & Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "TVs",
+            "isDisabled": false
+          },
+          {
+            "name": "TV Antennas",
+            "isDisabled": false
+          },
+          {
+            "name": "TV Boxes & Receivers",
+            "isDisabled": false
+          },
+          {
+            "name": "TV Brackets",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Kitchen Appliances",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Water Filters, Coolers & Dispensers",
+            "isDisabled": false
+          },
+          {
+            "name": "Kettles",
+            "isDisabled": false
+          },
+          {
+            "name": "Wine Fridges",
+            "isDisabled": false
+          },
+          {
+            "name": "Juicers, Blenders & Soya Bean Machines",
+            "isDisabled": false
+          },
+          {
+            "name": "Coffee Machines & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Mixers",
+            "isDisabled": false
+          },
+          {
+            "name": "Dishwashers",
+            "isDisabled": false
+          },
+          {
+            "name": "Stoves, Hobs & Gas Regulators",
+            "isDisabled": false
+          },
+          {
+            "name": "Air Fryers",
+            "isDisabled": false
+          },
+          {
+            "name": "Deep Fryers",
+            "isDisabled": false
+          },
+          {
+            "name": "Microwaves",
+            "isDisabled": false
+          },
+          {
+            "name": "Ovens",
+            "isDisabled": false
+          },
+          {
+            "name": "Toasters",
+            "isDisabled": false
+          },
+          {
+            "name": "Food Processors & Meat Grinders",
+            "isDisabled": false
+          },
+          {
+            "name": "Multi-function Cookers",
+            "isDisabled": false
+          },
+          {
+            "name": "Pressure Cookers",
+            "isDisabled": false
+          },
+          {
+            "name": "Slow Cookers & Sous Vide Machines",
+            "isDisabled": false
+          },
+          {
+            "name": "Rice Cookers",
+            "isDisabled": false
+          },
+          {
+            "name": "Specialty Cookware",
+            "isDisabled": false
+          },
+          {
+            "name": "Refrigerators",
+            "isDisabled": false
+          },
+          {
+            "name": "Freezers",
+            "isDisabled": false
+          },
+          {
+            "name": "Hoods",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Electrical Circuitry & Parts",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Electric Sockets & Extension Cords",
+            "isDisabled": false
+          },
+          {
+            "name": "Electrical Safety",
+            "isDisabled": false
+          },
+          {
+            "name": "Electricity Savers",
+            "isDisabled": false
+          },
+          {
+            "name": "Doorbells",
+            "isDisabled": false
+          },
+          {
+            "name": "Switches",
+            "isDisabled": false
+          },
+          {
+            "name": "House Alarms",
+            "isDisabled": false
+          },
+          {
+            "name": "Lightning Protection",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Batteries",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "E-Cigarettes",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Pods & Mods",
+            "isDisabled": false
+          },
+          {
+            "name": "Liquids",
+            "isDisabled": false
+          },
+          {
+            "name": "Tanks & Atomizers",
+            "isDisabled": false
+          },
+          {
+            "name": "Kits",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Remote Controls",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Men Shoes",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/svwU9AJPek4dltgp.png",
+    "children": [
+      {
+        "name": "Boots",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Fashion Boots",
+            "isDisabled": false
+          },
+          {
+            "name": "Rain Boots",
+            "isDisabled": false
+          },
+          {
+            "name": "Safety Boots",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Sneakers",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Slip Ons & Mules",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Loafers & Boat Shoes",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Oxfords & Lace-Ups",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Sandals & Flip Flops",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Flip Flops",
+            "isDisabled": false
+          },
+          {
+            "name": "Sandals",
+            "isDisabled": false
+          },
+          {
+            "name": "Indoor Slippers",
+            "isDisabled": false
+          },
+          {
+            "name": "Health Slippers",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Shoe Care & Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Shoe Care & Cleaning Tools",
+            "isDisabled": false
+          },
+          {
+            "name": "Shoe Deodorizers",
+            "isDisabled": false
+          },
+          {
+            "name": "Shoe Laces",
+            "isDisabled": false
+          },
+          {
+            "name": "Shoe Horns & Trees",
+            "isDisabled": false
+          },
+          {
+            "name": "Shoe Insoles",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Mobile & Gadgets",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/WPyPqommKI5lXJgU.png",
+    "children": [
+      {
+        "name": "Sim Cards",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Tablets",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Mobile Phones",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Wearable Devices",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Smartwatches & Fitness Trackers",
+            "isDisabled": false
+          },
+          {
+            "name": "VR Devices",
+            "isDisabled": false
+          },
+          {
+            "name": "GPS Trackers",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Selfie Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Mobile Lens",
+            "isDisabled": false
+          },
+          {
+            "name": "Mobile Flashes & Selfie Lights",
+            "isDisabled": false
+          },
+          {
+            "name": "USB & Mobile Fans",
+            "isDisabled": false
+          },
+          {
+            "name": "Stylus",
+            "isDisabled": false
+          },
+          {
+            "name": "Phone Grips",
+            "isDisabled": false
+          },
+          {
+            "name": "Phone Straps & Keychains",
+            "isDisabled": false
+          },
+          {
+            "name": "Memory Cards",
+            "isDisabled": false
+          },
+          {
+            "name": "Casting Devices",
+            "isDisabled": false
+          },
+          {
+            "name": "Mobile Pouches",
+            "isDisabled": false
+          },
+          {
+            "name": "Cables, Chargers & Converters",
+            "isDisabled": false
+          },
+          {
+            "name": "USB & Mobile Lights",
+            "isDisabled": false
+          },
+          {
+            "name": "Pocket Wifi",
+            "isDisabled": false
+          },
+          {
+            "name": "Powerbanks & Batteries",
+            "isDisabled": false
+          },
+          {
+            "name": "Wearable Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Screen Protectors",
+            "isDisabled": false
+          },
+          {
+            "name": "Cases, Covers, & Skins",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Walkie Talkies",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Travel & Luggage",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/ahWbWAA1tgpTlJi4.png",
+    "children": [
+      {
+        "name": "Luggage",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Travel Bags",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Duffel & Weekender Bags",
+            "isDisabled": false
+          },
+          {
+            "name": "Foldable Bags",
+            "isDisabled": false
+          },
+          {
+            "name": "Drawstring Bags",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Travel Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Passport Holders & Covers",
+            "isDisabled": false
+          },
+          {
+            "name": "Travel Organizers",
+            "isDisabled": false
+          },
+          {
+            "name": "Luggage Protectors & Covers",
+            "isDisabled": false
+          },
+          {
+            "name": "Luggage Tags",
+            "isDisabled": false
+          },
+          {
+            "name": "Luggage Straps",
+            "isDisabled": false
+          },
+          {
+            "name": "Luggage Locks",
+            "isDisabled": false
+          },
+          {
+            "name": "Luggage Scales",
+            "isDisabled": false
+          },
+          {
+            "name": "Travel Pillows & Eye Covers",
+            "isDisabled": false
+          },
+          {
+            "name": "Travel Size Bottles & Containers",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Women Bags",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/sJWlT4HnQBX6Mc2O.png",
+    "children": [
+      {
+        "name": "Backpacks",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Laptop Bags",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Laptop Bags & Cases",
+            "isDisabled": false
+          },
+          {
+            "name": "Laptop Sleeves",
+            "isDisabled": false
+          },
+          {
+            "name": "Laptop Backpacks",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Clutches & Wristlets",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Waist Bags & Chest Bags",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Tote Bags",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Top-handle Bags",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Crossbody & Shoulder Bags",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Wallets",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Card Holders",
+            "isDisabled": false
+          },
+          {
+            "name": "Coin Holders & Purses",
+            "isDisabled": false
+          },
+          {
+            "name": "Phone & Key Wallets",
+            "isDisabled": false
+          },
+          {
+            "name": "Bifold & Trifold Wallets",
+            "isDisabled": false
+          },
+          {
+            "name": "Long Wallets",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Bag Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Bag Straps",
+            "isDisabled": false
+          },
+          {
+            "name": "Bag Holders",
+            "isDisabled": false
+          },
+          {
+            "name": "Charms & Twillies",
+            "isDisabled": false
+          },
+          {
+            "name": "Bag Organizers",
+            "isDisabled": false
+          },
+          {
+            "name": "Cleaning & Care Equipment",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Women Shoes",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/trciBdwuJtj2eYFM.png",
+    "children": [
+      {
+        "name": "Boots",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Rain Boots",
+            "isDisabled": false
+          },
+          {
+            "name": "Fashion Boots",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Sneakers",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Flats",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Ballet Flats",
+            "isDisabled": false
+          },
+          {
+            "name": "Loafers & Boat Shoes",
+            "isDisabled": false
+          },
+          {
+            "name": "Oxfords & Lace-Ups",
+            "isDisabled": false
+          },
+          {
+            "name": "Slip Ons, Mary Janes & Mules",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Heels",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Wedges",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Flat Sandals & Flip Flops",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Flat Sandals",
+            "isDisabled": false
+          },
+          {
+            "name": "Flip Flops",
+            "isDisabled": false
+          },
+          {
+            "name": "Health Slippers",
+            "isDisabled": false
+          },
+          {
+            "name": "Indoor Slippers",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Shoe Care & Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Shoe Deodorizers",
+            "isDisabled": false
+          },
+          {
+            "name": "Insoles & Heel Liners",
+            "isDisabled": false
+          },
+          {
+            "name": "Shoe Horns & Trees",
+            "isDisabled": false
+          },
+          {
+            "name": "Shoe Care & Cleaning Tools",
+            "isDisabled": false
+          },
+          {
+            "name": "Shoe Laces",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Men Bags",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/9M6yc6RYV1DfqbRJ.png",
+    "children": [
+      {
+        "name": "Backpacks",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Laptop Bags",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Laptop Bags & Cases",
+            "isDisabled": false
+          },
+          {
+            "name": "Laptop Sleeves",
+            "isDisabled": false
+          },
+          {
+            "name": "Laptop Backpacks",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Tote Bags",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Briefcases",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Clutches",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Waist Bags & Chest Bags",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Crossbody & Shoulder Bags",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Wallets",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Card Holders",
+            "isDisabled": false
+          },
+          {
+            "name": "Coin Holders & Purses",
+            "isDisabled": false
+          },
+          {
+            "name": "Phone & Key Wallets",
+            "isDisabled": false
+          },
+          {
+            "name": "Bifold & Trifold Wallets",
+            "isDisabled": false
+          },
+          {
+            "name": "Long Wallets",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Watches",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/jfApd4wJ5CTsc11z.png",
+    "children": [
+      {
+        "name": "Women Watches",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Men Watches",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Set & Couple Watches",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Watches Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Straps",
+            "isDisabled": false
+          },
+          {
+            "name": "Service Tools",
+            "isDisabled": false
+          },
+          {
+            "name": "Buckles",
+            "isDisabled": false
+          },
+          {
+            "name": "Batteries",
+            "isDisabled": false
+          },
+          {
+            "name": "Boxes",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Audio",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/RavUXpSLFViCbRBY.png",
+    "children": [
+      {
+        "name": "Earphones, Headphones & Headsets",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Media Players",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "MP3 & MP4 Players",
+            "isDisabled": false
+          },
+          {
+            "name": "CD, DVD, & Blu-ray Players",
+            "isDisabled": false
+          },
+          {
+            "name": "Voice Recorders",
+            "isDisabled": false
+          },
+          {
+            "name": "Radio & Cassette Players",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Microphones",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Amplifiers & Mixers",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Home Audio & Speakers",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Speakers",
+            "isDisabled": false
+          },
+          {
+            "name": "Home Theater Systems",
+            "isDisabled": false
+          },
+          {
+            "name": "AV Receivers",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Audio & Video Cables & Converters",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Food & Beverages",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/lafzN3eOgd8qPPBw.png",
+    "children": [
+      {
+        "name": "Convenience / Ready-to-eat",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Cooked Food",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          },
+          {
+            "name": "Instant Rice & Porridge",
+            "isDisabled": false
+          },
+          {
+            "name": "Instant Hotpot",
+            "isDisabled": false
+          },
+          {
+            "name": "Instant Noodles",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Snacks",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Sweets & Candy",
+            "isDisabled": false
+          },
+          {
+            "name": "Chocolate",
+            "isDisabled": false
+          },
+          {
+            "name": "Biscuits, Cookies & Wafers",
+            "isDisabled": false
+          },
+          {
+            "name": "Chips & Crisps",
+            "isDisabled": false
+          },
+          {
+            "name": "Seeds",
+            "isDisabled": false
+          },
+          {
+            "name": "Popcorn",
+            "isDisabled": false
+          },
+          {
+            "name": "Seaweed",
+            "isDisabled": false
+          },
+          {
+            "name": "Nuts",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          },
+          {
+            "name": "Pudding, Jellies & Marshmallow",
+            "isDisabled": false
+          },
+          {
+            "name": "Dried Snacks",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Food Staples",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Dried Goods",
+            "isDisabled": false
+          },
+          {
+            "name": "Noodles",
+            "isDisabled": false
+          },
+          {
+            "name": "Rice",
+            "isDisabled": false
+          },
+          {
+            "name": "Pasta",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          },
+          {
+            "name": "Canned Food",
+            "isDisabled": false
+          },
+          {
+            "name": "Preserved Vegetables",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Cooking Essentials",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Oil",
+            "isDisabled": false
+          },
+          {
+            "name": "Seasonings & Condiments",
+            "isDisabled": false
+          },
+          {
+            "name": "Sugar",
+            "isDisabled": false
+          },
+          {
+            "name": "Sweetener",
+            "isDisabled": false
+          },
+          {
+            "name": "Stock, Gravy & Instant Soup",
+            "isDisabled": false
+          },
+          {
+            "name": "Cooking Paste & Kit",
+            "isDisabled": false
+          },
+          {
+            "name": "Flavour Enhancers",
+            "isDisabled": false
+          },
+          {
+            "name": "Flour Coating",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Baking Needs",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Baking Flavoring",
+            "isDisabled": false
+          },
+          {
+            "name": "Baking Powder & Soda",
+            "isDisabled": false
+          },
+          {
+            "name": "Baking Premix Flour",
+            "isDisabled": false
+          },
+          {
+            "name": "Flour",
+            "isDisabled": false
+          },
+          {
+            "name": "Food Coloring",
+            "isDisabled": false
+          },
+          {
+            "name": "Baking Decoration",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Breakfast Cereals & Spread",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Honey & Maple Syrups",
+            "isDisabled": false
+          },
+          {
+            "name": "Jam & Spread",
+            "isDisabled": false
+          },
+          {
+            "name": "Cereal, Granola & Oats",
+            "isDisabled": false
+          },
+          {
+            "name": "Breakfast Bar",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Beverages",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Coffee",
+            "isDisabled": false
+          },
+          {
+            "name": "Tea & Tea Bags",
+            "isDisabled": false
+          },
+          {
+            "name": "Chocolate Drinks",
+            "isDisabled": false
+          },
+          {
+            "name": "Energy & Isotonic Drinks",
+            "isDisabled": false
+          },
+          {
+            "name": "Water",
+            "isDisabled": false
+          },
+          {
+            "name": "Juice & Juice Vinegar",
+            "isDisabled": false
+          },
+          {
+            "name": "Cordial & Syrups",
+            "isDisabled": false
+          },
+          {
+            "name": "Carbonated Drinks & Tonics",
+            "isDisabled": false
+          },
+          {
+            "name": "Powdered Drink Mixes",
+            "isDisabled": false
+          },
+          {
+            "name": "Dessert Drink",
+            "isDisabled": false
+          },
+          {
+            "name": "Traditional & Herbal Drinks",
+            "isDisabled": false
+          },
+          {
+            "name": "Drink Toppings",
+            "isDisabled": false
+          },
+          {
+            "name": "Non-dairy Milk",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Dairy & Eggs",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Milk",
+            "isDisabled": false
+          },
+          {
+            "name": "Yogurt & Cultured Milk",
+            "isDisabled": false
+          },
+          {
+            "name": "Creamers",
+            "isDisabled": false
+          },
+          {
+            "name": "Butter & Margarine",
+            "isDisabled": false
+          },
+          {
+            "name": "Cheese & Cheese Powder",
+            "isDisabled": false
+          },
+          {
+            "name": "Ice cream",
+            "isDisabled": false
+          },
+          {
+            "name": "Eggs",
+            "isDisabled": false
+          },
+          {
+            "name": "Beancurd",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Fresh & Frozen Food",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Meat",
+            "isDisabled": true
+          },
+          {
+            "name": "Seafood",
+            "isDisabled": false
+          },
+          {
+            "name": "Vegetarian Meat",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          },
+          {
+            "name": "Vegetables",
+            "isDisabled": false
+          },
+          {
+            "name": "Fruits",
+            "isDisabled": false
+          },
+          {
+            "name": "Mushroom",
+            "isDisabled": false
+          },
+          {
+            "name": "Frozen Processed Food",
+            "isDisabled": false
+          },
+          {
+            "name": "Processed Meat & Seafood",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Bakery",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Breads",
+            "isDisabled": false
+          },
+          {
+            "name": "Cakes & Pies",
+            "isDisabled": false
+          },
+          {
+            "name": "Pastry",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Alcoholic Beverages",
+        "isDisabled": true,
+        "children": [
+          {
+            "name": "Beer & Cider",
+            "isDisabled": true
+          },
+          {
+            "name": "Wine & Champagne",
+            "isDisabled": true
+          },
+          {
+            "name": "Liquor & Spirits",
+            "isDisabled": true
+          },
+          {
+            "name": "Sake, Soju & Umeshu",
+            "isDisabled": true
+          },
+          {
+            "name": "Others",
+            "isDisabled": true
+          }
+        ]
+      },
+      {
+        "name": "Gift Set & Hampers",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Pets",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/Q4LFkXMJuYvbzdJV.png",
+    "children": [
+      {
+        "name": "Pet Food",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Dog Food",
+            "isDisabled": false
+          },
+          {
+            "name": "Dog Treats",
+            "isDisabled": false
+          },
+          {
+            "name": "Cat Food",
+            "isDisabled": false
+          },
+          {
+            "name": "Cat Treats",
+            "isDisabled": false
+          },
+          {
+            "name": "Small Pet Food",
+            "isDisabled": false
+          },
+          {
+            "name": "Small Pet Treats",
+            "isDisabled": false
+          },
+          {
+            "name": "Aquarium Pet Food",
+            "isDisabled": false
+          },
+          {
+            "name": "Bird Feed",
+            "isDisabled": false
+          },
+          {
+            "name": "Reptile Food",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Pet Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Bowls & Feeders",
+            "isDisabled": false
+          },
+          {
+            "name": "Travel Essentials",
+            "isDisabled": false
+          },
+          {
+            "name": "Leashes, Collars, Harnesses & Muzzles",
+            "isDisabled": false
+          },
+          {
+            "name": "Toys",
+            "isDisabled": false
+          },
+          {
+            "name": "Pet Furniture",
+            "isDisabled": false
+          },
+          {
+            "name": "Aquarium Needs",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Litter & Toilet",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Cat Litter & Boxes",
+            "isDisabled": false
+          },
+          {
+            "name": "Small Pet Bedding & Litter",
+            "isDisabled": false
+          },
+          {
+            "name": "Diapers",
+            "isDisabled": false
+          },
+          {
+            "name": "Dog Training Pads & Trays",
+            "isDisabled": false
+          },
+          {
+            "name": "Poop Bags & Scoopers",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Pet Grooming",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Hair Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Oral Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Claw Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Pet Clothing & Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Pet Clothing",
+            "isDisabled": false
+          },
+          {
+            "name": "Wet Weather Gear",
+            "isDisabled": false
+          },
+          {
+            "name": "Boots, Socks & Paw Protectors",
+            "isDisabled": false
+          },
+          {
+            "name": "Neck Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Eyewear",
+            "isDisabled": false
+          },
+          {
+            "name": "Hair Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Hats",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Pet Healthcare",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Anti Fleas & Ticks",
+            "isDisabled": false
+          },
+          {
+            "name": "Medication",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          },
+          {
+            "name": "Vitamins & Supplements",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Mom & Baby",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/Z3Xw2sUdcIjk3C2D.png",
+    "children": [
+      {
+        "name": "Baby Travel Essentials",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Baby Carrier",
+            "isDisabled": false
+          },
+          {
+            "name": "Strollers & Travel Systems",
+            "isDisabled": false
+          },
+          {
+            "name": "Stroller Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Car & Motorbike Seats",
+            "isDisabled": false
+          },
+          {
+            "name": "Car & Motorbike Seats Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Diaper Bags",
+            "isDisabled": false
+          },
+          {
+            "name": "Child Harnesses & Leashes",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Feeding Essentials",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Bottle-feeding",
+            "isDisabled": false
+          },
+          {
+            "name": "Breastfeeding",
+            "isDisabled": false
+          },
+          {
+            "name": "Highchairs & Booster Seats",
+            "isDisabled": false
+          },
+          {
+            "name": "Utensils",
+            "isDisabled": false
+          },
+          {
+            "name": "Bibs",
+            "isDisabled": false
+          },
+          {
+            "name": "Pacifiers",
+            "isDisabled": false
+          },
+          {
+            "name": "Food Processors",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Maternity Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Supporting Belts",
+            "isDisabled": false
+          },
+          {
+            "name": "Maternity Pillows",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Maternity Healthcare",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Maternity Milk",
+            "isDisabled": false
+          },
+          {
+            "name": "Maternity Vitamins & Supplement",
+            "isDisabled": false
+          },
+          {
+            "name": "Moisturizers & Creams",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Bath & Body Care",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Bathing Tubs & Seats",
+            "isDisabled": false
+          },
+          {
+            "name": "Bath Robes, Towels & Wash Cloths",
+            "isDisabled": false
+          },
+          {
+            "name": "Shower Caps",
+            "isDisabled": false
+          },
+          {
+            "name": "Bathing Tools & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Hair Care & Body Wash",
+            "isDisabled": false
+          },
+          {
+            "name": "Baby Colognes & Fragrances",
+            "isDisabled": false
+          },
+          {
+            "name": "Baby Grooming Tools",
+            "isDisabled": false
+          },
+          {
+            "name": "Wipes",
+            "isDisabled": false
+          },
+          {
+            "name": "Baby Laundry Detergent",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Nursery",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Cribs & Cradles & Beds",
+            "isDisabled": false
+          },
+          {
+            "name": "Bouncers, Rockers & Jumpers",
+            "isDisabled": false
+          },
+          {
+            "name": "Walkers",
+            "isDisabled": false
+          },
+          {
+            "name": "Mattresses & Bedding",
+            "isDisabled": false
+          },
+          {
+            "name": "Storage & Organization",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Baby Safety",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Monitors",
+            "isDisabled": false
+          },
+          {
+            "name": "Mosquito Netting",
+            "isDisabled": false
+          },
+          {
+            "name": "Bumpers, Rails & Guards",
+            "isDisabled": false
+          },
+          {
+            "name": "Edge & Corner Guards",
+            "isDisabled": false
+          },
+          {
+            "name": "Baby Gates & Doorways",
+            "isDisabled": false
+          },
+          {
+            "name": "Safety Locks & Straps",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Milk Formula & Baby Food",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Milk Formula",
+            "isDisabled": false
+          },
+          {
+            "name": "Baby Porridge, Puree & Cereal",
+            "isDisabled": false
+          },
+          {
+            "name": "Baby Snack",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Baby Healthcare",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Baby Vitamins & Supplements",
+            "isDisabled": false
+          },
+          {
+            "name": "Nasal Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Baby Skincare",
+            "isDisabled": false
+          },
+          {
+            "name": "Baby Oral Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Sun Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Diapering & Potty",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Changing Pads & Kits",
+            "isDisabled": false
+          },
+          {
+            "name": "Potty Training & Commode Chairs",
+            "isDisabled": false
+          },
+          {
+            "name": "Disposable Diapers",
+            "isDisabled": false
+          },
+          {
+            "name": "Cloth Diapers & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Toys",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Baby & Toddler Toys",
+            "isDisabled": false
+          },
+          {
+            "name": "Block Toys",
+            "isDisabled": false
+          },
+          {
+            "name": "Dolls & Stuffed Toys",
+            "isDisabled": false
+          },
+          {
+            "name": "Pretend Play",
+            "isDisabled": false
+          },
+          {
+            "name": "Toy Vehicles",
+            "isDisabled": false
+          },
+          {
+            "name": "Sports & Outdoor Play",
+            "isDisabled": false
+          },
+          {
+            "name": "Educational Toys",
+            "isDisabled": false
+          },
+          {
+            "name": "Robot Toys",
+            "isDisabled": false
+          },
+          {
+            "name": "Slime & Squishy Toys",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Gift Sets & Packages",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Baby & Kids Fashion",
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/Mhw2yrwYVbfmjiJk.png",
+    "isDisabled": false,
+    "children": [
+      {
+        "name": "Baby Clothes",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Regular Outerwear",
+            "isDisabled": false
+          },
+          {
+            "name": "Winter Outerwear",
+            "isDisabled": false
+          },
+          {
+            "name": "Dresses",
+            "isDisabled": false
+          },
+          {
+            "name": "Bottoms",
+            "isDisabled": false
+          },
+          {
+            "name": "Sleepwear",
+            "isDisabled": false
+          },
+          {
+            "name": "Tops",
+            "isDisabled": false
+          },
+          {
+            "name": "Bodysuits & Jumpsuits",
+            "isDisabled": false
+          },
+          {
+            "name": "Sets",
+            "isDisabled": false
+          },
+          {
+            "name": "Swimwear",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Baby Mittens & Footwear",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Baby & Kids Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Bags & Luggage",
+            "isDisabled": false
+          },
+          {
+            "name": "Hats & Caps",
+            "isDisabled": false
+          },
+          {
+            "name": "Eyewear",
+            "isDisabled": false
+          },
+          {
+            "name": "Hair Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Gloves",
+            "isDisabled": false
+          },
+          {
+            "name": "Belts",
+            "isDisabled": false
+          },
+          {
+            "name": "Socks",
+            "isDisabled": false
+          },
+          {
+            "name": "Scarves",
+            "isDisabled": false
+          },
+          {
+            "name": "Watches",
+            "isDisabled": false
+          },
+          {
+            "name": "Jewelry",
+            "isDisabled": false
+          },
+          {
+            "name": "Rain Gear",
+            "isDisabled": false
+          },
+          {
+            "name": "Earmuffs",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Boy Clothes",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Costumes",
+            "isDisabled": false
+          },
+          {
+            "name": "Underwear & Innerwear",
+            "isDisabled": false
+          },
+          {
+            "name": "Sleepwear",
+            "isDisabled": false
+          },
+          {
+            "name": "Swimwear",
+            "isDisabled": false
+          },
+          {
+            "name": "Tops",
+            "isDisabled": false
+          },
+          {
+            "name": "Outerwear",
+            "isDisabled": false
+          },
+          {
+            "name": "Bottoms",
+            "isDisabled": false
+          },
+          {
+            "name": "Suits & Sets",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Girl Clothes",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Costumes",
+            "isDisabled": false
+          },
+          {
+            "name": "Underwear & Innerwear",
+            "isDisabled": false
+          },
+          {
+            "name": "Sleepwear",
+            "isDisabled": false
+          },
+          {
+            "name": "Swimwear",
+            "isDisabled": false
+          },
+          {
+            "name": "Tops",
+            "isDisabled": false
+          },
+          {
+            "name": "Outerwear",
+            "isDisabled": false
+          },
+          {
+            "name": "Bottoms",
+            "isDisabled": false
+          },
+          {
+            "name": "Rompers, Jumpsuits & Overalls",
+            "isDisabled": false
+          },
+          {
+            "name": "Dresses",
+            "isDisabled": false
+          },
+          {
+            "name": "Suits & Sets",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Boy Shoes",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Boots",
+            "isDisabled": false
+          },
+          {
+            "name": "Sandals",
+            "isDisabled": false
+          },
+          {
+            "name": "Sneakers",
+            "isDisabled": false
+          },
+          {
+            "name": "Flip Flops",
+            "isDisabled": false
+          },
+          {
+            "name": "Formal Shoes",
+            "isDisabled": false
+          },
+          {
+            "name": "Loafers",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Girl Shoes",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Boots",
+            "isDisabled": false
+          },
+          {
+            "name": "Sandals",
+            "isDisabled": false
+          },
+          {
+            "name": "Sneakers",
+            "isDisabled": false
+          },
+          {
+            "name": "Loafers",
+            "isDisabled": false
+          },
+          {
+            "name": "Flip Flops",
+            "isDisabled": false
+          },
+          {
+            "name": "Flats",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Gaming & Consoles",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/5f6ZiniPXbvE40sL.png",
+    "children": [
+      {
+        "name": "Console Machines",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Playstation",
+            "isDisabled": false
+          },
+          {
+            "name": "Xbox",
+            "isDisabled": false
+          },
+          {
+            "name": "Wii",
+            "isDisabled": false
+          },
+          {
+            "name": "Nintendo DS",
+            "isDisabled": false
+          },
+          {
+            "name": "Gameboy",
+            "isDisabled": false
+          },
+          {
+            "name": "Switch",
+            "isDisabled": false
+          },
+          {
+            "name": "PS Vita",
+            "isDisabled": false
+          },
+          {
+            "name": "PSP",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Console Accessories",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Video Games",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Playstation",
+            "isDisabled": false
+          },
+          {
+            "name": "Xbox",
+            "isDisabled": false
+          },
+          {
+            "name": "Wii",
+            "isDisabled": false
+          },
+          {
+            "name": "Nintendo DS",
+            "isDisabled": false
+          },
+          {
+            "name": "Gameboy",
+            "isDisabled": false
+          },
+          {
+            "name": "Switch",
+            "isDisabled": false
+          },
+          {
+            "name": "PS Vita",
+            "isDisabled": false
+          },
+          {
+            "name": "PSP",
+            "isDisabled": false
+          },
+          {
+            "name": "PC Game",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Cameras & Drones",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/bDY9VcMf7aR7mwM5.png",
+    "children": [
+      {
+        "name": "Cameras",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Point & Shoot",
+            "isDisabled": false
+          },
+          {
+            "name": "Mirrorless Cameras",
+            "isDisabled": false
+          },
+          {
+            "name": "Action Cameras",
+            "isDisabled": false
+          },
+          {
+            "name": "Video Camcorders",
+            "isDisabled": false
+          },
+          {
+            "name": "Instant Cameras",
+            "isDisabled": false
+          },
+          {
+            "name": "Analog Cameras",
+            "isDisabled": false
+          },
+          {
+            "name": "DSLRs",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Security Cameras & Systems",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "CCTV Security Cameras",
+            "isDisabled": false
+          },
+          {
+            "name": "DVRs",
+            "isDisabled": false
+          },
+          {
+            "name": "Dummy Cameras",
+            "isDisabled": false
+          },
+          {
+            "name": "Spy Cameras",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Lenses",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Lens Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Lens Mount & Adaptors",
+            "isDisabled": false
+          },
+          {
+            "name": "Lens Caps",
+            "isDisabled": false
+          },
+          {
+            "name": "Filters",
+            "isDisabled": false
+          },
+          {
+            "name": "Lens Hoods",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Camera Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Flashes",
+            "isDisabled": false
+          },
+          {
+            "name": "Flash Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Gimbals & Stabilizers",
+            "isDisabled": false
+          },
+          {
+            "name": "Lighting & Studio Equipments",
+            "isDisabled": false
+          },
+          {
+            "name": "Photo Films & Papers",
+            "isDisabled": false
+          },
+          {
+            "name": "Photo Printers",
+            "isDisabled": false
+          },
+          {
+            "name": "Camera Cases & Bags",
+            "isDisabled": false
+          },
+          {
+            "name": "Battery Chargers",
+            "isDisabled": false
+          },
+          {
+            "name": "Batteries & Battery Grips",
+            "isDisabled": false
+          },
+          {
+            "name": "Tripods, Monopods, & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Camera Care",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Dry Boxes & Cabinets",
+            "isDisabled": false
+          },
+          {
+            "name": "Cleaning Kit",
+            "isDisabled": false
+          },
+          {
+            "name": "Silica Gel",
+            "isDisabled": false
+          },
+          {
+            "name": "Blowers",
+            "isDisabled": false
+          },
+          {
+            "name": "Lenspens & Brushes",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Drones",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Drone Accessories",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Home & Living",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/rGP5a8pL89F7t12J.png",
+    "children": [
+      {
+        "name": "Home Fragrance & Aromatherapy",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Air Fresheners & Home Fragrance",
+            "isDisabled": false
+          },
+          {
+            "name": "Essential Oils",
+            "isDisabled": false
+          },
+          {
+            "name": "Diffusers, Humidifiers & Oil Burners",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Bathrooms",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Toilet Bowls, Seats & Covers",
+            "isDisabled": false
+          },
+          {
+            "name": "Toothbrush Holders & Toothpaste Dispensers",
+            "isDisabled": false
+          },
+          {
+            "name": "Soap Dispensers, Holders & Boxes",
+            "isDisabled": false
+          },
+          {
+            "name": "Bathroom Racks & Cabinets",
+            "isDisabled": false
+          },
+          {
+            "name": "Bathtubs",
+            "isDisabled": false
+          },
+          {
+            "name": "Towels & Bathrobes",
+            "isDisabled": false
+          },
+          {
+            "name": "Showerheads & Bidet Sprays",
+            "isDisabled": false
+          },
+          {
+            "name": "Bath Brushes & Loofahs",
+            "isDisabled": false
+          },
+          {
+            "name": "Shower Curtains",
+            "isDisabled": false
+          },
+          {
+            "name": "Shower Seats & Commodes",
+            "isDisabled": false
+          },
+          {
+            "name": "Safety Handles",
+            "isDisabled": false
+          },
+          {
+            "name": "Shower Caps",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Bedding",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Cooling Mats",
+            "isDisabled": false
+          },
+          {
+            "name": "Mattress Protectors & Toppers",
+            "isDisabled": false
+          },
+          {
+            "name": "Blankets, Comforters & Quilts",
+            "isDisabled": false
+          },
+          {
+            "name": "Pillows",
+            "isDisabled": false
+          },
+          {
+            "name": "Bedsheets, Pillowcases & Bolster Cases",
+            "isDisabled": false
+          },
+          {
+            "name": "Mattresses",
+            "isDisabled": false
+          },
+          {
+            "name": "Mosquito Nets",
+            "isDisabled": false
+          },
+          {
+            "name": "Bolsters",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Decoration",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Flowers",
+            "isDisabled": false
+          },
+          {
+            "name": "Furniture & Appliance Covers",
+            "isDisabled": false
+          },
+          {
+            "name": "Curtains & Blinds",
+            "isDisabled": false
+          },
+          {
+            "name": "Photo Frames & Wall Decoration",
+            "isDisabled": false
+          },
+          {
+            "name": "Wallpapers & Wall Stickers",
+            "isDisabled": false
+          },
+          {
+            "name": "Clocks",
+            "isDisabled": false
+          },
+          {
+            "name": "Floor Mats",
+            "isDisabled": false
+          },
+          {
+            "name": "Carpets & Rugs",
+            "isDisabled": false
+          },
+          {
+            "name": "Vases & Vessels",
+            "isDisabled": false
+          },
+          {
+            "name": "Candles & Candleholders",
+            "isDisabled": false
+          },
+          {
+            "name": "Mirrors",
+            "isDisabled": false
+          },
+          {
+            "name": "Table Cloths",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Hand Warmers, Hot Water Bags & Ice Bags",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Furniture",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Cushions",
+            "isDisabled": false
+          },
+          {
+            "name": "Doorstoppers",
+            "isDisabled": false
+          },
+          {
+            "name": "Bed Frames & Headboards",
+            "isDisabled": false
+          },
+          {
+            "name": "Desks & Tables",
+            "isDisabled": false
+          },
+          {
+            "name": "Wardrobes",
+            "isDisabled": false
+          },
+          {
+            "name": "Benches, Chairs & Stools",
+            "isDisabled": false
+          },
+          {
+            "name": "Sofas",
+            "isDisabled": false
+          },
+          {
+            "name": "Cupboards & Cabinets",
+            "isDisabled": false
+          },
+          {
+            "name": "Shelves & Racks",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Gardening",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Plants",
+            "isDisabled": false
+          },
+          {
+            "name": "Garden Decorations",
+            "isDisabled": false
+          },
+          {
+            "name": "Garden Soils & Growing Media",
+            "isDisabled": false
+          },
+          {
+            "name": "Fertilizer",
+            "isDisabled": true
+          },
+          {
+            "name": "Seeds & Bulbs",
+            "isDisabled": false
+          },
+          {
+            "name": "Pots & Planters",
+            "isDisabled": false
+          },
+          {
+            "name": "Irrigation Systems",
+            "isDisabled": false
+          },
+          {
+            "name": "Gardening Tools",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          },
+          {
+            "name": "Lawn Mowers",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Tools & Home Improvement",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Industrial Adhesives & Tapes",
+            "isDisabled": false
+          },
+          {
+            "name": "Protective Gloves, Goggles & Masks",
+            "isDisabled": false
+          },
+          {
+            "name": "Sinks & Water Taps",
+            "isDisabled": false
+          },
+          {
+            "name": "Roofing & Flooring",
+            "isDisabled": false
+          },
+          {
+            "name": "Wall Paints & Coatings",
+            "isDisabled": false
+          },
+          {
+            "name": "Tools",
+            "isDisabled": false
+          },
+          {
+            "name": "Water Pumps, Parts & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Air Pumps, Parts & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Ladders",
+            "isDisabled": false
+          },
+          {
+            "name": "Trollies",
+            "isDisabled": false
+          },
+          {
+            "name": "Shades, Awnings & Tarpaulins",
+            "isDisabled": false
+          },
+          {
+            "name": "Construction Materials",
+            "isDisabled": false
+          },
+          {
+            "name": "Doors & Windows",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Home Care Supplies",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Clotheslines & Drying Racks",
+            "isDisabled": false
+          },
+          {
+            "name": "Cleaning Brushes",
+            "isDisabled": false
+          },
+          {
+            "name": "Brooms",
+            "isDisabled": false
+          },
+          {
+            "name": "Dusters",
+            "isDisabled": false
+          },
+          {
+            "name": "Mops",
+            "isDisabled": false
+          },
+          {
+            "name": "Basins, Buckets & Water Dippers",
+            "isDisabled": false
+          },
+          {
+            "name": "Sponges & Scouring Pads",
+            "isDisabled": false
+          },
+          {
+            "name": "Trash & Recycling Bins",
+            "isDisabled": false
+          },
+          {
+            "name": "Plastic Bags & Trash Bags",
+            "isDisabled": false
+          },
+          {
+            "name": "Cleaning Cloths",
+            "isDisabled": false
+          },
+          {
+            "name": "Pest & Weed Control",
+            "isDisabled": false
+          },
+          {
+            "name": "Tissue & Paper Towels",
+            "isDisabled": false
+          },
+          {
+            "name": "Toilet Paper",
+            "isDisabled": false
+          },
+          {
+            "name": "Cleaning Agents",
+            "isDisabled": false
+          },
+          {
+            "name": "Laundry Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Kitchenware",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Grills & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Bakewares & Decorations",
+            "isDisabled": false
+          },
+          {
+            "name": "Pans",
+            "isDisabled": false
+          },
+          {
+            "name": "Pots",
+            "isDisabled": false
+          },
+          {
+            "name": "Food Storage",
+            "isDisabled": false
+          },
+          {
+            "name": "Cling Wrap",
+            "isDisabled": false
+          },
+          {
+            "name": "Aluminium Foil",
+            "isDisabled": false
+          },
+          {
+            "name": "Tea, Coffee & Bartending Equipments",
+            "isDisabled": false
+          },
+          {
+            "name": "Kitchen Racks",
+            "isDisabled": false
+          },
+          {
+            "name": "Aprons & Kitchen Gloves",
+            "isDisabled": false
+          },
+          {
+            "name": "Spatulas & Cooking Tweezers",
+            "isDisabled": false
+          },
+          {
+            "name": "Chopping Boards",
+            "isDisabled": false
+          },
+          {
+            "name": "Knives & Kitchen Scissors",
+            "isDisabled": false
+          },
+          {
+            "name": "Whisks & Beaters",
+            "isDisabled": false
+          },
+          {
+            "name": "Can & Bottle Openers",
+            "isDisabled": false
+          },
+          {
+            "name": "Measuring Glasses & Spoons",
+            "isDisabled": false
+          },
+          {
+            "name": "Strainers",
+            "isDisabled": false
+          },
+          {
+            "name": "Graters, Peelers & Cutters",
+            "isDisabled": false
+          },
+          {
+            "name": "Kitchen Weighing Scales",
+            "isDisabled": false
+          },
+          {
+            "name": "Sealers",
+            "isDisabled": false
+          },
+          {
+            "name": "Lighters, Matches & Fire Starters",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Dinnerware",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Jugs, Pitchers & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Tea Pots & Sets",
+            "isDisabled": false
+          },
+          {
+            "name": "Cups, Mugs & Glasses",
+            "isDisabled": false
+          },
+          {
+            "name": "Water Bottles & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Bowls",
+            "isDisabled": false
+          },
+          {
+            "name": "Plates",
+            "isDisabled": false
+          },
+          {
+            "name": "Cutleries",
+            "isDisabled": false
+          },
+          {
+            "name": "Straws",
+            "isDisabled": false
+          },
+          {
+            "name": "Food Covers",
+            "isDisabled": false
+          },
+          {
+            "name": "Placemats & Coasters",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Lighting",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Safety & Security",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Safes",
+            "isDisabled": false
+          },
+          {
+            "name": "Fire Fighting Equipments",
+            "isDisabled": false
+          },
+          {
+            "name": "Door Hardware & Locks",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Home Organizers",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Hangers & Pegs",
+            "isDisabled": false
+          },
+          {
+            "name": "Storage Boxes, Bags & Baskets",
+            "isDisabled": false
+          },
+          {
+            "name": "Shoe Storage Boxes",
+            "isDisabled": false
+          },
+          {
+            "name": "Hooks",
+            "isDisabled": false
+          },
+          {
+            "name": "Laundry Bags & Baskets",
+            "isDisabled": false
+          },
+          {
+            "name": "Desk Organizers",
+            "isDisabled": false
+          },
+          {
+            "name": "Wardrobe Organizers",
+            "isDisabled": false
+          },
+          {
+            "name": "Jewelry Organizers",
+            "isDisabled": false
+          },
+          {
+            "name": "Tissue Holders",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Party Supplies",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Balloons",
+            "isDisabled": false
+          },
+          {
+            "name": "Wooden Clips",
+            "isDisabled": false
+          },
+          {
+            "name": "Backdrops & Banners",
+            "isDisabled": false
+          },
+          {
+            "name": "Cards",
+            "isDisabled": false
+          },
+          {
+            "name": "Disposable Tableware",
+            "isDisabled": false
+          },
+          {
+            "name": "Party Hats & Masks",
+            "isDisabled": false
+          },
+          {
+            "name": "Sashes",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Fengshui & Religious Supplies",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Sports & Outdoors",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/4UdxQ1MmXzPsTEez.png",
+    "children": [
+      {
+        "name": "Sports & Outdoor Recreation Equipments",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Fishing",
+            "isDisabled": false
+          },
+          {
+            "name": "Cycling",
+            "isDisabled": false
+          },
+          {
+            "name": "Camping & Hiking",
+            "isDisabled": false
+          },
+          {
+            "name": "Rock Climbing",
+            "isDisabled": false
+          },
+          {
+            "name": "Boardsports",
+            "isDisabled": false
+          },
+          {
+            "name": "Soccer, Futsal & Sepak Takraw",
+            "isDisabled": false
+          },
+          {
+            "name": "Basketball",
+            "isDisabled": false
+          },
+          {
+            "name": "Volleyball",
+            "isDisabled": false
+          },
+          {
+            "name": "Badminton",
+            "isDisabled": false
+          },
+          {
+            "name": "Tennis",
+            "isDisabled": false
+          },
+          {
+            "name": "Table Tennis",
+            "isDisabled": false
+          },
+          {
+            "name": "Boxing & Martial Arts",
+            "isDisabled": false
+          },
+          {
+            "name": "Golf",
+            "isDisabled": false
+          },
+          {
+            "name": "Baseball & Softball",
+            "isDisabled": false
+          },
+          {
+            "name": "Squash",
+            "isDisabled": false
+          },
+          {
+            "name": "Rugby",
+            "isDisabled": false
+          },
+          {
+            "name": "Billiards",
+            "isDisabled": false
+          },
+          {
+            "name": "Surfing & Wakeboarding",
+            "isDisabled": false
+          },
+          {
+            "name": "Ice Skating & Winter Sports",
+            "isDisabled": false
+          },
+          {
+            "name": "Swimming & Diving",
+            "isDisabled": false
+          },
+          {
+            "name": "Boating",
+            "isDisabled": false
+          },
+          {
+            "name": "Yoga & Pilates",
+            "isDisabled": false
+          },
+          {
+            "name": "Fitness Equipment",
+            "isDisabled": false
+          },
+          {
+            "name": "Darts",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Sports Footwear",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Basketball Shoes",
+            "isDisabled": false
+          },
+          {
+            "name": "Running Shoes",
+            "isDisabled": false
+          },
+          {
+            "name": "Training Shoes",
+            "isDisabled": false
+          },
+          {
+            "name": "Tennis Shoes",
+            "isDisabled": false
+          },
+          {
+            "name": "Volleyball Shoes",
+            "isDisabled": false
+          },
+          {
+            "name": "Badminton Shoes",
+            "isDisabled": false
+          },
+          {
+            "name": "Futsal Shoes",
+            "isDisabled": false
+          },
+          {
+            "name": "Hiking Shoes",
+            "isDisabled": false
+          },
+          {
+            "name": "Soccer Shoes",
+            "isDisabled": false
+          },
+          {
+            "name": "Kid's Sport Shoes",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Sports & Outdoor Apparels",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Sets",
+            "isDisabled": false
+          },
+          {
+            "name": "Jackets",
+            "isDisabled": false
+          },
+          {
+            "name": "T-shirts",
+            "isDisabled": false
+          },
+          {
+            "name": "Jerseys",
+            "isDisabled": false
+          },
+          {
+            "name": "Bottoms",
+            "isDisabled": false
+          },
+          {
+            "name": "Swimming Attire",
+            "isDisabled": false
+          },
+          {
+            "name": "Sports Bras",
+            "isDisabled": false
+          },
+          {
+            "name": "Kid's Sports Apparel",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Sports & Outdoor Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Stopwatches & Pedometers",
+            "isDisabled": false
+          },
+          {
+            "name": "Shoe Bags",
+            "isDisabled": false
+          },
+          {
+            "name": "Sports Wristbands",
+            "isDisabled": false
+          },
+          {
+            "name": "Sports Headbands",
+            "isDisabled": false
+          },
+          {
+            "name": "Sports & Outdoor Hats",
+            "isDisabled": false
+          },
+          {
+            "name": "Dry Bags",
+            "isDisabled": false
+          },
+          {
+            "name": "Rain Coats",
+            "isDisabled": false
+          },
+          {
+            "name": "Umbrellas",
+            "isDisabled": false
+          },
+          {
+            "name": "Mouthguards & Sport Tapes",
+            "isDisabled": false
+          },
+          {
+            "name": "Training Equipments",
+            "isDisabled": false
+          },
+          {
+            "name": "Gym Protective Gears",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Stationery",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/V2Jn06TiJinTLdoV.png",
+    "children": [
+      {
+        "name": "Gift & Wrapping",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Gift Wrappers",
+            "isDisabled": false
+          },
+          {
+            "name": "Gift Boxes",
+            "isDisabled": false
+          },
+          {
+            "name": "Gift Bags",
+            "isDisabled": false
+          },
+          {
+            "name": "Ribbons",
+            "isDisabled": false
+          },
+          {
+            "name": "Bubble Wraps",
+            "isDisabled": false
+          },
+          {
+            "name": "Carton Boxes",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Writing & Correction",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Pens & Inks",
+            "isDisabled": false
+          },
+          {
+            "name": "Pencils",
+            "isDisabled": false
+          },
+          {
+            "name": "Eraser & Correction Supplies",
+            "isDisabled": false
+          },
+          {
+            "name": "Markers",
+            "isDisabled": false
+          },
+          {
+            "name": "Highlighters",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "School & Office Equipment",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Writing Boards & Board Stands",
+            "isDisabled": false
+          },
+          {
+            "name": "Calculators",
+            "isDisabled": false
+          },
+          {
+            "name": "Pen Knives & Paper Cutters",
+            "isDisabled": false
+          },
+          {
+            "name": "Strings & Tapes",
+            "isDisabled": false
+          },
+          {
+            "name": "Glues",
+            "isDisabled": false
+          },
+          {
+            "name": "Label Printers",
+            "isDisabled": false
+          },
+          {
+            "name": "Lanyards & Name Tags",
+            "isDisabled": false
+          },
+          {
+            "name": "Clips, Pins & Tacks",
+            "isDisabled": false
+          },
+          {
+            "name": "Hole Punchers",
+            "isDisabled": false
+          },
+          {
+            "name": "Scissors",
+            "isDisabled": false
+          },
+          {
+            "name": "Ink Stamps & Pads",
+            "isDisabled": false
+          },
+          {
+            "name": "Staplers & Staples",
+            "isDisabled": false
+          },
+          {
+            "name": "Calendars",
+            "isDisabled": false
+          },
+          {
+            "name": "Folders, Paper Organizers & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Rulers, Protractors & Stencils",
+            "isDisabled": false
+          },
+          {
+            "name": "Sharpeners",
+            "isDisabled": false
+          },
+          {
+            "name": "Pencil Cases",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Art Supplies",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Color Pencils",
+            "isDisabled": false
+          },
+          {
+            "name": "Crayons & Pastels",
+            "isDisabled": false
+          },
+          {
+            "name": "Water & Poster Colours",
+            "isDisabled": false
+          },
+          {
+            "name": "Oil Paint",
+            "isDisabled": false
+          },
+          {
+            "name": "Acrylic Paint",
+            "isDisabled": false
+          },
+          {
+            "name": "Paint Brushes",
+            "isDisabled": false
+          },
+          {
+            "name": "Paint Palettes",
+            "isDisabled": false
+          },
+          {
+            "name": "Canvases & Easels",
+            "isDisabled": false
+          },
+          {
+            "name": "Sketch Books",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Notebooks & Papers",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Bookmarks",
+            "isDisabled": false
+          },
+          {
+            "name": "Book Covers",
+            "isDisabled": false
+          },
+          {
+            "name": "Thermal Paper & Continuous Paper",
+            "isDisabled": false
+          },
+          {
+            "name": "Printing & Photocopy Paper",
+            "isDisabled": false
+          },
+          {
+            "name": "Loose Leaf",
+            "isDisabled": false
+          },
+          {
+            "name": "Memo & Sticky Notes",
+            "isDisabled": false
+          },
+          {
+            "name": "Art Paper & Boards",
+            "isDisabled": false
+          },
+          {
+            "name": "Notebooks & Notepads",
+            "isDisabled": false
+          },
+          {
+            "name": "Labels & Stickers",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Letters & Envelopes",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Envelopes & Angpao",
+            "isDisabled": false
+          },
+          {
+            "name": "Post Cards",
+            "isDisabled": false
+          },
+          {
+            "name": "Postage Stamps & Duty Stamps",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Hobbies & Collections",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/htNTOm3J7Lh9YuKu.png",
+    "children": [
+      {
+        "name": "Collectible Items",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Action Figurines",
+            "isDisabled": false
+          },
+          {
+            "name": "Statues & Sculptures",
+            "isDisabled": false
+          },
+          {
+            "name": "Mecha Models & Diecast",
+            "isDisabled": false
+          },
+          {
+            "name": "Vehicle Models & Diecast",
+            "isDisabled": false
+          },
+          {
+            "name": "Stones & Minerals",
+            "isDisabled": false
+          },
+          {
+            "name": "Idol Collectibles",
+            "isDisabled": false
+          },
+          {
+            "name": "Sports Collectibles",
+            "isDisabled": false
+          },
+          {
+            "name": "Anime & Manga Collectibles",
+            "isDisabled": false
+          },
+          {
+            "name": "Coins",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Souvenirs",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Hand Fans",
+            "isDisabled": false
+          },
+          {
+            "name": "Keychains",
+            "isDisabled": false
+          },
+          {
+            "name": "Coin Banks",
+            "isDisabled": false
+          },
+          {
+            "name": "Fridge Magnets",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Toys & Games",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Dice, Board & Card Games",
+            "isDisabled": false
+          },
+          {
+            "name": "Magic Toys",
+            "isDisabled": false
+          },
+          {
+            "name": "Prank Toys",
+            "isDisabled": false
+          },
+          {
+            "name": "Rubik's Cubes",
+            "isDisabled": false
+          },
+          {
+            "name": "Spinning Tops",
+            "isDisabled": false
+          },
+          {
+            "name": "Kendamas",
+            "isDisabled": false
+          },
+          {
+            "name": "Yo-yos",
+            "isDisabled": false
+          },
+          {
+            "name": "Remote Control Toys & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Capsule Toys",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "CD, DVD & Bluray",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Musical Instruments & Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Keyboards & Pianos",
+            "isDisabled": false
+          },
+          {
+            "name": "Percussion Instruments",
+            "isDisabled": false
+          },
+          {
+            "name": "Wind Instruments",
+            "isDisabled": false
+          },
+          {
+            "name": "Music Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          },
+          {
+            "name": "String Instruments",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Vinyl Records",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Photo Albums",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Needlework",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Automobiles",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/lWTOCOT7628qmJzy.png",
+    "children": [
+      {
+        "name": "Automobile Interior Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Navigation & AV Receivers",
+            "isDisabled": false
+          },
+          {
+            "name": "Amplifiers, Speakers & Subwoofers",
+            "isDisabled": false
+          },
+          {
+            "name": "Organizers & Compartments",
+            "isDisabled": false
+          },
+          {
+            "name": "Perfumes, Air Fresheners & Purifiers",
+            "isDisabled": false
+          },
+          {
+            "name": "Carpets & Mats",
+            "isDisabled": false
+          },
+          {
+            "name": "Seat Headrests & Back Supports",
+            "isDisabled": false
+          },
+          {
+            "name": "Car Mattresses",
+            "isDisabled": false
+          },
+          {
+            "name": "Steering Wheels & Covers",
+            "isDisabled": false
+          },
+          {
+            "name": "Seats & Seat Covers",
+            "isDisabled": false
+          },
+          {
+            "name": "Phone Holders",
+            "isDisabled": false
+          },
+          {
+            "name": "USB Chargers, FM & Bluetooth Transmitters",
+            "isDisabled": false
+          },
+          {
+            "name": "Pedals & Gear Sticks",
+            "isDisabled": false
+          },
+          {
+            "name": "Sun Shields & Dash Covers",
+            "isDisabled": false
+          },
+          {
+            "name": "Locks & Security",
+            "isDisabled": false
+          },
+          {
+            "name": "Camcorders & Parking Cameras",
+            "isDisabled": false
+          },
+          {
+            "name": "HUD, Speedometers & Gauges",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Automobile Exterior Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Garnish",
+            "isDisabled": false
+          },
+          {
+            "name": "Antennas",
+            "isDisabled": false
+          },
+          {
+            "name": "Covers",
+            "isDisabled": false
+          },
+          {
+            "name": "Stickers, Logos & Emblems",
+            "isDisabled": false
+          },
+          {
+            "name": "Mud Flaps & Splash Guards",
+            "isDisabled": false
+          },
+          {
+            "name": "Sill Plates",
+            "isDisabled": false
+          },
+          {
+            "name": "Gutters",
+            "isDisabled": false
+          },
+          {
+            "name": "Horns & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Mirrors & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "License Plate Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Automobile Spare Parts",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Body, Frame & Bumpers",
+            "isDisabled": false
+          },
+          {
+            "name": "Windshield Wipers & Washers",
+            "isDisabled": false
+          },
+          {
+            "name": "Exhaust & Emissions",
+            "isDisabled": false
+          },
+          {
+            "name": "Wheels, Rims & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Tires & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Shocks, Struts & Suspension",
+            "isDisabled": false
+          },
+          {
+            "name": "Radiators, Engine Cooling & Climate Control",
+            "isDisabled": false
+          },
+          {
+            "name": "Drivetrain, Transmission & Clutches",
+            "isDisabled": false
+          },
+          {
+            "name": "Bearing & Seals",
+            "isDisabled": false
+          },
+          {
+            "name": "Engine Parts",
+            "isDisabled": false
+          },
+          {
+            "name": "Brake System",
+            "isDisabled": false
+          },
+          {
+            "name": "Belts, Hoses & Pulleys",
+            "isDisabled": false
+          },
+          {
+            "name": "Electronics",
+            "isDisabled": false
+          },
+          {
+            "name": "Fuel System",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Automotive Tools",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Test, Diagnostic & Repair Tools",
+            "isDisabled": false
+          },
+          {
+            "name": "Tire Pressure Detectors",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Automotive Care",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Wash & Waxes",
+            "isDisabled": false
+          },
+          {
+            "name": "Glass Care & Water Repellents",
+            "isDisabled": false
+          },
+          {
+            "name": "Interior Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Tire & Wheel Care",
+            "isDisabled": false
+          },
+          {
+            "name": "Polish, Coating & Sealants",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Automotive Oils & Lubes",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Oils",
+            "isDisabled": false
+          },
+          {
+            "name": "Fuel Additives & Savers",
+            "isDisabled": false
+          },
+          {
+            "name": "Greases & Lubricants",
+            "isDisabled": false
+          },
+          {
+            "name": "Antifreezes & Coolants",
+            "isDisabled": false
+          },
+          {
+            "name": "Automotive Fluids",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Automotive Keychains & Key Covers",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Motorcycles",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/5Hy3FxOOC3MluXKk.png",
+    "children": [
+      {
+        "name": "Motorcycles",
+        "isDisabled": true,
+        "children": []
+      },
+      {
+        "name": "Motorcycle Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Carpets",
+            "isDisabled": false
+          },
+          {
+            "name": "Speedometers, Odometers & Gauges",
+            "isDisabled": false
+          },
+          {
+            "name": "Covers",
+            "isDisabled": false
+          },
+          {
+            "name": "Stickers, Logos & Emblems",
+            "isDisabled": false
+          },
+          {
+            "name": "Seats & Seat Covers",
+            "isDisabled": false
+          },
+          {
+            "name": "Mirrors & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Locks & Security",
+            "isDisabled": false
+          },
+          {
+            "name": "Boxes & Cases",
+            "isDisabled": false
+          },
+          {
+            "name": "Phone Holders",
+            "isDisabled": false
+          },
+          {
+            "name": "Mud Flaps & Splash Guards",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Motorcycle Spare Parts",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Ignition & Engine Parts",
+            "isDisabled": false
+          },
+          {
+            "name": "Fuel System",
+            "isDisabled": false
+          },
+          {
+            "name": "Brake System",
+            "isDisabled": false
+          },
+          {
+            "name": "Shocks, Struts & Suspension",
+            "isDisabled": false
+          },
+          {
+            "name": "Drivetrain, Transmission & Clutches",
+            "isDisabled": false
+          },
+          {
+            "name": "Batteries & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Horns & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Cables & Tubes",
+            "isDisabled": false
+          },
+          {
+            "name": "Body & Frame",
+            "isDisabled": false
+          },
+          {
+            "name": "Exhaust & Emissions",
+            "isDisabled": false
+          },
+          {
+            "name": "Wheels, Rims & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Tires & Accessories",
+            "isDisabled": false
+          },
+          {
+            "name": "Lighting",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Motorcycle Helmets & Accessories",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Books & Magazines",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/uoO7LgJY9P1QXKXs.png",
+    "children": [
+      {
+        "name": "Magazines & Newspaper",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Business",
+            "isDisabled": false
+          },
+          {
+            "name": "Lifestyle",
+            "isDisabled": false
+          },
+          {
+            "name": "Teenager",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Books",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Comics & Manga",
+            "isDisabled": false
+          },
+          {
+            "name": "Children's Books",
+            "isDisabled": false
+          },
+          {
+            "name": "Agriculture, Forestry & Fishery",
+            "isDisabled": false
+          },
+          {
+            "name": "Adult's Books",
+            "isDisabled": false
+          },
+          {
+            "name": "Arts, Design & Photography",
+            "isDisabled": false
+          },
+          {
+            "name": "Recipes & Cooking",
+            "isDisabled": false
+          },
+          {
+            "name": "Business & Investment",
+            "isDisabled": false
+          },
+          {
+            "name": "Politics, Law & Social Sciences",
+            "isDisabled": false
+          },
+          {
+            "name": "Computers & Technology",
+            "isDisabled": false
+          },
+          {
+            "name": "Health, Fitness & Dieting",
+            "isDisabled": false
+          },
+          {
+            "name": "Travel & Tourism",
+            "isDisabled": false
+          },
+          {
+            "name": "Language Learning & Dictionaries",
+            "isDisabled": false
+          },
+          {
+            "name": "Hobbies",
+            "isDisabled": false
+          },
+          {
+            "name": "LGBTQ+ Literature",
+            "isDisabled": false
+          },
+          {
+            "name": "Light Novels",
+            "isDisabled": false
+          },
+          {
+            "name": "Classic Literature",
+            "isDisabled": false
+          },
+          {
+            "name": "Fantasy",
+            "isDisabled": false
+          },
+          {
+            "name": "Action, Crime & Thrillers",
+            "isDisabled": false
+          },
+          {
+            "name": "Romance",
+            "isDisabled": false
+          },
+          {
+            "name": "Biography & Memoirs",
+            "isDisabled": false
+          },
+          {
+            "name": "Science & Maths",
+            "isDisabled": false
+          },
+          {
+            "name": "Medical",
+            "isDisabled": false
+          },
+          {
+            "name": "Parenting & Family",
+            "isDisabled": false
+          },
+          {
+            "name": "Psychology & Relationships",
+            "isDisabled": false
+          },
+          {
+            "name": "Religion & Philosophy",
+            "isDisabled": false
+          },
+          {
+            "name": "History & Cultures",
+            "isDisabled": false
+          },
+          {
+            "name": "Careers, Self Help & Personal Development",
+            "isDisabled": false
+          },
+          {
+            "name": "Horoscopes",
+            "isDisabled": false
+          },
+          {
+            "name": "Education & School",
+            "isDisabled": false
+          },
+          {
+            "name": "Sticker & Colouring Books",
+            "isDisabled": false
+          },
+          {
+            "name": "Music",
+            "isDisabled": false
+          },
+          {
+            "name": "Baby & Soft Books",
+            "isDisabled": false
+          },
+          {
+            "name": "Audio Books",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "E-Books",
+        "isDisabled": true,
+        "children": []
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Computers & Accessories",
+    "isDisabled": false,
+    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/224pd4wJ0E2Nc11z.png",
+    "children": [
+      {
+        "name": "Desktop Computers",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Desktop PC",
+            "isDisabled": false
+          },
+          {
+            "name": "Mini PC",
+            "isDisabled": false
+          },
+          {
+            "name": "Server PC",
+            "isDisabled": false
+          },
+          {
+            "name": "All-in-One Desktops",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Monitors",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Desktop & Laptop Components",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Fans & Heatsinks",
+            "isDisabled": false
+          },
+          {
+            "name": "Processors",
+            "isDisabled": false
+          },
+          {
+            "name": "Motherboards",
+            "isDisabled": false
+          },
+          {
+            "name": "Graphics Cards",
+            "isDisabled": false
+          },
+          {
+            "name": "Thermal Paste",
+            "isDisabled": false
+          },
+          {
+            "name": "Power Supply Units",
+            "isDisabled": false
+          },
+          {
+            "name": "RAM",
+            "isDisabled": false
+          },
+          {
+            "name": "UPS & Stabilizers",
+            "isDisabled": false
+          },
+          {
+            "name": "PC Cases",
+            "isDisabled": false
+          },
+          {
+            "name": "Optical Drives",
+            "isDisabled": false
+          },
+          {
+            "name": "Sound Cards",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Data Storage",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Hard Drives",
+            "isDisabled": false
+          },
+          {
+            "name": "SSD",
+            "isDisabled": false
+          },
+          {
+            "name": "Network Attached Storage (NAS)",
+            "isDisabled": false
+          },
+          {
+            "name": "Flash Drives & OTG",
+            "isDisabled": false
+          },
+          {
+            "name": "Hard Disk Casings & Dockings",
+            "isDisabled": false
+          },
+          {
+            "name": "Compact Discs",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Network Components",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Modems & Wireless Routers",
+            "isDisabled": false
+          },
+          {
+            "name": "Repeaters",
+            "isDisabled": false
+          },
+          {
+            "name": "Wireless Adapters & Network Cards",
+            "isDisabled": false
+          },
+          {
+            "name": "Powerline Adapters",
+            "isDisabled": false
+          },
+          {
+            "name": "Network Switches & PoE",
+            "isDisabled": false
+          },
+          {
+            "name": "Network Cables & Connectors",
+            "isDisabled": false
+          },
+          {
+            "name": "KVM Switches",
+            "isDisabled": false
+          },
+          {
+            "name": "Print Servers",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Softwares",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Office Equipment",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Typewriters",
+            "isDisabled": false
+          },
+          {
+            "name": "Absence Machines",
+            "isDisabled": false
+          },
+          {
+            "name": "Paper Shredders",
+            "isDisabled": false
+          },
+          {
+            "name": "Money Counters",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Printers & Scanners",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Printers, Scanners & Photocopy Machines",
+            "isDisabled": false
+          },
+          {
+            "name": "Thermal & Barcode Printers",
+            "isDisabled": false
+          },
+          {
+            "name": "Inks & Toners",
+            "isDisabled": false
+          },
+          {
+            "name": "3D Printers",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Peripherals & Accessories",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "USB Hubs & Card Readers",
+            "isDisabled": false
+          },
+          {
+            "name": "Webcams",
+            "isDisabled": false
+          },
+          {
+            "name": "Laptop Skins & Covers",
+            "isDisabled": false
+          },
+          {
+            "name": "Cooling Pads",
+            "isDisabled": false
+          },
+          {
+            "name": "Laptop Stands & Foldable Laptop Desks",
+            "isDisabled": false
+          },
+          {
+            "name": "Keyboard & Trackpad Covers",
+            "isDisabled": false
+          },
+          {
+            "name": "Laptop Batteries",
+            "isDisabled": false
+          },
+          {
+            "name": "Laptop Chargers & Adaptors",
+            "isDisabled": false
+          },
+          {
+            "name": "Video Conference Devices",
+            "isDisabled": false
+          },
+          {
+            "name": "Mouse Pads",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Keyboards & Mice",
+        "isDisabled": false,
+        "children": [
+          {
+            "name": "Mice",
+            "isDisabled": false
+          },
+          {
+            "name": "Keyboards",
+            "isDisabled": false
+          },
+          {
+            "name": "Drawing Tablets",
+            "isDisabled": false
+          },
+          {
+            "name": "Others",
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "name": "Laptops",
+        "isDisabled": false,
+        "children": []
+      },
+      {
+        "name": "Others",
+        "isDisabled": false,
+        "children": []
+      }
+    ]
+  }
+]

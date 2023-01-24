@@ -5,22 +5,12 @@ const mongoose = require("mongoose"),
 
 var AddressSchema = new Schema({
   _id: false,
-  namew: {
-    type: String,
-    required: true,
-  },
-  phoneNumber: {
-    type: String,
-    required: true,
-  },
-  telephoneNumber: {
-    type: String,
-  },
   country: {
     type: String,
     required: true,
   },
-  state: {
+  region: { type: String },
+  province: {
     type: String,
     required: true,
   },
@@ -28,8 +18,9 @@ var AddressSchema = new Schema({
     type: String,
     required: true,
   },
-  district: {
+  barangay: {
     type: String,
+    required: true,
   },
   zipCode: {
     type: String,
@@ -45,10 +36,21 @@ var AddressSchema = new Schema({
 var ShopSchema = new Schema(
   {
     name: { type: String, required: true },
+    description: { type: String },
+    shopRepresentative: { type: String, required: true },
+    phoneNumber: {
+      countryCode: {
+        type: Number,
+        required: true,
+      },
+      number: {
+        type: Number,
+        required: true,
+      },
+    },
     address: AddressSchema,
-    phoneNumber: { type: String, required: true },
-    category: [{ type: String, required: true }],
     telephoneNumber: { type: String },
+    imageUrl: { type: String },
   },
   { timestamps: true }
 );

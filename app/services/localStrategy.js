@@ -20,7 +20,7 @@ module.exports = (passport) => {
             message: "Incorrect username or password.",
           });
         }
-
+        user.populate("Shop", "-updatedAt -createdAt -__v");
         return callback(null, user);
       });
     })

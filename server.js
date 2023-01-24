@@ -8,7 +8,8 @@ const express = require("express"),
   methodOverride = require("method-override"),
   session = require("express-session"),
   path = require("path"),
-  MongoStore = require("connect-mongo");
+  MongoStore = require("connect-mongo"),
+  bodyParser = require("body-parser");
 
 const db = require("./db"),
   routes = require("./app/routes"),
@@ -22,19 +23,33 @@ const app = express(),
 
 db.connect();
 
+var whitelist = ["http://localhost:3000", "http://localhost:3001", "http://localhost:3002"];
+
 var corsOptions = {
-  origin: "http://localhost:5001",
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
 };
-
 // app.set("trust proxy", 1);
-
 app.use(express.static(path.join(__dirname, "public")));
 app.use(helmet());
 app.use(cors(corsOptions));
 app.use(express.json()); //req.body
 app.use(cookieParser(config.cookieSecretKey));
-app.use(express.urlencoded({ extended: true }));
-app.use(methodOverride());
+app.use(bodyParser.json({ limit: "80mb" }));
+app.use(
+  express.urlencoded({ limit: "80mb", parameterLimit: 1000000, extended: true })
+);
+
+// app.all('/*', function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   next();
+// });
 
 app.use(
   session({
@@ -51,7 +66,10 @@ app.use(
     },
   })
 );
-app.use(passport.authenticate("session"));
+
+require("./app/services/localStrategy")(passport);
+require("./app/services/googleStrategy")(passport);
+require("./app/services/jwtStrategy")(passport);
 
 passport.serializeUser(function (user, cb) {
   process.nextTick(function () {
@@ -59,7 +77,7 @@ passport.serializeUser(function (user, cb) {
       id: user.id,
       username: user.username,
       name: user.name,
-      Shop: user.Shop,
+      Shop: user.Shop?._id,
     });
   });
 });
@@ -72,11 +90,8 @@ passport.deserializeUser(function (user, cb) {
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.disable("x-powered-by");
 
-require("./app/services/localStrategy")(passport);
-require("./app/services/googleStrategy")(passport);
-require("./app/services/jwtStrategy")(passport);
+// app.disable("x-powered-by");
 
 app.use(routes);
 app.listen(port, () => {

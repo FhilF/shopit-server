@@ -4,11 +4,15 @@ const paymentType = require("../../lib/paymentTypes");
 
 exports.userAddressValidator = z.object({
   name: z.string().trim().min(2),
-  phoneNumber: z.string().trim().min(2),
-  country: z.string().trim().min(2),
-  state: z.string().trim().min(2),
+  phoneNumber: z
+    .object({ number: z.number(), countryCode: z.number() })
+    .strict(),
+  country: z.string().trim().min(1),
+  region: z.string().trim().min(1),
+  province: z.string().trim().min(2),
   city: z.string().trim().min(2),
-  zipCode: z.string().trim().min(2),
+  barangay: z.string().trim().min(2),
+  zipCode: z.number(),
   addressLine1: z.string().trim().min(2),
   addressLine2: z.string().trim().min(2).optional(),
   label: z.string().trim().min(2),
@@ -48,4 +52,13 @@ exports.userOrderValidator = z.object({
     .refine((id) => isValidObjectId(id), {
       message: "Invalid courier id",
     }),
+});
+
+exports.accountUpdateValidator = z.object({
+  name: z.string().trim().min(2).optional(),
+  email: z.string().email().optional(),
+  phoneNumber: z
+    .object({ number: z.number(), countryCode: z.number() })
+    .strict()
+    .optional(),
 });

@@ -1,17 +1,190 @@
-const { isValidObjectId } = require("mongoose");
+const { isValidObjectId, Types } = require("mongoose"),
+  { v4: uuidv4 } = require("uuid");
+const { shopImageFolderName } = require("../config");
+const { getAddressValue } = require("../lib/address");
+const { unsetShopPreview } = require("../scripts/aggregationDataReturn/shop");
+const { ownShopProductList } = require("../scripts/modelDataReturn/product");
 const {
     shopAddValidator,
     shopUpdateValidator,
   } = require("../scripts/schemaValidators/shop"),
   db = require("../models"),
-  orderStatus = require("../lib/orderStatus");
+  orderStatus = require("../lib/orderStatus"),
+  { uploadFile } = require("../services/aws"),
+  { getFileExt } = require("../scripts/helper");
 
 const User = db.user,
   Shop = db.shop,
   Order = db.order,
   Product = db.product;
 
-exports.getShop = (req, res, next) => {
+exports.getShopInfo = (req, res, next) => {
+  let id = req.params.id;
+  if (!id) {
+    return res.status(400).send({
+      message: "No Shop Id",
+    });
+  }
+
+  if (!isValidObjectId(id)) {
+    return res.status(404).send({
+      message: "Invalid Id",
+    });
+  }
+
+  id = Types.ObjectId(id);
+
+  Shop.aggregate(
+    [
+      { $match: { _id: id } },
+      {
+        $lookup: {
+          from: "products",
+          let: {
+            id: "$_id",
+          },
+          pipeline: [
+            {
+              $match: {
+                $expr: {
+                  $eq: ["$Shop", "$$id"],
+                },
+                $or: [
+                  { isMultipleVariation: false, stock: { $gt: 0 } },
+                  {
+                    isMultipleVariation: true,
+                    $expr: { $gt: [{ $max: "$variations.stock" }, 0] },
+                  },
+                ],
+              },
+            },
+            {
+              $addFields: {
+                thumbnail: {
+                  $first: {
+                    $filter: {
+                      input: "$images",
+                      as: "image",
+                      cond: {
+                        $eq: ["$$image.isThumbnail", true],
+                      },
+                    },
+                  },
+                },
+                mixMaxPrice: {
+                  $cond: {
+                    if: { $eq: ["$isMultipleVariation", true] },
+                    then: {
+                      minPrice: { $min: "$variations.price" },
+                      maxPrice: { $max: "$variations.price" },
+                    },
+                    else: null,
+                  },
+                },
+              },
+            },
+            { $set: { thumbnail: "$thumbnail.fileUrl" } },
+          ],
+
+          as: "Products",
+        },
+      },
+
+      {
+        $set: {
+          ProductCopies: "$Products",
+        },
+      },
+      { $unwind: "$ProductCopies" },
+
+      {
+        $set: {
+          second_element: { $arrayElemAt: ["$ProductCopies.Departments", 0] },
+        },
+      },
+      { $unwind: "$second_element" },
+      {
+        $group: {
+          _id: { name: "$second_element.name", _id: "$second_element._id" },
+          Shop: { $first: "$$ROOT" },
+        },
+      },
+      {
+        $group: {
+          // _id: { $first: "$Shop" },
+          _id: 0,
+          Departments: { $push: "$_id" },
+          Shop: { $first: "$Shop" },
+        },
+      },
+      {
+        $project: {
+          Shop: {
+            $mergeObjects: [
+              "$Shop",
+              {
+                Departments: {
+                  $sortArray: { input: "$Departments", sortBy: { name: 1 } },
+                },
+              },
+            ],
+          },
+        },
+      },
+      {
+        $replaceRoot: {
+          newRoot: "$Shop",
+        },
+      },
+      {
+        $unset: [...unsetShopPreview, "second_element", "ProductCopies"],
+      },
+    ],
+
+    (err, aggregation) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).send({
+          message: "There was an error submitting your request",
+        });
+      }
+
+      if (aggregation.length === 0)
+        return res.status(404).send({
+          message: "No Shop Found",
+        });
+
+      let newShop = aggregation[0];
+
+      return res.status(200).send({ Shop: newShop });
+    }
+  );
+
+  // Shop.findOne(
+  //   { _id: id },
+  //   "-phoneNumber -shopRepresentative -updatedAt -createdAt -__v"
+  // ).exec((err, shop) => {
+  //   if (err)
+  //     return res.status(500).send({
+  //       message: "There was an error submitting your request",
+  //     });
+
+  //   if (!shop)
+  //     return res.status(404).send({
+  //       message: "User doesn't exist",
+  //     });
+
+  //   if (!shop._doc)
+  //     return res.status(404).send({
+  //       message: "User hasn't set up their shop",
+  //     });
+
+  //   res.status(200).send({ Shop: shop._doc });
+  // });
+};
+
+exports.getOwnShop = (req, res, next) => {
+  // console.log(req.user)
   User.findOne({ username: req.user.username })
     .populate("Shop", "-updatedAt -createdAt -__v")
     .exec((err, user) => {
@@ -34,14 +207,60 @@ exports.getShop = (req, res, next) => {
     });
 };
 
+exports.getOwnProducts = (req, res, next) => {
+  if (!req.user.Shop) {
+    return res.status(404).send({
+      message: "User hasn't set up their shop",
+    });
+  }
+
+  Product.find(
+    { Shop: req.user.Shop, delist: false, isDeleted: false },
+    ownShopProductList
+  ).exec((err, products) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send({
+        message: "There was an error submitting your request",
+      });
+    }
+
+    if (products.length === 0) {
+      return res.status(404).send({ products: [] });
+    }
+
+    let newProducts = products.map((v) => {
+      const newProduct = {
+        ...v._doc,
+        thumbnail: v.images.filter((v) => v.isThumbnail === true)[0].fileUrl,
+      };
+      delete newProduct["images"];
+      return newProduct;
+    });
+
+    return res.status(200).send({ products: newProducts });
+  });
+};
+
 exports.addShop = async (req, res, next) => {
-  const { name, address, phoneNumber, category, telephoneNumber } = req.body;
+  let payload = req.body.payload;
+  payload = JSON.parse(payload);
+
+  const {
+    name,
+    description,
+    shopRepresentative,
+    phoneNumber,
+    address,
+    telephoneNumber,
+  } = payload;
 
   const validation = shopAddValidator.safeParse({
     name,
-    address,
+    description,
+    shopRepresentative,
     phoneNumber,
-    category,
+    address,
     telephoneNumber,
   });
 
@@ -49,6 +268,11 @@ exports.addShop = async (req, res, next) => {
     return res.status(400).send({
       message: `${validation.error.issues[0].path[0]}: ${validation.error.issues[0].message}`,
     });
+  }
+
+  let shopImage;
+  if (req.file) {
+    shopImage = req.file;
   }
 
   User.findOne({ username: req.user.username }).exec((err, user) => {
@@ -67,61 +291,137 @@ exports.addShop = async (req, res, next) => {
         message: "User already has an existing shop.",
       });
 
-    const newShop = new Shop({
-      name,
-      address,
-      phoneNumber,
-      category,
-      telephoneNumber,
-    });
-
-    return newShop.save((err, shop) => {
-      if (err)
-        return res.status(500).send({
-          message: "There was an error submitting your request",
-        });
-
-      user.Shop = newShop._doc._id;
-
-      user.save((err, user) => {
-        if (err)
-          return res.status(500).send({
-            message: "There was an error submitting your request",
-          });
-        user
-          .populate("Shop", "-updatedAt -createdAt -__v")
-          .then((user) => {
-            delete user._doc.__v;
-            delete user._doc.password;
-
-            req.user.Shop = user._doc.Shop._id;
-            return res.status(200).send({ Shop: user._doc.Shop });
-          })
+    return new Promise(function (resolve, reject) {
+      if (shopImage) {
+        const uploadData = {
+          Body: shopImage.buffer,
+          Key: `${shopImageFolderName}${uuidv4()}.${getFileExt(
+            shopImage.originalname
+          )}`,
+          ContentType: shopImage.mimetype,
+        };
+        uploadFile(uploadData)
+          .then((result) => resolve(result))
           .catch((err) => {
+            reject(err);
+          });
+      } else {
+        resolve();
+      }
+    })
+      .then((result) => {
+        let data = {};
+        const newAddress = {
+          country: "PH",
+          region: getAddressValue(address.region, "region", "id", "label"),
+          province: getAddressValue(
+            address.province,
+            "province",
+            "id",
+            "label"
+          ),
+          city: getAddressValue(address.city, "city", "id", "label"),
+          barangay: getAddressValue(
+            address.barangay,
+            "barangay",
+            "id",
+            "label"
+          ),
+          zipCode: address.zipCode,
+          addressLine1: address.addressLine1,
+        };
+        if (result) {
+          data = {
+            name,
+            description,
+            shopRepresentative,
+            phoneNumber,
+            address: newAddress,
+            telephoneNumber,
+            imageUrl: result,
+          };
+        } else {
+          data = {
+            name,
+            description,
+            shopRepresentative,
+            phoneNumber,
+            address: newAddress,
+            telephoneNumber,
+          };
+        }
+        const newShop = new Shop(data);
+
+        return newShop.save((err, shop) => {
+          if (err)
+            return res.status(500).send({
+              message: "There was an error submitting your request",
+            });
+
+          user.Shop = newShop._doc._id;
+
+          user.save((err, user) => {
             if (err)
               return res.status(500).send({
                 message: "There was an error submitting your request",
               });
+            user
+              .populate("Shop", "-updatedAt -createdAt -__v")
+              .then((user) => {
+                delete user._doc.__v;
+                delete user._doc.password;
+
+                req.user.Shop = user._doc.Shop._id;
+                return res.status(200).send({ Shop: user._doc.Shop });
+              })
+              .catch((err) => {
+                if (err)
+                  return res.status(500).send({
+                    message: "There was an error submitting your request",
+                  });
+              });
           });
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        return res.status(500).send({
+          message: "There was an error submitting your request",
+        });
       });
-    });
   });
 };
 
 exports.updateShop = async (req, res, next) => {
-  const { name, address, phoneNumber, category, telephoneNumber } = req.body;
+  let payload = req.body.payload;
+  payload = JSON.parse(payload);
+
+  const {
+    name,
+    description,
+    shopRepresentative,
+    phoneNumber,
+    address,
+    telephoneNumber,
+  } = payload;
+
   const validation = shopUpdateValidator.safeParse({
     name,
-    address,
+    description,
+    shopRepresentative,
     phoneNumber,
-    category,
+    address,
     telephoneNumber,
   });
-
   if (!validation.success) {
     return res.status(400).send({
       message: `${validation.error.issues[0].path[0]}: ${validation.error.issues[0].message}`,
     });
+  }
+
+  let shopImage;
+  if (req.file) {
+    shopImage = req.file;
   }
 
   User.findOne({ username: req.user.username })
@@ -145,24 +445,88 @@ exports.updateShop = async (req, res, next) => {
       let newAddress = undefined;
 
       if (address) {
-        newAddress = { ...user._doc.Shop._doc.address._doc, ...address };
+        newAddress = {
+          ...user._doc.Shop._doc.address._doc,
+          country: "PH",
+          region: getAddressValue(address.region, "region", "id", "label"),
+          province: getAddressValue(
+            address.province,
+            "province",
+            "id",
+            "label"
+          ),
+          city: getAddressValue(address.city, "city", "id", "label"),
+          barangay: getAddressValue(
+            address.barangay,
+            "barangay",
+            "id",
+            "label"
+          ),
+          zipCode: address.zipCode,
+          addressLine1: address.addressLine1,
+        };
       }
 
-      Shop.findOneAndUpdate(
-        { _id: user._doc.Shop._id },
-        { name, address: newAddress, phoneNumber, category, telephoneNumber },
-        { new: true }
-      ).exec((err, shop) => {
-        if (err)
+      return new Promise(function (resolve, reject) {
+        if (shopImage) {
+          const uploadData = {
+            Body: shopImage.buffer,
+            Key: `${shopImageFolderName}${uuidv4()}.${getFileExt(
+              shopImage.originalname
+            )}`,
+            ContentType: shopImage.mimetype,
+          };
+          uploadFile(uploadData)
+            .then((result) => resolve(result))
+            .catch((err) => {
+              reject(err);
+            });
+        } else {
+          resolve();
+        }
+      })
+        .then((result) => {
+          let data = {};
+          if (result) {
+            data = {
+              name,
+              description,
+              shopRepresentative,
+              phoneNumber,
+              address: newAddress,
+              telephoneNumber,
+              imageUrl: result,
+            };
+          } else {
+            data = {
+              name,
+              description,
+              shopRepresentative,
+              phoneNumber,
+              address: newAddress,
+              telephoneNumber,
+            };
+          }
+          Shop.findOneAndUpdate({ _id: user._doc.Shop._id }, data, {
+            new: true,
+          }).exec((err, shop) => {
+            if (err)
+              return res.status(500).send({
+                message: "There was an error submitting your request",
+              });
+
+            delete shop._doc.createdAt;
+            delete shop._doc.updatedAt;
+            delete shop._doc.__v;
+
+            res.status(200).send({ Shop: shop._doc });
+          });
+        })
+        .catch((err) => {
           return res.status(500).send({
             message: "There was an error submitting your request",
           });
-
-        delete shop._doc.updatedAt;
-        delete shop._doc.__v;
-
-        res.status(200).send({ Shop: shop._doc });
-      });
+        });
     });
 };
 
@@ -170,7 +534,7 @@ exports.cancelOrder = async (req, res, next) => {
   const { id } = req.params;
   const { updateproduct } = req.query;
   if (!isValidObjectId(id)) {
-    return res.status(500).send({
+    return res.status(404).send({
       message: "Invalid Id",
     });
   }
@@ -245,7 +609,7 @@ exports.cancelOrder = async (req, res, next) => {
 exports.acceptOrder = async (req, res, next) => {
   const { id } = req.params;
   if (!isValidObjectId(id)) {
-    return res.status(500).send({
+    return res.status(404).send({
       message: "Invalid Id",
     });
   }
@@ -292,7 +656,7 @@ exports.acceptOrder = async (req, res, next) => {
 exports.shipOrder = async (req, res, next) => {
   const { id } = req.params;
   if (!isValidObjectId(id)) {
-    return res.status(500).send({
+    return res.status(404).send({
       message: "Invalid Id",
     });
   }

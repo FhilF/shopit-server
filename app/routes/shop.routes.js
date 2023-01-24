@@ -4,17 +4,38 @@ const { authMiddleware } = require("../middlewares"),
   ShopController = require("../controllers/shop.controller");
 ProductController = require("../controllers/product.controller");
 
+const multer = require("multer");
+const upload = multer();
+
 const router = Router();
 
-router.get("/", ShopController.getShop);
-router.post("/", ShopController.addShop);
-router.patch("/", ShopController.updateShop);
+const addProductUF = upload.fields([
+  { name: "prodInfoImages", maxCount: 10 },
+  { name: "prodVariantImages", maxCount: 15 },
+]);
 
-router.get("/product", ProductController.getOwnShopProducts);
+const updateProductUF = upload.fields([
+  { name: "newProdImages", maxCount: 10 },
+  { name: "oldVariationsNewImage", maxCount: 15 },
+  { name: "newVariationsImage", maxCount: 15 },
+]);
+
+router.get("/:id/get-shop-info", ShopController.getShopInfo);
+
+router.get(
+  "/",
+  [authMiddleware.checkAuthentication],
+  ShopController.getOwnShop
+);
+router.post("/", upload.single("shopImage"), ShopController.addShop);
+router.patch("/", upload.single("shopImage"), ShopController.updateShop);
+
+router.get("/product", ShopController.getOwnProducts);
 router.get("/:id/product", ProductController.getShopProducts); //Shop Product
 // router.get("/product", ShopController.getProducts);
-router.post("/product", ProductController.addProduct);
-router.patch("/product/:id", ProductController.updateProduct);
+router.post("/product", addProductUF, ProductController.addProduct);
+router.get("/product/:id", ProductController.getOwnProduct);
+router.patch("/product/:id", updateProductUF, ProductController.updateProduct);
 router.delete("/product/:id", ProductController.deleteProduct);
 
 router.post("/product/:id/review", ProductController.addProductReview);

@@ -1,11 +1,18 @@
 const { isValidObjectId, Types } = require("mongoose"),
-  _ = require("lodash");
+  _ = require("lodash"),
+  { v4: uuidv4 } = require("uuid");
 const Courier = require("../models/Courier");
 const {
     userAddressValidator,
     userOrderValidator,
+    accountUpdateValidator,
   } = require("../scripts/schemaValidators/user"),
-  db = require("../models");
+  db = require("../models"),
+  { getAddressValue } = require("../lib/address");
+
+const { avatarFolderName } = require("../config"),
+  { uploadFile } = require("../services/aws"),
+  { getFileExt } = require("../scripts/helper");
 
 const User = db.user,
   Address = db.address,
@@ -15,6 +22,179 @@ const User = db.user,
 exports.getUser = async (req, res, next) => {
   return res.status(200).send({
     message: "There was an error submitting your request",
+  });
+};
+
+exports.getSessionedUser = (req, res, next) => {
+  User.findOne({ username: req.user.username }).exec((err, user) => {
+    if (err)
+      return res.status(500).send({
+        message: "There was an error submitting your request",
+      });
+
+    let sessionedUser = user._doc;
+    sessionedUser.Addresses = sessionedUser.Addresses.filter(
+      (v) => !v.isDeleted
+    );
+
+    ["Roles", "Shop", "createdAt", "updatedAt", "__v", "password"].forEach(
+      (v) => {
+        delete sessionedUser[v];
+      }
+    );
+    return res.status(200).send({ sessionedUser });
+  });
+};
+
+exports.updateAccountProfile = (req, res, next) => {
+  let payload = req.body.payload;
+  if (!payload) {
+    return res.status(500).send({
+      message: "No payload!",
+    });
+  }
+
+  payload = JSON.parse(payload);
+  const { name } = payload;
+  const validation = accountUpdateValidator.safeParse({ name });
+  if (!validation.success) {
+    return res.status(400).send({
+      message: `${validation.error.issues[0].path[0]}: ${validation.error.issues[0].message}`,
+    });
+  }
+
+  const avatar = req.file;
+  if (!name && !avatar) {
+    return res.status(500).send({
+      message: "No new update",
+    });
+  }
+  User.findOne({ username: req.user.username }).exec((err, user) => {
+    if (err)
+      return res.status(500).send({
+        message: "There was an error submitting your request",
+      });
+
+    return new Promise(function (resolve, reject) {
+      if (avatar) {
+        const uploadData = {
+          Body: avatar.buffer,
+          Key: `${avatarFolderName}${uuidv4()}.${getFileExt(
+            avatar.originalname
+          )}`,
+          ContentType: avatar.mimetype,
+        };
+        uploadFile(uploadData)
+          .then((result) => resolve(result))
+          .catch((err) => {
+            reject(err);
+          });
+      } else {
+        resolve();
+      }
+    })
+      .then((result) => {
+        const newUpdates = { name };
+        if (result) newUpdates.avatar = result;
+        user
+          .updateOne(
+            {
+              ...newUpdates,
+            },
+            {
+              new: true,
+            }
+          )
+          .exec((err, user) => {
+            if (err)
+              return res.status(500).send({
+                message: "There was an error submitting your request",
+              });
+
+            return res.status(200).send({ profile: newUpdates });
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+};
+
+exports.updateAccountEmail = (req, res, next) => {
+  const { email } = req.body;
+  if (!email)
+    return res.status(400).send({
+      message: "Invalid email",
+    });
+
+  const validation = accountUpdateValidator.safeParse({ email });
+  if (!validation.success) {
+    return res.status(400).send({
+      message: `${validation.error.issues[0].path[0]}: ${validation.error.issues[0].message}`,
+    });
+  }
+  User.findOne({ username: req.user.username }).exec((err, user) => {
+    if (err)
+      return res.status(500).send({
+        message: "There was an error submitting your request",
+      });
+
+    user
+      .updateOne(
+        {
+          email,
+        },
+        {
+          new: true,
+        }
+      )
+      .exec((err, user) => {
+        if (err)
+          return res.status(500).send({
+            message: "There was an error submitting your request",
+          });
+
+        return res.status(200).send({ newEmail: email });
+      });
+  });
+};
+
+exports.updateAccountPhoneNumber = (req, res, next) => {
+  const { phoneNumber } = req.body;
+  if (!phoneNumber?.number && !phoneNumber?.countryCode)
+    return res.status(400).send({
+      message: "Invalid phone number",
+    });
+
+  const validation = accountUpdateValidator.safeParse({ phoneNumber });
+  if (!validation.success) {
+    return res.status(400).send({
+      message: `${validation.error.issues[0].path[0]}: ${validation.error.issues[0].message}`,
+    });
+  }
+  User.findOne({ username: req.user.username }).exec((err, user) => {
+    if (err)
+      return res.status(500).send({
+        message: "There was an error submitting your request",
+      });
+
+    user
+      .updateOne(
+        {
+          phoneNumber,
+        },
+        {
+          new: true,
+        }
+      )
+      .exec((err, user) => {
+        if (err)
+          return res.status(500).send({
+            message: "There was an error submitting your request",
+          });
+
+        return res.status(200).send({ newPhoneNumber: phoneNumber });
+      });
   });
 };
 
@@ -58,37 +238,28 @@ exports.getAddress = (req, res, next) => {
 
 exports.addAddress = async (req, res, next) => {
   const { address } = req.body;
-  const {
-    name,
-    phoneNumber,
-    country,
-    state,
-    city,
-    zipCode,
-    addressLine1,
-    addressLine2,
-    label,
-    isDefault,
-  } = address;
+  if (!address)
+    return res.status(400).send({
+      message: "Missing Parameter",
+    });
 
-  const validation = userAddressValidator.safeParse({
-    name,
-    phoneNumber,
-    country,
-    state,
-    city,
-    zipCode,
-    addressLine1,
-    addressLine2,
-    label,
-    isDefault,
-  });
-
+  const validation = userAddressValidator.safeParse(address);
   if (!validation.success) {
     return res.status(400).send({
       message: `${validation.error.issues[0].path[0]}: ${validation.error.issues[0].message}`,
     });
   }
+
+  const newUserAddress = {
+    ...address,
+    country: "PH",
+    region: getAddressValue(address.region, "region", "id", "label"),
+    province: getAddressValue(address.province, "province", "id", "label"),
+    city: getAddressValue(address.city, "city", "id", "label"),
+    barangay: getAddressValue(address.barangay, "barangay", "id", "label"),
+    zipCode: address.zipCode,
+    addressLine1: address.addressLine1,
+  };
 
   const aggregateOptions = [
     { $match: { username: req.user.username } },
@@ -131,18 +302,7 @@ exports.addAddress = async (req, res, next) => {
         });
       }
 
-      const newAddress = new Address({
-        name,
-        phoneNumber,
-        country,
-        state,
-        city,
-        zipCode,
-        addressLine1,
-        addressLine2,
-        label,
-        isDefault,
-      });
+      const newAddress = new Address(newUserAddress);
 
       if (address.isDefault && userAddresses.length > 0) {
         return User.findOneAndUpdate(
@@ -207,7 +367,7 @@ exports.addAddress = async (req, res, next) => {
           return res.status(500).send({
             message: "There was an error submitting your request",
           });
-        User.aggregate(
+        return User.aggregate(
           [...aggregateOptions, { $unset: ["Addresses.isDeleted"] }],
           (err, aggregation) => {
             if (err)
@@ -220,16 +380,127 @@ exports.addAddress = async (req, res, next) => {
           }
         );
       });
-
-      // return res.status(200).send({ aggregation });
     }
   );
 };
 
+exports.updateAddress = (req, res, next) => {
+  const { address } = req.body;
+  if (!address)
+    return res.status(400).send({
+      message: "Missing Parameter",
+    });
+
+  if (!req.params.id)
+    return res.status(400).send({
+      message: "Invalid Parameter",
+    });
+
+  const id = req.params.id;
+
+  if (!isValidObjectId(id))
+    return res.status(404).send({
+      message: "Invalid Id",
+    });
+
+  const validation = userAddressValidator.safeParse(address);
+
+  if (!validation.success) {
+    return res.status(400).send({
+      message: `${validation.error.issues[0].path[0]}: ${validation.error.issues[0].message}`,
+    });
+  }
+
+  const newUserAddress = {
+    ...address,
+    country: "PH",
+    region: getAddressValue(address.region, "region", "id", "label"),
+    province: getAddressValue(address.province, "province", "id", "label"),
+    city: getAddressValue(address.city, "city", "id", "label"),
+    barangay: getAddressValue(address.barangay, "barangay", "id", "label"),
+  };
+
+  User.findOne({ username: req.user.username }).exec((err, user) => {
+    if (err)
+      return res.status(500).send({
+        message: "There was an error submitting your request",
+      });
+
+    const aggregateOptions = [
+      { $match: { username: req.user.username } },
+      {
+        $project: {
+          username: 1,
+          Addresses: {
+            $filter: {
+              input: "$Addresses",
+              as: "address",
+              cond: { $eq: ["$$address.isDeleted", false] },
+            },
+          },
+        },
+      },
+    ];
+
+    let addresses = user._doc.Addresses;
+
+    const match = addresses.find((o) => o._id.toHexString() === id);
+
+    if (!match) {
+      return res.status(404).send({ message: "Address Record does not exist" });
+    }
+
+    if (match._doc.isDeleted)
+      return res
+        .status(500)
+        .send({ message: "There was an error submitting your request" });
+
+    const matchIndex = addresses.findIndex((v) => v._id.toHexString() === id);
+
+    if (!address.isDefault && match._doc.isDefault) {
+      return res
+        .status(500)
+        .send({ message: "There was an error submitting your request" });
+    }
+
+    if (address.isDefault && !match._doc.isDefault) {
+      addresses = addresses.map((v) => {
+        return { ...v._doc, isDefault: false };
+      });
+    }
+
+    addresses[matchIndex] = { ...match._doc, ...newUserAddress };
+
+    return user.updateOne({ Addresses: addresses }).exec((err) => {
+      if (err)
+        return res.status(500).send({
+          message: "There was an error submitting your request",
+        });
+
+      return User.aggregate(
+        [...aggregateOptions, { $unset: ["Addresses.isDeleted"] }],
+        (err, aggregation) => {
+          if (err)
+            return res.status(500).send({
+              message: "There was an error submitting your request",
+            });
+          return res.status(200).send({ Addresses: aggregation[0]?.Addresses });
+        }
+      );
+    });
+  });
+};
+
 exports.updateDefaultAddress = (req, res, next) => {
-  const { id } = req.query;
+  if (!req.params.id) {
+    return res.status(400).send({
+      message: "Invalid Parameter",
+    });
+  }
+  const id = req.params.id;
+
   if (!isValidObjectId(id)) {
-    return res.status(500).send({
+    return res.status(404).send({
       message: "Invalid Id",
     });
   }
@@ -306,24 +577,33 @@ exports.updateDefaultAddress = (req, res, next) => {
                 message: "There was an error submitting your request",
               });
 
-            return User.aggregate(aggregateOptions, (err, aggregation) => {
-              if (err)
-                return res.status(500).send({
-                  message: "There was an error submitting your request",
-                });
-              return res
-                .status(200)
-                .send({ Addresses: aggregation[0]?.Addresses });
-            });
+            return User.aggregate(
+              [...aggregateOptions, { $unset: ["Addresses.isDeleted"] }],
+              (err, aggregation) => {
+                if (err)
+                  return res.status(500).send({
+                    message: "There was an error submitting your request",
+                  });
+                return res
+                  .status(200)
+                  .send({ Addresses: aggregation[0]?.Addresses });
+              }
+            );
           });
       });
   });
 };
 
 exports.deleteAddress = (req, res, next) => {
-  const { id } = req.query;
+  if (!req.params.id) {
+    return res.status(400).send({
+      message: "Invalid Parameter",
+    });
+  }
+  const id = req.params.id;
+
   if (!isValidObjectId(id)) {
-    return res.status(500).send({
+    return res.status(404).send({
       message: "Invalid Id",
     });
   }
@@ -408,7 +688,7 @@ exports.addProductToCart = (req, res, next) => {
   const quantity = req.query.qty ? parseInt(req.query.qty) : 1;
 
   if (!isValidObjectId(req.params.id)) {
-    return res.status(500).send({
+    return res.status(404).send({
       message: "Invalid Id",
     });
   }
@@ -524,7 +804,7 @@ exports.deleteCartItem = (req, res, next) => {
   const quantity = req.query.qty ? parseInt(req.query.qty) : 1;
 
   if (!isValidObjectId(req.params.id)) {
-    return res.status(500).send({
+    return res.status(404).send({
       message: "Invalid Id",
     });
   }
@@ -800,7 +1080,7 @@ exports.orderItem = (req, res, next) => {
 exports.cancelOrder = (req, res, next) => {
   const { id } = req.params;
   if (!isValidObjectId(id)) {
-    return res.status(500).send({
+    return res.status(404).send({
       message: "Invalid Id",
     });
   }
