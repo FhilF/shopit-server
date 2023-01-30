@@ -14,25 +14,82 @@ router.get(
   [authMiddleware.checkAuthentication],
   UserController.getSessionedUser
 );
-router.patch("/account/email", UserController.updateAccountEmail);
-router.patch("/account/phonenumber", UserController.updateAccountPhoneNumber);
+router.patch(
+  "/account/email",
+  [authMiddleware.checkAuthentication],
+  UserController.updateAccountEmail
+);
+router.patch(
+  "/account/phonenumber",
+  [authMiddleware.checkAuthentication],
+  UserController.updateAccountPhoneNumber
+);
 router.patch(
   "/account/profile",
-  upload.single("avatar"),
+
+  [authMiddleware.checkAuthentication, upload.single("avatar")],
+
   UserController.updateAccountProfile
 );
 
-router.post("/address", UserController.addAddress);
-router.patch("/address/:id", UserController.updateAddress);
-router.patch("/address/:id/default", UserController.updateDefaultAddress);
-router.delete("/address/:id", UserController.deleteAddress);
-router.get("/address", UserController.getAddress);
+router.post(
+  "/address",
+  [authMiddleware.checkAuthentication],
+  UserController.addAddress
+);
+router.patch(
+  "/address/:id",
+  [authMiddleware.checkAuthentication],
+  UserController.updateAddress
+);
+router.patch(
+  "/address/:id/default",
+  [authMiddleware.checkAuthentication],
+  UserController.updateDefaultAddress
+);
+router.delete(
+  "/address/:id",
+  [authMiddleware.checkAuthentication],
+  UserController.deleteAddress
+);
+router.get(
+  "/address",
+  [authMiddleware.checkAuthentication],
+  UserController.getAddress
+);
 
-router.get("/cart/", UserController.getCartItem);
-router.post("/cart/:id", UserController.addProductToCart);
-router.delete("/cart/:id", UserController.deleteCartItem);
+router.get(
+  "/cart/",
+  [authMiddleware.checkAuthentication],
+  UserController.getCartItems
+);
+router.post(
+  "/cart/:id",
+  [authMiddleware.checkAuthentication],
+  UserController.addProductToCart
+);
 
-router.post("/order", UserController.orderItem);
-router.post("/order/:id/cancel", UserController.cancelOrder);
+router.patch(
+  "/cart/:id",
+  [authMiddleware.checkAuthentication],
+  UserController.updateCartItemQty
+);
+
+router.delete(
+  "/cart/:id",
+  [authMiddleware.checkAuthentication],
+  UserController.deleteCartItem
+);
+
+router.post(
+  "/order",
+  [authMiddleware.checkAuthentication],
+  UserController.orderItem
+);
+router.post(
+  "/order/:id/cancel",
+  [authMiddleware.checkAuthentication],
+  UserController.cancelOrder
+);
 
 module.exports = router;

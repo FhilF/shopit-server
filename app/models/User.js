@@ -71,8 +71,14 @@ const UserSchema = new Schema(
     // Cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
     Cart: [
       {
-        Product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
-        qty: { type: Number, required: true, default: 1 },
+        type: new Schema(
+          {
+            Product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+            variationId: { type: mongoose.Schema.Types.ObjectId },
+            qty: { type: Number, required: true, default: 1 },
+          },
+          { timestamps: true }
+        ),
       },
     ],
     Likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],

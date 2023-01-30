@@ -13,6 +13,7 @@ const {
 const { avatarFolderName } = require("../config"),
   { uploadFile } = require("../services/aws"),
   { getFileExt } = require("../scripts/helper");
+const { cartList } = require("../scripts/modelDataReturn/product");
 
 const User = db.user,
   Address = db.address,
@@ -37,11 +38,12 @@ exports.getSessionedUser = (req, res, next) => {
       (v) => !v.isDeleted
     );
 
-    ["Roles", "Shop", "createdAt", "updatedAt", "__v", "password"].forEach(
+    [("Roles", "Shop", "createdAt", "updatedAt", "__v", "password")].forEach(
       (v) => {
         delete sessionedUser[v];
       }
     );
+
     return res.status(200).send({ sessionedUser });
   });
 };
@@ -703,12 +705,37 @@ exports.addProductToCart = (req, res, next) => {
       if (!product)
         return res.status(404).send({ message: "Product not found" });
 
+      if (
+        product._doc.isMultipleVariation &&
+        !isValidObjectId(req.query.variation_id)
+      ) {
+        return res.status(404).send({
+          message: "Invalid Id",
+        });
+      }
+
       const productId = Types.ObjectId(req.params.id);
+      const variationId = req.query.variation_id
+        ? Types.ObjectId(req.query.variation_id)
+        : null;
 
       if (product._doc.stock < quantity) {
         return res
           .status(400)
           .send({ message: "Shop does not have enough stock" });
+      }
+
+      const filteredVariation = product._doc.variations.filter(
+        (v) => v._id.toHexString() === variationId.toHexString()
+      );
+
+      if (
+        (product._doc.isMultipleVariation && !variationId) ||
+        (product._doc.isMultipleVariation && filteredVariation.length === 0)
+      ) {
+        return res.status(400).send({
+          message: "Invalid Parameter",
+        });
       }
 
       return User.findById(req.user.id).exec((err, user) => {
@@ -717,16 +744,26 @@ exports.addProductToCart = (req, res, next) => {
             message: "There was an error submitting your request",
           });
 
-        const filteredProductCart = user._doc.Cart.filter(
-          (v) => v.Product.toHexString() === productId.toHexString()
-        );
+        let productStock = product._doc.isMultipleVariation
+          ? filteredVariation[0].stock
+          : product._doc.stock;
+
+        const filteredProductCart = product._doc.isMultipleVariation
+          ? user._doc.Cart.filter(
+              (v) =>
+                v._doc.Product.toHexString() === productId.toHexString() &&
+                v._doc.variationId.toHexString() === variationId.toHexString()
+            )
+          : user._doc.Cart.filter(
+              (v) => v._doc.Product.toHexString() === productId.toHexString()
+            );
 
         if (
           filteredProductCart.length !== 0 &&
-          product.stock < filteredProductCart[0].qty + quantity
+          productStock < filteredProductCart[0].qty + quantity
         )
           return res
-            .status(400)
+            .status(409)
             .send({ message: "Shop does not have enough stock" });
 
         User.findOneAndUpdate(
@@ -736,16 +773,29 @@ exports.addProductToCart = (req, res, next) => {
               $set: {
                 Cart: {
                   $cond: [
-                    { $in: [productId, "$Cart.Product"] },
+                    {
+                      $and: [
+                        { $in: [productId, "$Cart.Product"] },
+                        { $in: [variationId, "$Cart.variationId"] },
+                      ],
+                    },
                     {
                       $map: {
                         input: "$Cart",
                         in: {
                           $cond: [
-                            { $eq: ["$$this.Product", productId] },
+                            {
+                              $and: [
+                                { $eq: ["$$this.Product", productId] },
+                                { $eq: ["$$this.variationId", variationId] },
+                              ],
+                            },
                             {
                               Product: "$$this.Product",
                               qty: { $add: ["$$this.qty", quantity] },
+                              variationId: "$$this.variationId",
+                              createdAt: "$$this.createdAt",
+                              updatedAt: new Date(),
                             },
                             "$$this",
                           ],
@@ -755,7 +805,15 @@ exports.addProductToCart = (req, res, next) => {
                     {
                       $concatArrays: [
                         "$Cart",
-                        [{ Product: productId, qty: quantity }],
+                        [
+                          {
+                            Product: productId,
+                            qty: quantity,
+                            variationId: variationId,
+                            createdAt: new Date(),
+                            updatedAt: new Date(),
+                          },
+                        ],
                       ],
                     },
                   ],
@@ -771,119 +829,257 @@ exports.addProductToCart = (req, res, next) => {
             return res.status(500).send({
               message: "There was an error submitting your request",
             });
-          return res.status(200).send({ user });
+
+          return res.status(200).send({ Cart: user._doc.Cart });
         });
       });
     }
   );
 };
 
-exports.getCartItem = (req, res, next) => {
+exports.updateCartItemQty = (req, res, next) => {
+  const itemId = req.params.id;
+  const qty = req.query.qty;
+  const variationId = req.query.variation_id ? req.query.variation_id : null;
+
+  if (!itemId) {
+    return res.status(400).send({
+      message: "Invalid Parameter",
+    });
+  }
+
+  if (!qty || isNaN(qty) || qty === 0)
+    return res.status(400).send({ message: "Invalid quantity" });
+
+  if (
+    !isValidObjectId(itemId) ||
+    (variationId && !isValidObjectId(variationId))
+  ) {
+    return res.status(404).send({
+      message: "Invalid Id",
+    });
+  }
+
   User.findOne({ _id: req.user.id })
-    .populate("Cart.Product", "-Reviews")
+    .populate({
+      path: "Cart",
+      populate: {
+        path: "Product",
+        model: "Product",
+        populate: {
+          path: "Shop",
+          model: "Shop",
+        },
+      },
+    })
     .exec((err, user) => {
       if (err)
         return res.status(500).send({
           message: "There was an error submitting your request",
         });
 
-      return res.status(200).send({ Cart: user._doc.Cart });
+      const cartItems = user._doc.Cart;
+      let filteredItem = variationId
+        ? cartItems.filter(
+            (v) =>
+              v._doc.Product._doc._id.toHexString() === itemId &&
+              v._doc.Product._doc.isDeleted === false &&
+              v._doc.Product._doc.delist === false &&
+              v._doc.variationId.toHexString() === variationId
+          )
+        : cartItems.filter(
+            (v) =>
+              v._doc.Product._doc._id.toHexString() === itemId &&
+              v._doc.Product._doc.isDeleted === false &&
+              v._doc.Product._doc.delist === false &&
+              v._doc.variationId === null
+          );
+
+      if (filteredItem.length === 0) {
+        return res.status(500).send({ message: "Item not found" });
+      }
+
+      filteredItem = filteredItem[0];
+
+      if (filteredItem.Product.isMultipleVariation) {
+        const variant = filteredItem.Product.variations.filter(
+          (v) => v._id.toHexString() === variationId
+        )[0];
+        if (variant.stock < qty) {
+          return res
+            .status(400)
+            .send({ message: "Shop doesn't have enough quantity" });
+        }
+      } else {
+        if (filteredItem.Product.stock < qty) {
+          return res
+            .status(400)
+            .send({ message: "Shop doesn't have enough quantity" });
+        }
+      }
+      user
+        .updateOne(
+          {
+            $set: {
+              "Cart.$[elem].qty": qty,
+            },
+          },
+          {
+            arrayFilters: [
+              {
+                "elem.Product": Types.ObjectId(itemId),
+                "elem.variationId": variationId
+                  ? Types.ObjectId(variationId)
+                  : null,
+              },
+            ],
+          }
+        )
+        .exec((err, newUser) => {
+          if (err)
+            return res.status(500).send({
+              message: "There was an error submitting your request",
+            });
+
+          return res.status(200).send({ message: "Success" });
+        });
+    });
+};
+
+exports.getCartItems = (req, res, next) => {
+  User.findOne({ _id: req.user.id })
+    .populate({
+      path: "Cart",
+      populate: {
+        path: "Product",
+        model: "Product",
+        populate: {
+          path: "Shop",
+          model: "Shop",
+        },
+      },
+    })
+    .exec((err, user) => {
+      if (err)
+        return res.status(500).send({
+          message: "There was an error submitting your request",
+        });
+
+      if (user._doc.Cart.length === 0) {
+        return res.status(200).send({
+          Cart: [],
+        });
+      }
+
+      const newCart = user._doc.Cart.map((v) => {
+        return {
+          _id: v._doc.Product._id,
+          name: v._doc.Product.name,
+          qty: v._doc.qty,
+          stock: v._doc.Product.isMultipleVariation
+            ? v._doc.Product.variations.filter(
+                (v1) =>
+                  v1._id.toHexString() === v._doc.variationId.toHexString()
+              )[0].stock
+            : v._doc.Product.stock,
+          variationId: v._doc.variationId,
+          Shop: {
+            _id: v._doc.Product.Shop._doc._id,
+            name: v._doc.Product.Shop._doc.name,
+          },
+          variationName: v._doc.Product.isMultipleVariation
+            ? v._doc.Product.variationName
+            : null,
+          variation: v._doc.Product.isMultipleVariation
+            ? v._doc.Product.variations.filter(
+                (v1) =>
+                  v1._id.toHexString() === v._doc.variationId.toHexString()
+              )[0].name
+            : null,
+          unitPrice: v._doc.Product.isMultipleVariation
+            ? v._doc.Product.variations.filter(
+                (v1) =>
+                  v1._id.toHexString() === v._doc.variationId.toHexString()
+              )[0].price
+            : v._doc.Product.price,
+          thumbnail: v._doc.Product.isMultipleVariation
+            ? v._doc.Product.variations.filter(
+                (v1) =>
+                  v1._id.toHexString() === v._doc.variationId.toHexString()
+              )[0].fileUrl
+            : v._doc.Product.images.filter((v1) => v1.isThumbnail)[0].fileUrl,
+        };
+      });
+
+      const groupItems = _(newCart)
+        .groupBy((x) => x.Shop._id)
+        .map((value, key) => ({
+          _id: key,
+          name: value[0].Shop.name,
+          items: value,
+        }))
+        .value();
+
+      return res.status(200).send({ Cart: groupItems });
     });
 };
 
 exports.deleteCartItem = (req, res, next) => {
-  if (!req.params.id) {
+  const itemId = req.params.id;
+  const variationId = req.query.variation_id ? req.query.variation_id : null;
+
+  if (!itemId) {
     return res.status(400).send({
       message: "Invalid Parameter",
     });
   }
 
-  if (req.query.qty && isNaN(req.query.qty))
-    return res.status(500).send({ message: "Invalid quantity" });
-
-  const quantity = req.query.qty ? parseInt(req.query.qty) : 1;
-
-  if (!isValidObjectId(req.params.id)) {
+  if (
+    !isValidObjectId(itemId) ||
+    (variationId && !isValidObjectId(variationId))
+  ) {
     return res.status(404).send({
       message: "Invalid Id",
     });
   }
 
-  const productId = Types.ObjectId(req.params.id);
-
-  return User.findById(req.user.id).exec((err, user) => {
+  User.findOne({ _id: req.user.id }).exec((err, user) => {
     if (err)
       return res.status(500).send({
         message: "There was an error submitting your request",
       });
 
-    const filteredProductCart = user._doc.Cart.filter(
-      (v) => v.Product.toHexString() === productId.toHexString()
-    );
+    const cartItems = user._doc.Cart;
+    let filteredItem = variationId
+      ? cartItems.filter(
+          (v) =>
+            v._doc.Product.toHexString() === itemId &&
+            v._doc.variationId.toHexString() === variationId
+        )
+      : cartItems.filter(
+          (v) =>
+            v._doc.Product.toHexString() === itemId &&
+            v._doc.variationId === null
+        );
 
-    if (filteredProductCart.length == 0)
-      return res.status(500).send({ message: "Invalid Product Id" });
+    if (filteredItem.length === 0) {
+      return res.status(500).send({ message: "Item not found" });
+    }
 
-    if (
-      filteredProductCart.length !== 0 &&
-      filteredProductCart[0].qty < quantity
-    )
-      return res.status(400).send({ message: "Invalid Quantity" });
+    filteredItem = filteredItem[0];
 
-    User.findOneAndUpdate(
-      { _id: req.user.id },
-      [
-        {
-          $addFields: {
-            Cart: {
-              $reduce: {
-                input: "$Cart",
-                initialValue: [],
-                in: {
-                  $cond: [
-                    {
-                      $and: [
-                        { $eq: ["$$this.Product", productId] },
-                        { $gt: ["$$this.qty", quantity] },
-                      ],
-                    },
-                    {
-                      $concatArrays: [
-                        "$$value",
-                        [
-                          {
-                            $mergeObjects: [
-                              "$$this",
-                              { qty: { $add: ["$$this.qty", -quantity] } },
-                            ],
-                          },
-                        ],
-                      ],
-                    },
-                    {
-                      $cond: [
-                        { $eq: ["$$this.Product", productId] },
-                        "$$value",
-                        { $concatArrays: ["$$value", ["$$this"]] },
-                      ],
-                    },
-                  ],
-                },
-              },
-            },
-          },
-        },
-      ],
-      {
-        new: true,
-      }
-    ).exec((err, user) => {
-      if (err)
-        return res.status(500).send({
-          message: "There was an error submitting your request",
-        });
-      return res.status(200).send({ user });
-    });
+    user
+      .updateOne({
+        $pull: { Cart: filteredItem },
+      })
+      .exec((err) => {
+        if (err)
+          return res.status(500).send({
+            message: "There was an error submitting your request",
+          });
+
+        return res.status(200).send({ message: "success" });
+      });
   });
 };
 
@@ -942,7 +1138,7 @@ exports.orderItem = (req, res, next) => {
       if (cartItems.length !== ids.length)
         return res.status(404).send({ message: "Cart Items not found" });
 
-      const cartItemsId = cartItems.map((v) => v.Product);
+      const cartItemsId = cartItems.map((v) => v._doc.Product);
 
       Product.aggregate([
         {
