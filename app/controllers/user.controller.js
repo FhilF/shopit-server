@@ -1027,6 +1027,7 @@ exports.getCartItems = (req, res, next) => {
 exports.deleteCartItem = (req, res, next) => {
   const itemId = req.params.id;
   const variationId = req.query.variation_id ? req.query.variation_id : null;
+  console.log("aa")
 
   if (!itemId) {
     return res.status(400).send({
