@@ -15,6 +15,7 @@ db.product = require("./Product");
 db.productReview = require("./ProductReview");
 db.order = require("./Order");
 db.courier = require("./Courier");
+db.paymentMethod = require("./PaymentMethod");
 db.ROLES = ["user", "admin", "moderator"];
 
 module.exports = db;

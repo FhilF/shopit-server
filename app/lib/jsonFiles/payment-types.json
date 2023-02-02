@@ -1,0 +1,20 @@
+[
+  {
+    "_id": "63da260db44561ea1e10083a",
+    "name": "Cash On Delivery",
+    "isDeleted": false,
+    "isDisabled": false
+  },
+  {
+    "_id": "63da260db44561ea1e10083b",
+    "name": "Bank Transfer",
+    "isDeleted": false,
+    "isDisabled": true
+  },
+  {
+    "_id": "63da260db44561ea1e10083c",
+    "name": "Credit/Debit Card",
+    "isDeleted": false,
+    "isDisabled": true
+  }
+]

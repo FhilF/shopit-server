@@ -6,11 +6,14 @@ const mongoose = require("mongoose"),
 var Address = new Schema({
   name: {
     type: String,
-    required: true,
   },
   phoneNumber: {
-    type: String,
-    required: true,
+    countryCode: {
+      type: Number,
+    },
+    number: {
+      type: Number,
+    },
   },
   telephoneNumber: {
     type: String,
@@ -19,7 +22,8 @@ var Address = new Schema({
     type: String,
     required: true,
   },
-  state: {
+  region: { type: String, required: true },
+  province: {
     type: String,
     required: true,
   },
@@ -27,8 +31,9 @@ var Address = new Schema({
     type: String,
     required: true,
   },
-  district: {
+  barangay: {
     type: String,
+    required: true,
   },
   zipCode: {
     type: String,
@@ -42,29 +47,34 @@ var Address = new Schema({
   // Addresses:,
 });
 
-var Status = new Schema(
-  {
-    status: { type: String, required: true },
-    code: { type: Number, required: true },
-  },
-  { timestamps: true }
-);
-
 var OrderSchema = new Schema(
   {
     Shop: {
       _id: [{ type: Schema.ObjectId, required: true }],
       name: { type: String, required: true },
-      phoneNumber: { type: String, required: true },
+      phoneNumber: {
+        countryCode: {
+          type: Number,
+          required: true,
+        },
+        number: {
+          type: Number,
+          required: true,
+        },
+      },
       telephoneNumber: { type: String },
+      shopRepresentative: { type: String, required: true },
       address: Address,
       Orders: [
         {
           _id: { type: Schema.ObjectId, required: true },
           name: { type: String, required: true },
-          price: { type: Number, required: true, default: 1 },
           thumbnail: { type: String, required: true },
-          orderQty: { type: Number, required: true, default: 1 },
+          variationId: { type: Schema.ObjectId },
+          variationName: { type: String },
+          variation: { type: String },
+          unitPrice: { type: Number, required: true, default: 1 },
+          qty: { type: Number, required: true, default: 1 },
         },
       ],
     },
@@ -72,17 +82,42 @@ var OrderSchema = new Schema(
       _id: { type: Schema.ObjectId, required: true },
       email: { type: String, required: true },
       name: { type: String, required: true },
+      phoneNumber: {
+        countryCode: {
+          type: Number,
+          required: true,
+        },
+        number: {
+          type: Number,
+          required: true,
+        },
+      },
       Addresses: { billTo: Address, shipTo: Address },
     },
-    Courier: {
+    paymentMethod: {
+      _id: { type: Schema.ObjectId, required: true },
       name: { type: String, required: true },
     },
-    paymentType: { type: String, required: true },
     isCancelled: { type: Boolean, required: true, default: false },
     isAccepted: { type: Boolean, required: true, default: false },
     isShipped: { type: Boolean, required: true, default: false },
-    discount: { type: String },
-    StatusLog: [Status],
+    isDelivered: { type: Boolean, required: true, default: false },
+    statusLog: [
+      {
+        type: new Schema(
+          {
+            code: { type: String, required: true },
+            status: { type: String, required: true },
+          },
+          {
+            timestamps: {
+              createdAt: "timestamp",
+              updatedAt: false,
+            },
+          }
+        ),
+      },
+    ],
   },
   { timestamps: true }
 );

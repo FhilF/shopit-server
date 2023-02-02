@@ -1,7 +1,7 @@
-const regionJson = require("./ph-addresses/short-region"),
-  provinceJson = require("./ph-addresses/province"),
-  cityJson = require("./ph-addresses/city"),
-  barangayJson = require("./ph-addresses/barangay");
+const regionJson = require("./jsonFiles/ph-addresses/short-region"),
+  provinceJson = require("./jsonFiles/ph-addresses/province"),
+  cityJson = require("./jsonFiles/ph-addresses/city"),
+  barangayJson = require("./jsonFiles/ph-addresses/barangay");
 
 const placeObj = {
   region: { id: "id", label: "name", json: regionJson },

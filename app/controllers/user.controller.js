@@ -18,7 +18,8 @@ const { cartList } = require("../scripts/modelDataReturn/product");
 const User = db.user,
   Address = db.address,
   Product = db.product,
-  Order = db.order;
+  Order = db.order,
+  PaymentMethod = db.paymentMethod;
 
 exports.getUser = async (req, res, next) => {
   return res.status(200).send({
@@ -705,6 +706,12 @@ exports.addProductToCart = (req, res, next) => {
       if (!product)
         return res.status(404).send({ message: "Product not found" });
 
+      // if (product._doc.Shop.toHexString() === req.user.Shop) {
+      //   return res
+      //     .status(400)
+      //     .send({ code: "OSP", message: "Cannot add own product" });
+      // }
+
       if (
         product._doc.isMultipleVariation &&
         !isValidObjectId(req.query.variation_id)
@@ -1027,7 +1034,7 @@ exports.getCartItems = (req, res, next) => {
 exports.deleteCartItem = (req, res, next) => {
   const itemId = req.params.id;
   const variationId = req.query.variation_id ? req.query.variation_id : null;
-  
+
   if (!itemId) {
     return res.status(400).send({
       message: "Invalid Parameter",
@@ -1083,15 +1090,11 @@ exports.deleteCartItem = (req, res, next) => {
   });
 };
 
-exports.orderItem = (req, res, next) => {
-  const { ids, billToAddressId, shipToAddressId, paymentType, courier } =
-    req.body;
+exports.placeOrder = (req, res, next) => {
+  const { address, payment_method } = req.query;
   const validation = userOrderValidator.safeParse({
-    ids,
-    billToAddressId,
-    shipToAddressId,
-    paymentType,
-    courier,
+    address,
+    paymentMethod: payment_method,
   });
 
   if (!validation.success) {
@@ -1100,117 +1103,118 @@ exports.orderItem = (req, res, next) => {
     });
   }
 
-  Courier.findById(courier).exec((err, courier) => {
+  return PaymentMethod.findById(payment_method).exec((err, paymentMethod) => {
     if (err)
       return res.status(500).send({
         message: "There was an error submitting your request",
       });
 
-    if (!courier)
-      return res.status(500).send({
-        message: "Courier not found",
+    if (!paymentMethod)
+      return res.status(404).send({
+        message: "Payment method doesn't exist",
       });
 
-    return User.findById(req.user.id).exec((err, user) => {
-      if (err)
-        return res.status(500).send({
-          message: "There was an error submitting your request",
-        });
-
-      const billToAddress = user._doc.Addresses.filter(
-        (v) => v._id.toHexString() === billToAddressId
-      );
-      const shipToAddress = user._doc.Addresses.filter(
-        (v) => v._id.toHexString() === shipToAddressId
-      );
-
-      if (billToAddress.length === 0 || shipToAddress.length === 0)
-        return res.status(500).send({
-          message: "Invalid Address Id",
-        });
-
-      const cartItems = user._doc.Cart.filter((v1) => {
-        return ids.some((v2) => {
-          return v1.Product.toHexString() === v2;
-        });
-      });
-
-      if (cartItems.length !== ids.length)
-        return res.status(404).send({ message: "Cart Items not found" });
-
-      const cartItemsId = cartItems.map((v) => v._doc.Product);
-
-      Product.aggregate([
-        {
-          $match: {
-            _id: { $in: cartItemsId },
-            isDeleted: false,
+    return User.findById(req.user.id)
+      .populate({
+        path: "Cart",
+        populate: {
+          path: "Product",
+          model: "Product",
+          populate: {
+            path: "Shop",
+            model: "Shop",
           },
         },
-        {
-          $lookup: {
-            from: "shops",
-            localField: "Shop",
-            foreignField: "_id",
-            as: "Shop",
-          },
-        },
-        {
-          $unset: ["Reviews"],
-        },
-        { $group: { _id: "$Shop", Products: { $push: "$$ROOT" } } },
-        { $unwind: "$_id" },
-        {
-          $project: {
-            _id: 0,
-            Shop: {
-              $mergeObjects: ["$_id", { Orders: "$Products" }],
-            },
-            totalProducts: { $size: "$Products" },
-          },
-        },
-        {
-          $unset: [
-            "Shop.Orders.Shop",
-            "Shop.Orders.searchTerms",
-            "Shop.Orders.Departments",
-          ],
-        },
-      ]).exec((err, product) => {
+      })
+      .exec((err, user) => {
         if (err)
           return res.status(500).send({
             message: "There was an error submitting your request",
           });
 
-        const groupedByShops = product;
+        if (user._doc.Cart.length === 0)
+          return res.status(400).send({
+            message: "Cart is empty",
+          });
 
-        const aggregateTotalProductsQty = groupedByShops
-          .map((item) => item.totalProducts)
-          .reduce((prev, next) => prev + next);
+        const userAddress = user._doc.Addresses.filter(
+          (v) => v._id.toHexString() === address
+        );
 
-        if (!groupedByShops || aggregateTotalProductsQty !== ids.length)
-          return res.status(404).send({ message: "Products not found" });
+        if (userAddress.length === 0)
+          return res.status(500).send({
+            message: "Invalid Address Id",
+          });
 
+        let newCart = [];
         const invalidQtyProducts = [];
         const productsForUpdate = [];
 
-        groupedByShops.map((v1) => {
-          v1.Shop.Orders.map((v2) => {
-            const res = cartItems.filter(
-              (v3) => v3.Product.toHexString() === v2._id.toHexString()
-            );
+        user._doc.Cart.forEach((v) => {
+          const item = v._doc;
+          if (item.Product.stock < item.qty) {
+            invalidQtyProducts.push(item.Product._id);
+          }
 
-            v2.thumbnail = "test";
-            v2.orderQty = res[0].qty;
-
+          if (item.variationId) {
             productsForUpdate.push({
               updateOne: {
-                filter: { _id: v2._id },
-                update: { $inc: { stock: -v2.orderQty } },
+                filter: {
+                  _id: item.Product._id,
+                  "variations._id": item.variationId,
+                },
+                update: { $inc: { "variations.$.stock": -item.qty } },
               },
             });
+          } else {
+            productsForUpdate.push({
+              updateOne: {
+                filter: { _id: item.Product._id },
+                update: { $inc: { stock: -item.qty } },
+              },
+            });
+          }
 
-            if (v2.orderQty > v2.stock) invalidQtyProducts.push(v2);
+          newCart.push({
+            _id: item.Product._id,
+            name: item.Product.name,
+            qty: item.qty,
+            stock: item.Product.isMultipleVariation
+              ? item.Product.variations.filter(
+                  (v1) =>
+                    v1._id.toHexString() === item.variationId.toHexString()
+                )[0].stock
+              : item.Product.stock,
+            variationId: item.variationId,
+            Shop: {
+              _id: item.Product.Shop._doc._id,
+              name: item.Product.Shop._doc.name,
+              phoneNumber: item.Product.Shop._doc.phoneNumber,
+              telephoneNumber: item.Product.Shop._doc.telephoneNumber,
+              address: item.Product.Shop._doc.address,
+              shopRepresentative: item.Product.Shop._doc.shopRepresentative,
+            },
+            variationName: item.Product.isMultipleVariation
+              ? item.Product.variationName
+              : null,
+            variation: item.Product.isMultipleVariation
+              ? item.Product.variations.filter(
+                  (v1) =>
+                    v1._id.toHexString() === item.variationId.toHexString()
+                )[0].name
+              : null,
+            unitPrice: item.Product.isMultipleVariation
+              ? item.Product.variations.filter(
+                  (v1) =>
+                    v1._id.toHexString() === item.variationId.toHexString()
+                )[0].price
+              : item.Product.price,
+            thumbnail: item.Product.isMultipleVariation
+              ? item.Product.variations.filter(
+                  (v1) =>
+                    v1._id.toHexString() === item.variationId.toHexString()
+                )[0].fileUrl
+              : item.Product.images.filter((v1) => v1.isThumbnail)[0].fileUrl,
           });
         });
 
@@ -1221,28 +1225,39 @@ exports.orderItem = (req, res, next) => {
             message: `${invalidQtyProducts[0].name} doesn't have enough stock: Stock: ${invalidQtyProducts[0].stock}`,
           });
         0;
-        const newOrders = groupedByShops.map((v1) => {
-          return new Order({
-            Shop: v1.Shop,
-            User: {
-              ...user._doc,
-              Addresses: { billTo: billToAddress[0], shipTo: shipToAddress[0] },
+
+        const shopOrders = _(newCart)
+          .groupBy((x) => x.Shop._id)
+          .map((value, key) => ({
+            Shop: {
+              _id: key,
+              ...value[0].Shop,
+              address: {
+                ...value[0].Shop.address._doc,
+              },
+              Orders: value,
             },
-            paymentType,
-            Courier: courier,
-            Discount: null,
-            StatusLog: [{ code: 1, status: "To be payed" }],
-          });
-        });
+            User: {
+              _id: user._doc._id,
+              email: user._doc.email,
+              name: user._doc.name,
+              phoneNumber: user._doc.phoneNumber,
+              Addresses: {
+                billTo: { ...userAddress[0]._doc },
+                shipTo: { ...userAddress[0]._doc },
+              },
+            },
+            paymentMethod: {
+              _id: paymentMethod._doc._id,
+              name: paymentMethod._doc.name,
+            },
+            statusLog: [
+              { code: "OP", status: "Order Placed", timestamp: new Date() },
+            ],
+          }))
+          .value();
 
-        const remainingCartItem = user._doc.Cart.filter((v1) => {
-          return !ids.some((v2) => {
-            return v1.Product.toHexString() === v2;
-          });
-        });
-
-        // return res.status(200).send({ newProducts });
-        return Order.insertMany(newOrders, (err, orders) => {
+        return Order.insertMany(shopOrders, (err, orders) => {
           if (err)
             return res.status(500).send({
               message: "There was an error submitting your request",
@@ -1254,22 +1269,19 @@ exports.orderItem = (req, res, next) => {
                 message: "There was an error submitting your request",
               });
 
-            return user
-              .updateOne({ Cart: remainingCartItem })
-              .exec((err, updatedUser) => {
-                if (err)
-                  return res.status(500).send({
-                    message: "There was an error submitting your request",
-                  });
-
-                return res.status(200).send({
-                  message: "Successfully ordered your items",
+            return user.updateOne({ Cart: [] }).exec((err, updatedUser) => {
+              if (err)
+                return res.status(500).send({
+                  message: "There was an error submitting your request",
                 });
+
+              return res.status(200).send({
+                message: "Successfully ordered your items",
               });
+            });
           });
         });
       });
-    });
   });
 };
 

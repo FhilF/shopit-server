@@ -1,2 +1,2 @@
-const paymentType = ["cashondelivery", "debit"];
-module.exports = paymentType;
+const paymentMethod = ["cashondelivery", "debit"];
+module.exports = paymentMethod;

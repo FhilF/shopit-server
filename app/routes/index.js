@@ -9,6 +9,8 @@ const shopRoutes = require("./shop.routes");
 const userRoutes = require("./user.routes");
 const departmentRoutes = require("./department.routes");
 const productRoutes = require("./product.routes");
+const paymentMethodRoutes = require("./paymentMethod.routes");
+const courierRoutes = require("./courier.routes");
 
 const router = Router();
 
@@ -22,6 +24,8 @@ router.use("/auth", googleAuthRoutes);
 router.use("/api/product", productRoutes);
 router.use("/api/shop", shopRoutes);
 router.use("/api/user", userRoutes);
+router.use("/api/payment_method", paymentMethodRoutes);
+router.use("/api/courier", courierRoutes);
 
 router.use("/api/department", departmentRoutes);
 

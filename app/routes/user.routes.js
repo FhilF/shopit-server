@@ -84,7 +84,7 @@ router.delete(
 router.post(
   "/order",
   [authMiddleware.checkAuthentication],
-  UserController.orderItem
+  UserController.placeOrder
 );
 router.post(
   "/order/:id/cancel",
