@@ -1,4 +1,4 @@
-const GoogleStrategy = require("passport-google-oauth20").Strategy,
+const GoogleStrategy = require("passport-google-oauth2").Strategy,
   db = require("../models"),
   Role = db.role,
   User = db.user;
@@ -14,29 +14,29 @@ module.exports = (passport) => {
         // passReqToCallback: true,
       },
       async (request, accessToken, refreshToken, profile, done) => {
-        try {
-          let existingUser = await User.findOne({ "google.id": profile.id });
-          if (existingUser) {
-            return done(null, existingUser);
-          }
+        User.findOne({ googleId: profile.id }).exec((err, user) => {
+          if (err) return done(err, false);
 
-          // console.log(profile)
-          const role = await Role.findOne({ name: "user" });
+          if (user) return done(null, user);
 
           const newUser = new User({
             provider: "google",
             googleId: profile.id,
-            username: `user${profile.id}`,
+            username: `yeti_user_${profile.id}`,
             email: profile.emails[0].value,
             name: profile.displayName,
-            avatar: profile.picture,
-            roles: [role.id],
+            isEmailVerified: true,
+            isUserUpdated: false,
           });
-          await newUser.save();
-          return done(null, newUser);
-        } catch (error) {
-          return done(error, false);
-        }
+          newUser
+            .save()
+            .then((res) => {
+              return done(null, newUser);
+            })
+            .catch((err) => {
+              return done(err, false);
+            });
+        });
       }
     )
   );

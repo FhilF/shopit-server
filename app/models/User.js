@@ -22,7 +22,7 @@ const UserSchema = new Schema(
       lowercase: true,
       unique: true,
       required: [true, "can't be blank"],
-      match: [/^[a-zA-Z0-9_]+$/, "is invalid"],
+      match: [/^[a-z0-9_.]+$/, "is invalid"],
       index: true,
     },
     email: {
@@ -42,11 +42,10 @@ const UserSchema = new Schema(
     phoneNumber: {
       countryCode: {
         type: Number,
-        required: true,
       },
       number: {
         type: Number,
-        required: true,
+        unique: true,
       },
     },
     name: {
@@ -82,6 +81,9 @@ const UserSchema = new Schema(
       },
     ],
     Likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
+    isEmailVerified: { type: Boolean, required: true, default: false },
+    //
+    isUserUpdated: { type: Boolean, required: true, default: true },
 
     // messages: [{ type: mongoose.Schema.Types.ObjectId, ref: "Message" }],
   },

@@ -1,6 +1,9 @@
-const { isValidObjectId } = require("mongoose"),
+const { isValidObjectId, Types } = require("mongoose"),
   { v4: uuidv4 } = require("uuid");
 const { mediaFolderName } = require("../config");
+const {
+  unsetProductList,
+} = require("../scripts/aggregationDataReturn/product");
 const { getFileExt } = require("../scripts/helper");
 const {
   productList,
@@ -24,11 +27,17 @@ const User = db.user,
   Product = db.product,
   ProductReview = db.productReview;
 
-exports.getProductByDept = async (req, res, next) => {
+exports.getProductsByDept = async (req, res, next) => {
   const id = req.query.id;
   if (!id) {
     return res.status(400).send({
       message: "No id provided!",
+    });
+  }
+
+  if (!isValidObjectId(id)) {
+    return res.status(404).send({
+      message: "Invalid Id",
     });
   }
 
@@ -37,21 +46,26 @@ exports.getProductByDept = async (req, res, next) => {
     productList
   ).exec((err, products) => {
     if (err) {
-      console.log(err);
       return res.status(500).send({
         message: "There was an error submitting your request",
       });
     }
 
     if (products.length === 0) {
-      return res.status(404).send({ products: [] });
+      return res.status(200).send({ products: [] });
     }
 
     let newProducts = products.map((v) => {
       const newProduct = {
         ...v._doc,
         thumbnail: v.images.filter((v) => v.isThumbnail === true)[0].fileUrl,
+        reviewCount: v.Reviews.length,
+        reviewAverage:
+          v.Reviews.reduce((total, next) => total + next.rate, 0) /
+          v.Reviews.length,
       };
+
+      delete newProduct["Reviews"];
       delete newProduct["images"];
       return newProduct;
     });
@@ -280,7 +294,6 @@ exports.addProduct = async (req, res, next) => {
 
         newProduct.save((err, product) => {
           if (err) {
-            console.log(err);
             return res.status(500).send({
               message: "There was an error submitting your request",
             });
@@ -293,7 +306,6 @@ exports.addProduct = async (req, res, next) => {
         });
       })
       .catch((err) => {
-        console.log(err);
         return res.status(500).send({
           message: "Upload error",
         });
@@ -388,7 +400,6 @@ exports.getShopProducts = (req, res, next) => {
     productList
   ).exec((err, products) => {
     if (err) {
-      console.log(err);
       return res.status(500).send({
         message: "There was an error submitting your request",
       });
@@ -834,7 +845,6 @@ exports.updateProduct = (req, res, next) => {
         });
       })
       .catch((err) => {
-        console.log(err);
         return res.status(500).send({
           message: "There was an error submitting your request",
         });
@@ -905,34 +915,46 @@ exports.addProductReview = (req, res, next) => {
     });
   }
 
-  const newReview = new ProductReview({
-    userId: req.user.id,
-    name: req.user.name,
-    review: review,
-    imageUrls: [],
-    rate: rate,
-  });
-
-  Product.findOneAndUpdate(
-    { _id: req.params.id, Shop: { $ne: req.user.Shop }, isDeleted: false },
-    {
-      $push: {
-        Reviews: newReview,
-      },
-    }
-  ).exec((err, product) => {
-    if (err)
+  User.findOne({ _id: req.user.id }).exec((err, user) => {
+    if (err) {
       return res.status(500).send({
         message: "There was an error submitting your request",
       });
+    }
 
-    if (!product)
-      return res.status(404).send({
-        message: "Product not found",
-      });
+    if (!user) {
+      return res.status(401).send({ message: "No user found" });
+    }
 
-    delete newReview._doc.isDeleted;
-    res.status(200).send({ Review: newReview._doc });
+    const newReview = new ProductReview({
+      userId: req.user.id,
+      name: user._doc.name,
+      review: review,
+      imageUrls: [],
+      rate: rate,
+    });
+
+    Product.findOneAndUpdate(
+      { _id: req.params.id, Shop: { $ne: req.user.Shop }, isDeleted: false },
+      {
+        $push: {
+          Reviews: newReview,
+        },
+      }
+    ).exec((err, product) => {
+      if (err)
+        return res.status(500).send({
+          message: "There was an error submitting your request",
+        });
+
+      if (!product)
+        return res.status(404).send({
+          message: "Product not found",
+        });
+
+      delete newReview._doc.isDeleted;
+      res.status(200).send({ Review: newReview._doc });
+    });
   });
 };
 

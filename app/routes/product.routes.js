@@ -5,7 +5,7 @@ const { authMiddleware } = require("../middlewares"),
 
 const router = Router();
 
-router.get("/department", ProductController.getProductByDept);
+router.get("/department", ProductController.getProductsByDept);
 router.get("/:id", ProductController.getProduct);
 
 module.exports = router;

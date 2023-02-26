@@ -9,11 +9,7 @@ const router = Router(),
 
 // router.get("/", UserController.getUser);
 
-router.get(
-  "/",
-  [authMiddleware.checkAuthentication],
-  UserController.getSessionedUser
-);
+router.get("/", UserController.getSessionedUser);
 router.patch(
   "/account/email",
   [authMiddleware.checkAuthentication],
@@ -81,15 +77,33 @@ router.delete(
   UserController.deleteCartItem
 );
 
-router.post(
-  "/order",
+router.get(
+  "/order/:id",
   [authMiddleware.checkAuthentication],
-  UserController.placeOrder
+  UserController.getOrder
 );
+
 router.post(
   "/order/:id/cancel",
   [authMiddleware.checkAuthentication],
   UserController.cancelOrder
 );
 
+router.get(
+  "/order",
+  [authMiddleware.checkAuthentication],
+  UserController.getOrderList
+);
+
+router.post(
+  "/order",
+  [authMiddleware.checkAuthentication, authMiddleware.verifyUser],
+  UserController.placeOrder
+);
+
+router.post(
+  "/order/review/:id",
+  [authMiddleware.checkAuthentication],
+  UserController.addOrderReview
+);
 module.exports = router;

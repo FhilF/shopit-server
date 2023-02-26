@@ -41,3 +41,14 @@ exports.accountUpdateValidator = z.object({
     .strict()
     .optional(),
 });
+
+exports.orderReviewValidator = z.object({
+  reviews: z.array(
+    z.object({
+      _id: z.string(),
+      variationId: z.string().nullable().optional(),
+      rate: z.number(),
+      comment: z.string().max(150, "Max length is only 120 characters"),
+    })
+  ),
+});

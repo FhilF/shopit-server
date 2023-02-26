@@ -5,6 +5,9 @@ const { authMiddleware } = require("../../middlewares"),
 
 const router = Router();
 
+router.post("/send-verification/:email", localAuthController.sendVerification);
+router.post("/verify/:email/:token", localAuthController.verifyEmail);
+
 router.post("/register", localAuthController.signup);
 
 router.post(

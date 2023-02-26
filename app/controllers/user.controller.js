@@ -6,6 +6,7 @@ const {
     userAddressValidator,
     userOrderValidator,
     accountUpdateValidator,
+    orderReviewValidator,
   } = require("../scripts/schemaValidators/user"),
   db = require("../models"),
   { getAddressValue } = require("../lib/address");
@@ -14,6 +15,8 @@ const { avatarFolderName } = require("../config"),
   { uploadFile } = require("../services/aws"),
   { getFileExt } = require("../scripts/helper");
 const { cartList } = require("../scripts/modelDataReturn/product");
+const orderStatus = require("../lib/orderStatus");
+const { sessionedUserModelReturn } = require("../scripts/modelDataReturn/user");
 
 const User = db.user,
   Address = db.address,
@@ -28,25 +31,28 @@ exports.getUser = async (req, res, next) => {
 };
 
 exports.getSessionedUser = (req, res, next) => {
-  User.findOne({ username: req.user.username }).exec((err, user) => {
-    if (err)
-      return res.status(500).send({
-        message: "There was an error submitting your request",
-      });
+  if (!req.user) return res.status(200).send({});
 
-    let sessionedUser = user._doc;
-    sessionedUser.Addresses = sessionedUser.Addresses.filter(
-      (v) => !v.isDeleted
-    );
+  User.findOne({ username: req.user.username }, sessionedUserModelReturn).exec(
+    (err, user) => {
+      if (err)
+        return res.status(500).send({
+          message: "There was an error submitting your request",
+        });
 
-    [("Roles", "Shop", "createdAt", "updatedAt", "__v", "password")].forEach(
-      (v) => {
-        delete sessionedUser[v];
-      }
-    );
+      if (!user)
+        return res
+          .status(401)
+          .send({ message: "There was an error submitting your request" });
 
-    return res.status(200).send({ sessionedUser });
-  });
+      let sessionedUser = user._doc;
+      sessionedUser.Addresses = sessionedUser.Addresses.filter(
+        (v) => !v.isDeleted
+      );
+
+      return res.status(200).send({ sessionedUser });
+    }
+  );
 };
 
 exports.updateAccountProfile = (req, res, next) => {
@@ -117,9 +123,7 @@ exports.updateAccountProfile = (req, res, next) => {
             return res.status(200).send({ profile: newUpdates });
           });
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   });
 };
 
@@ -1153,7 +1157,7 @@ exports.placeOrder = (req, res, next) => {
         user._doc.Cart.forEach((v) => {
           const item = v._doc;
           if (item.Product.stock < item.qty) {
-            invalidQtyProducts.push(item.Product._id);
+            invalidQtyProducts.push(item.Product);
           }
 
           if (item.variationId) {
@@ -1251,9 +1255,9 @@ exports.placeOrder = (req, res, next) => {
               _id: paymentMethod._doc._id,
               name: paymentMethod._doc.name,
             },
-            statusLog: [
-              { code: "OP", status: "Order Placed", timestamp: new Date() },
-            ],
+            statusLog: orderStatus.find((el) => {
+              return el.code === 1;
+            }),
           }))
           .value();
 
@@ -1285,7 +1289,104 @@ exports.placeOrder = (req, res, next) => {
   });
 };
 
-exports.cancelOrder = (req, res, next) => {
+exports.getOrder = (req, res, next) => {
+  const { id } = req.params;
+
+  if (!id) {
+    return res.status(400).send({
+      message: "No Shop Id",
+    });
+  }
+
+  if (!isValidObjectId(id)) {
+    return res.status(404).send({
+      message: "Invalid Id",
+    });
+  }
+
+  Order.findOne({
+    "User._id": req.user.id,
+    _id: id,
+    isDeleted: false,
+  }).exec((err, order) => {
+    if (err)
+      return res.status(500).send({
+        message: "There was an error submitting your request",
+      });
+
+    if (!order) {
+      return res.status(404).send({ message: "No order found" });
+    }
+
+    return res.status(200).send({
+      Order: order,
+    });
+  });
+};
+
+exports.getOrderList = (req, res, next) => {
+  const { order_type } = req.query;
+  const query = () => {
+    if (order_type === "1")
+      return {
+        isCancelled: true,
+        isAccepted: false,
+        isShipped: false,
+        isDelivered: false,
+      };
+
+    if (order_type === "2")
+      return {
+        isCancelled: false,
+        isAccepted: false,
+        isShipped: false,
+        isDelivered: false,
+      };
+
+    if (order_type === "3")
+      return {
+        isCancelled: false,
+        isAccepted: true,
+        isShipped: false,
+        isDelivered: false,
+      };
+
+    if (order_type === "4")
+      return {
+        isCancelled: false,
+        isAccepted: true,
+        isShipped: true,
+        isDelivered: false,
+      };
+
+    if (order_type === "5")
+      return {
+        isCancelled: false,
+        isAccepted: true,
+        isShipped: true,
+        isDelivered: true,
+      };
+
+    return {};
+  };
+
+  Order.find({
+    "User._id": req.user.id,
+    isDeleted: false,
+    ...query(),
+  }).exec((err, orderList) => {
+    if (err)
+      return res.status(500).send({
+        message: "There was an error submitting your request",
+      });
+
+    return res.status(200).send({
+      Orders: orderList,
+    });
+  });
+};
+
+exports.cancelOrder = async (req, res, next) => {
   const { id } = req.params;
   if (!isValidObjectId(id)) {
     return res.status(404).send({
@@ -1293,8 +1394,108 @@ exports.cancelOrder = (req, res, next) => {
     });
   }
 
-  Order.findOne({ _id: id, "User._id": req.user.id, isCancelled: false }).exec(
-    (err, order) => {
+  Order.findOne({
+    _id: id,
+    "User._id": req.user.id,
+    isCancelled: false,
+    isShipped: false,
+  }).exec((err, order) => {
+    if (err)
+      return res.status(500).send({
+        message: "There was an error submitting your request",
+      });
+
+    if (!order)
+      return res.status(404).send({
+        message: "Order not found",
+      });
+
+    const productsForUpdate = [];
+
+    order.Shop.Orders.map((v) => {
+      const item = v._doc;
+      productsForUpdate.push({
+        updateOne: {
+          filter: {
+            _id: item._id,
+            "variations._id": item.variationId,
+          },
+          update: { $inc: { "variations.$.stock": +item.qty } },
+        },
+      });
+    });
+
+    order.updateOne(
+      {
+        isCancelled: true,
+        $push: {
+          statusLog: orderStatus.find((el) => {
+            return el.code === 21;
+          }),
+        },
+      },
+      (err, newOrder) => {
+        if (err)
+          return res.status(500).send({
+            message: "There was an error submitting your request",
+          });
+
+        return new Promise((resolve, reject) => {
+          Product.bulkWrite(productsForUpdate, (err, newProducts) => {
+            if (err) reject(err);
+            resolve();
+          });
+        })
+          .then(() => {
+            const newOrder = {
+              ...order._doc,
+              isCancelled: true,
+              statusLog: [
+                ...order.statusLog,
+                ...orderStatus.filter((v) => {
+                  return v.code === 21;
+                }),
+              ],
+            };
+            return res.status(200).send({
+              Order: newOrder,
+            });
+          })
+          .catch((err) => {
+            return res.status(500).send({
+              message: "There was an error submitting your request",
+            });
+          });
+      }
+    );
+  });
+};
+
+exports.addOrderReview = (req, res, next) => {
+  const { id } = req.params;
+  const { reviews } = req.body;
+
+  const validation = orderReviewValidator.safeParse({ reviews });
+
+  if (!validation.success) {
+    return res.status(400).send({
+      message: `${validation.error.issues[0].path[0]}: ${validation.error.issues[0].message}`,
+    });
+  }
+
+  if (!isValidObjectId(id)) {
+    return res.status(404).send({
+      message: "Invalid Id",
+    });
+  }
+
+  User.findOne({ _id: req.user.id }).exec((err, user) => {
+    if (err)
+      return res.status(500).send({
+        message: "There was an error submitting your request",
+      });
+
+    Order.findOne({ _id: id }).exec((err, order) => {
       if (err)
         return res.status(500).send({
           message: "There was an error submitting your request",
@@ -1305,44 +1506,91 @@ exports.cancelOrder = (req, res, next) => {
           message: "Order not found",
         });
 
-      if (order.isAccepted)
-        return res.status(500).send({
-          message: "Order cannot be cancelled",
+      const reviewProdIds = reviews.map((v) => ({
+        _id: v._id,
+        variationId: v.variationId,
+      }));
+
+      const shopOrders = order._doc.Shop.Orders;
+
+      const filteredOrders = shopOrders.filter((v1) =>
+        reviewProdIds.some((v2) =>
+          v1._doc.variationId
+            ? v1._doc._id.toHexString() === v2._id &&
+              v1._doc.variationId.toHexString() === v2.variationId &&
+              !v1._doc.isRated
+            : v1._doc._id.toHexString() === v2._id &&
+              v1._doc.variationId === v2.variationId &&
+              !v1._doc.isRated
+        )
+      );
+      if (filteredOrders.length !== reviewProdIds.length)
+        return res.status(400).send({
+          message: "Product not found",
         });
 
-      order.updateOne({ isCancelled: true }).exec((err, newOrder) => {
+      const ordersForUpdate = [];
+      const productsForUpdate = [];
+      filteredOrders.forEach((v, i) => {
+        ordersForUpdate.push({
+          updateOne: {
+            filter: {
+              _id: order._doc._id,
+              "Shop.Orders._id": v._id,
+              "Shop.Orders.variationId": v.variationId,
+            },
+
+            update: {
+              $set: {
+                "Shop.Orders.$.isRated": true,
+                "Shop.Orders.$.review": {
+                  comment: reviews[i].comment,
+                  rate: reviews[i].rate,
+                },
+              },
+            },
+          },
+        });
+
+        productsForUpdate.push({
+          updateOne: {
+            filter: {
+              _id: v._doc._id,
+            },
+            update: {
+              $push: {
+                Reviews: {
+                  UserId: user._doc._id,
+                  username: user._doc.username,
+                  avatarUrl: user._doc.avatar,
+                  comment: reviews[i].comment,
+                  rate: reviews[i].rate,
+                  variationName: v._doc.variationName,
+                  variation: v._doc.variation,
+                  imageUrls: [],
+                },
+              },
+            },
+          },
+        });
+      });
+
+      return Product.bulkWrite(productsForUpdate, (err, newProducts) => {
         if (err)
           return res.status(500).send({
             message: "There was an error submitting your request",
           });
 
-        if (!newOrder)
-          return res.status(404).send({
-            message: "Order not found",
-          });
-
-        const productsForUpdate = [];
-
-        order.Shop.Orders.map((val) => {
-          productsForUpdate.push({
-            updateOne: {
-              filter: { _id: val._id },
-              update: { $inc: { stock: val.orderQty } },
-            },
-          });
-        });
-
-        return Product.bulkWrite(productsForUpdate, (err, newProducts) => {
+        return Order.bulkWrite(ordersForUpdate, (err, newOrders) => {
           if (err)
             return res.status(500).send({
               message: "There was an error submitting your request",
             });
-
-          return res
-            .status(200)
-            .send({ message: "Successfully cancelled order" });
+          return res.status(200).send({
+            message: "Successfully added your review/s",
+          });
         });
       });
-    }
-  );
+    });
+  });
 };

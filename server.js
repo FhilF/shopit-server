@@ -15,6 +15,9 @@ const db = require("./db"),
   routes = require("./app/routes"),
   config = require("./app/config");
 
+const { initTransporter } = require("./app/services/nodeMailer");
+const { originWhitelist } = require("./app/config");
+
 const app = express(),
   nodeEnv = process.env.NODE_ENV,
   // cookieSecret =
@@ -23,7 +26,12 @@ const app = express(),
 
 db.connect();
 
-var whitelist = ["http://localhost:3000", "http://localhost:3001", "http://localhost:3002"];
+var whitelist = [
+  "http://localhost:5000/*",
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "http://localhost:3002",
+];
 
 var corsOptions = {
   origin: function (origin, callback) {
@@ -35,10 +43,18 @@ var corsOptions = {
   },
   credentials: true,
 };
+
 // app.set("trust proxy", 1);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(helmet());
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: originWhitelist,
+    credentials: true, //access-control-allow-credentials:true
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  })
+);
+
 app.use(express.json()); //req.body
 app.use(cookieParser(config.cookieSecretKey));
 app.use(bodyParser.json({ limit: "80mb" }));
@@ -70,13 +86,15 @@ app.use(
 require("./app/services/localStrategy")(passport);
 require("./app/services/googleStrategy")(passport);
 require("./app/services/jwtStrategy")(passport);
+// require("./app/services/nodeMailer");
 
 passport.serializeUser(function (user, cb) {
   process.nextTick(function () {
     cb(null, {
       id: user.id,
       username: user.username,
-      name: user.name,
+      isEmailVerified: user.isEmailVerified,
+      isUserUpdated: user.isUserUpdated,
       Shop: user.Shop?._id,
     });
   });
@@ -90,6 +108,7 @@ passport.deserializeUser(function (user, cb) {
 
 app.use(passport.initialize());
 app.use(passport.session());
+initTransporter();
 
 // app.disable("x-powered-by");
 

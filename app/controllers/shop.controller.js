@@ -143,7 +143,6 @@ exports.getShopInfo = (req, res, next) => {
 
     (err, aggregation) => {
       if (err) {
-        console.log(err);
         return res.status(500).send({
           message: "There was an error submitting your request",
         });
@@ -159,32 +158,106 @@ exports.getShopInfo = (req, res, next) => {
       return res.status(200).send({ Shop: newShop });
     }
   );
+};
 
-  // Shop.findOne(
-  //   { _id: id },
-  //   "-phoneNumber -shopRepresentative -updatedAt -createdAt -__v"
-  // ).exec((err, shop) => {
-  //   if (err)
-  //     return res.status(500).send({
-  //       message: "There was an error submitting your request",
-  //     });
+exports.getOrder = (req, res, next) => {
+  const { id } = req.params;
 
-  //   if (!shop)
-  //     return res.status(404).send({
-  //       message: "User doesn't exist",
-  //     });
+  if (!id) {
+    return res.status(400).send({
+      message: "No Shop Id",
+    });
+  }
 
-  //   if (!shop._doc)
-  //     return res.status(404).send({
-  //       message: "User hasn't set up their shop",
-  //     });
+  if (!isValidObjectId(id)) {
+    return res.status(404).send({
+      message: "Invalid Id",
+    });
+  }
 
-  //   res.status(200).send({ Shop: shop._doc });
-  // });
+  Order.findOne({
+    "Shop._id": req.user.Shop,
+    _id: id,
+    isDeleted: false,
+  }).exec((err, order) => {
+    if (err)
+      return res.status(500).send({
+        message: "There was an error submitting your request",
+      });
+
+    if (!order) {
+      return res.status(404).send({ message: "No order found" });
+    }
+
+    return res.status(200).send({
+      Order: order,
+    });
+  });
+};
+
+exports.getOrderList = (req, res, next) => {
+  const { order_type } = req.query;
+  const query = () => {
+    if (order_type === "1")
+      return {
+        isCancelled: true,
+        isAccepted: false,
+        isShipped: false,
+        isDelivered: false,
+      };
+
+    if (order_type === "2")
+      return {
+        isCancelled: false,
+        isAccepted: false,
+        isShipped: false,
+        isDelivered: false,
+      };
+
+    if (order_type === "3")
+      return {
+        isCancelled: false,
+        isAccepted: true,
+        isShipped: false,
+        isDelivered: false,
+      };
+
+    if (order_type === "4")
+      return {
+        isCancelled: false,
+        isAccepted: true,
+        isShipped: true,
+        isDelivered: false,
+      };
+
+    if (order_type === "5")
+      return {
+        isCancelled: false,
+        isAccepted: true,
+        isShipped: true,
+        isDelivered: true,
+      };
+
+    return {};
+  };
+
+  Order.find({
+    "Shop._id": req.user.Shop,
+    isDeleted: false,
+    ...query(),
+  }).exec((err, orderList) => {
+    if (err)
+      return res.status(500).send({
+        message: "There was an error submitting your request",
+      });
+
+    return res.status(200).send({
+      Orders: orderList,
+    });
+  });
 };
 
 exports.getOwnShop = (req, res, next) => {
-  // console.log(req.user)
   User.findOne({ username: req.user.username })
     .populate("Shop", "-updatedAt -createdAt -__v")
     .exec((err, user) => {
@@ -219,7 +292,6 @@ exports.getOwnProducts = (req, res, next) => {
     ownShopProductList
   ).exec((err, products) => {
     if (err) {
-      console.log(err);
       return res.status(500).send({
         message: "There was an error submitting your request",
       });
@@ -287,7 +359,7 @@ exports.addShop = async (req, res, next) => {
       });
 
     if (user.Shop)
-      return res.status(400).send({
+      return res.status(401).send({
         message: "User already has an existing shop.",
       });
 
@@ -384,7 +456,6 @@ exports.addShop = async (req, res, next) => {
         });
       })
       .catch((err) => {
-        console.log(err);
         return res.status(500).send({
           message: "There was an error submitting your request",
         });
@@ -543,7 +614,7 @@ exports.cancelOrder = async (req, res, next) => {
     _id: id,
     "Shop._id": req.user.Shop,
     isCancelled: false,
-    isShipped: true,
+    isShipped: false,
   }).exec((err, order) => {
     if (err)
       return res.status(500).send({
@@ -557,11 +628,15 @@ exports.cancelOrder = async (req, res, next) => {
 
     const productsForUpdate = [];
 
-    order.Shop.Orders.map((val) => {
+    order.Shop.Orders.map((v) => {
+      const item = v._doc;
       productsForUpdate.push({
         updateOne: {
-          filter: { _id: val._id },
-          update: { $inc: { stock: val.orderQty } },
+          filter: {
+            _id: item._id,
+            "variations._id": item.variationId,
+          },
+          update: { $inc: { "variations.$.stock": +item.qty } },
         },
       });
     });
@@ -570,7 +645,7 @@ exports.cancelOrder = async (req, res, next) => {
       {
         isCancelled: true,
         $push: {
-          StatusLog: orderStatus.find((el) => {
+          statusLog: orderStatus.find((el) => {
             return el.code === 22;
           }),
         },
@@ -582,7 +657,7 @@ exports.cancelOrder = async (req, res, next) => {
           });
 
         return new Promise((resolve, reject) => {
-          if (updateproduct === "1") {
+          if (updateproduct !== "1") {
             Product.bulkWrite(productsForUpdate, (err, newProducts) => {
               if (err) reject(err);
               resolve();
@@ -591,12 +666,21 @@ exports.cancelOrder = async (req, res, next) => {
           resolve();
         })
           .then(() => {
+            const newOrder = {
+              ...order._doc,
+              isCancelled: true,
+              statusLog: [
+                ...order.statusLog,
+                ...orderStatus.filter((v) => {
+                  return v.code === 22;
+                }),
+              ],
+            };
             return res.status(200).send({
-              message: "Successfully cancelled your order",
+              Order: newOrder,
             });
           })
           .catch((err) => {
-            console.log(err);
             return res.status(500).send({
               message: "There was an error submitting your request",
             });
@@ -634,19 +718,30 @@ exports.acceptOrder = async (req, res, next) => {
       {
         isAccepted: true,
         $push: {
-          StatusLog: orderStatus.find((el) => {
-            return el.code === 3;
+          statusLog: orderStatus.find((el) => {
+            return el.code === 2;
           }),
         },
       },
-      (err, newOrder) => {
+      (err) => {
+        const newOrder = {
+          ...order._doc,
+          isAccepted: true,
+          statusLog: [
+            ...order.statusLog,
+            ...orderStatus.filter((v) => {
+              return v.code === 2;
+            }),
+          ],
+        };
+
         if (err)
           return res.status(500).send({
             message: "There was an error submitting your request",
           });
 
         return res.status(200).send({
-          message: "Successfully updated order",
+          Order: newOrder,
         });
       }
     );
@@ -681,20 +776,47 @@ exports.shipOrder = async (req, res, next) => {
     order.updateOne(
       {
         isShipped: true,
+        isDelivered: true,
         $push: {
-          StatusLog: orderStatus.find((el) => {
-            return el.code === 4;
-          }),
+          statusLog: [
+            {
+              ...orderStatus.find((el) => {
+                return el.code === 3;
+              }),
+              timestamp: new Date(),
+            },
+            {
+              ...orderStatus.find((el) => {
+                return el.code === 4;
+              }),
+              timestamp: new Date(),
+            },
+          ],
         },
       },
-      (err, newOrder) => {
+      (err) => {
+        const newOrder = {
+          ...order._doc,
+          isShipped: true,
+          isDelivered: true,
+          statusLog: [
+            ...order.statusLog,
+            ...orderStatus.filter((v) => {
+              return v.code === 3;
+            }),
+            ...orderStatus.filter((v) => {
+              return v.code === 4;
+            }),
+          ],
+        };
+
         if (err)
           return res.status(500).send({
             message: "There was an error submitting your request",
           });
 
         return res.status(200).send({
-          message: "Successfully updated order",
+          Order: newOrder,
         });
       }
     );

@@ -7,7 +7,129 @@ const {
   config = require("../config"),
   db = require("../models"),
   User = db.user,
-  Role = db.role;
+  Role = db.role,
+  Token = db.token;
+
+const { getTransporter } = require("../services/nodeMailer");
+
+const crypto = require("crypto");
+const { baseVerificationUrl } = require("../config");
+
+const milliSecondPerHr = 3600000;
+
+exports.verifyEmail = (req, res, next) => {
+  if (!req.params.token || !req.params.email) {
+    return res.status(400).send({ message: "Invalid parameter." });
+  }
+  Token.findOne({ token: req.params.token }).exec((err, token) => {
+    if (err) {
+      return res.status(500).send({
+        message: "There was an error submitting your request",
+      });
+    }
+    if (!token) {
+      return res.status(400).send({
+        message: req.user
+          ? "Your verification link may have expired. Navigate to email verification to resend the verification link."
+          : "Your verification link may have expired. Please login your account and navigate to email verification to resend the verification link.",
+      });
+    }
+
+    User.findOne({ _id: token.UserId, email: req.params.email }).exec(
+      (err, user) => {
+        if (err) {
+          return res.status(500).send({
+            message: "There was an error submitting your request",
+          });
+        }
+        if (!user) {
+          return res.status(400).send({
+            message: "No user found.",
+          });
+        }
+
+        if (user._doc.isEmailVerified) {
+          return res.status(400).send({ message: "User already verified" });
+        }
+
+        user.isEmailVerified = true;
+        user.save((err, user) => {
+          // error occur
+          if (err) {
+            return res.status(500).send({
+              message: "There was an error submitting your request",
+            });
+          }
+          // account successfully verified
+          if (req.user) {
+            req.user.isEmailVerified = true;
+          }
+
+          return res
+            .status(200)
+            .send("Your account has been successfully verified");
+        });
+      }
+    );
+  });
+};
+
+exports.sendVerification = async (req, res, next) => {
+  const { email } = req.params;
+  User.findOne({ email: email }).exec((err, user) => {
+    if (err) {
+      return res.status(500).send({
+        message: "There was an error submitting your request",
+      });
+    }
+
+    if (!user) {
+      return res.status(404).send({ message: "No user found" });
+    }
+
+    if (user._doc.isEmailVerified) {
+      return res.status(400).send({ message: "User already verified" });
+    }
+
+    const randToken = crypto.randomBytes(16).toString("hex");
+
+    var newToken = new Token({
+      UserId: user._doc._id,
+      token: randToken,
+    });
+
+    newToken.save((err) => {
+      if (err) {
+        return res.status(500).send({ message: err.message });
+      }
+
+      const link = `${baseVerificationUrl}/${user._doc.email}/${randToken}`;
+
+      var mailOptions = {
+        to: user._doc.email,
+        subject: "Account Verification Link",
+        html:
+          `Hello ${user._doc.username},<br> Please Click on the link to verify your email.<br><a href=` +
+          link +
+          ">Click here to verify</a>",
+      };
+      return getTransporter().sendMail(mailOptions, function (err) {
+        if (err) {
+          return res.status(500).send({
+            msg: "Technical Issue!, Please click on resend for verify your Email.",
+          });
+        }
+        return res
+          .status(200)
+          .send(
+            "A verification email has been sent to " +
+              user._doc.email +
+              ". It will be expire after 30mins. If you not get verification Email click on resend token."
+          );
+      });
+    });
+  });
+};
 
 exports.signup = async (req, res, next) => {
   const { email, password, name, username, phoneNumber } = req.body;
@@ -18,6 +140,7 @@ exports.signup = async (req, res, next) => {
     username,
     phoneNumber,
   });
+
   if (!validation.success) {
     return res.status(400).send({
       message: `${validation.error.issues[0].path[0]}: ${validation.error.issues[0].message}`,
@@ -25,22 +148,39 @@ exports.signup = async (req, res, next) => {
   }
 
   User.find()
-    .or([{ email }, { username }])
+    .or([{ email }, { username }, { phoneNumber }])
     .exec((err, user) => {
       if (err) {
         return res.status(500).send({
           message: "There was an error submitting your request",
         });
       }
+
       if (user.length > 0) {
+        if (email === user[0]._doc.email && user[0]._doc.provider === "google")
+          return res.status(400).send({
+            key: "email",
+            message: "Account is already link to a google account.",
+          });
+
         if (email === user[0]._doc.email)
           return res
             .status(400)
-            .send({ key: "email", message: "Email is already in use" });
+            .send({ key: "email", message: "Email is already in use." });
+
         if (username === user[0]._doc.username)
           return res
             .status(400)
-            .send({ key: "username", message: "Username is already in use" });
+            .send({ key: "username", message: "Username is already in use." });
+
+        if (
+          phoneNumber &&
+          phoneNumber.number === user[0]._doc.phoneNumber.number
+        )
+          return res.status(400).send({
+            key: "phoneNumber.number",
+            message: "Phone number is already in use.",
+          });
       }
       const newUser = new User({
         provider: "email",
@@ -59,46 +199,39 @@ exports.signup = async (req, res, next) => {
         delete user._doc.provider;
         delete user._doc.password;
         delete user._doc.__v;
-        return res.status(200).send({ user: user._doc });
+
+        const randToken = crypto.randomBytes(16).toString("hex");
+
+        var newToken = new Token({
+          UserId: user._doc._id,
+          token: randToken,
+        });
+
+        newToken.save((err) => {
+          if (err) {
+            return res.status(500).send({ message: err.message });
+          }
+
+          const link = `${baseVerificationUrl}/${user._doc.email}/${randToken}`;
+
+          var mailOptions = {
+            to: user._doc.email,
+            subject: "Account Verification Link",
+            html:
+              `Hello ${user._doc.username},<br> Please Click on the link to verify your email.<br><a href=` +
+              link +
+              ">Click here to verify</a>",
+          };
+          return getTransporter().sendMail(mailOptions, function (err) {
+            if (err) {
+              return res.status(500).send({ message: err.message });
+            }
+
+            return res.status(200).send({ user: user._doc });
+          });
+        });
       });
     });
-  // try {
-  //   const test = await User.find().or([{ email }, { username }]);
-  //   if (test.length > 0) {
-  //     if (email === test[0]._doc.email)
-  //       return res
-  //         .status(400)
-  //         .send({ key: "email", message: "Email is already in use" });
-  //     if (username === test[0]._doc.username)
-  //       return res
-  //         .status(400)
-  //         .send({ key: "username", message: "Username is already in use" });
-  //   }
-
-  //   const role = await Role.findOne({ name: "user" });
-  //   const newUser = await new User({
-  //     provider: "email",
-  //     Roles: [role._doc],
-  //     email,
-  //     password,
-  //     username,
-  //     name,
-  //     avatar: faker.image.avatar(),
-  //   });
-
-  //   newUser.register(newUser, (err, user) => {
-  //     if (err) {
-  //       return res.status(500).send({ message: "Internal Server Error" });
-  //     }
-
-  //     delete user._doc.provider;
-  //     delete user._doc.password;
-  //     delete user._doc.__v;
-  //     return res.status(200).send({ user: user._doc });
-  //   });
-  // } catch (error) {
-  //   return res.json({ error });
-  // }
 };
 
 exports.signin = (req, res, next) => {
@@ -110,43 +243,15 @@ exports.signin = (req, res, next) => {
       email: user.email,
       provider: user.provider,
       avatar: user.avatar,
-      Roles: user.Roles,
       name: user.name,
-      Shop: user.Shop,
+      phoneNumber: user.phoneNumber,
+      isEmailVerified: user.isEmailVerified,
+      isUserUpdated: user.isUserUpdated,
+      Addresses: user.Addresses,
+      Cart: user.Addresses,
+      // Shop: user.Shop,
     },
   });
-  // console.log(req.session)
-  // console.log(req.user)
-  // return res.status(200).send({ test: "aa" });
-  // console.log(req.logIn)
-  // passport.authenticate("local", {
-  //   successRedirect: "/",
-  //   failureRedirect: "/login",
-  // });
-  // const user = req.user;
-  // req.logIn({ ...req.body }, { session: true }, (err) => {
-  //   if (err) return next(err);
-  //   return res.status(200).send({ test: "aa" });
-  //   // const user = req.user;
-  //   // const token = user.generateJWT();
-  //   // res.cookie("jwt", token, {
-  //   //   // maxAge: 900000,
-  //   //   httpOnly: true,
-  //   //   expires: new Date(Date.now() + config.cookieJwtExpiration),
-  //   // });
-  //   // return res.status(200).send({
-  //   //   user: {
-  //   //     _id: user._id,
-  //   //     username: user.username,
-  //   //     email: user.email,
-  //   //     provider: user.provider,
-  //   //     avatar: user.avatar,
-  //   //     Roles: user.Roles,
-  //   //     name: user.name,
-  //   //     Shop: user.Shop,
-  //   //   },
-  //   // });
-  // });
 };
 
 exports.signout = (req, res, next) => {
@@ -155,6 +260,7 @@ exports.signout = (req, res, next) => {
       console(err);
       return next(err);
     }
+
     req.session.destroy((error) => {
       req.session = null;
       if (error) return next(error);

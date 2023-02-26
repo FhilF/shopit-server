@@ -50,7 +50,7 @@ var Address = new Schema({
 var OrderSchema = new Schema(
   {
     Shop: {
-      _id: [{ type: Schema.ObjectId, required: true }],
+      _id: { type: Schema.ObjectId, required: true },
       name: { type: String, required: true },
       phoneNumber: {
         countryCode: {
@@ -75,6 +75,11 @@ var OrderSchema = new Schema(
           variation: { type: String },
           unitPrice: { type: Number, required: true, default: 1 },
           qty: { type: Number, required: true, default: 1 },
+          isRated: { type: Boolean, required: true, default: false },
+          review: {
+            rate: { type: Number},
+            comment: { type: String },
+          },
         },
       ],
     },
@@ -106,7 +111,7 @@ var OrderSchema = new Schema(
       {
         type: new Schema(
           {
-            code: { type: String, required: true },
+            code: { type: Number, required: true },
             status: { type: String, required: true },
           },
           {

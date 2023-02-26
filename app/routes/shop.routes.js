@@ -51,6 +51,8 @@ router.delete(
 router.post("/order/:id/cancel", ShopController.cancelOrder);
 router.post("/order/:id/accept", ShopController.acceptOrder);
 router.post("/order/:id/shipped", ShopController.shipOrder);
+router.get("/order/:id", ShopController.getOrder);
+router.get("/order", ShopController.getOrderList);
 
 // router.delete("/", ShopController.deleteShop);
 
