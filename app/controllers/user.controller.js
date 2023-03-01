@@ -16,7 +16,6 @@ const { avatarFolderName } = require("../config"),
   { getFileExt } = require("../scripts/helper");
 const { cartList } = require("../scripts/modelDataReturn/product");
 const orderStatus = require("../lib/orderStatus");
-const { sessionedUserModelReturn } = require("../scripts/modelDataReturn/user");
 
 const User = db.user,
   Address = db.address,
@@ -28,31 +27,6 @@ exports.getUser = async (req, res, next) => {
   return res.status(200).send({
     message: "There was an error submitting your request",
   });
-};
-
-exports.getSessionedUser = (req, res, next) => {
-  if (!req.user) return res.status(200).send({});
-
-  User.findOne({ username: req.user.username }, sessionedUserModelReturn).exec(
-    (err, user) => {
-      if (err)
-        return res.status(500).send({
-          message: "There was an error submitting your request",
-        });
-
-      if (!user)
-        return res
-          .status(401)
-          .send({ message: "There was an error submitting your request" });
-
-      let sessionedUser = user._doc;
-      sessionedUser.Addresses = sessionedUser.Addresses.filter(
-        (v) => !v.isDeleted
-      );
-
-      return res.status(200).send({ sessionedUser });
-    }
-  );
 };
 
 exports.updateAccountProfile = (req, res, next) => {

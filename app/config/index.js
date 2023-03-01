@@ -4,17 +4,19 @@ const isProduction = process.env.NODE_ENV === "production",
   cookieSecretDev = process.env.COOKIE_SECRET_DEV,
   cookieSecretProd = process.env.COOKIE_SECRET_PROD,
   smtpEmailDev = process.env.SMTP_EMAIL_DEV,
-  smtpPasswordDev = process.env.SMTP_PASSWORD_DEV;
+  smtpPasswordDev = process.env.SMTP_PASSWORD_DEV,
+  mongoDbUrlDev = process.env.MONGODB_URL_DEVELOPMENT,
+  mongoDbUrlProd = process.env.MONGODB_URL_PRODUCTION;
 
 // 259200000
 // 302400000
 const cookieSessionExpiration = 259200000, //3 days
   cookieJwtExpiration = 302400000; // 3 and half days
 
-const baseFolder = isProduction ? "yeti-users/" : "yeti-users-dev/";
+const baseFolder = isProduction ? "main/" : "dev/";
 const mediaFolderName = `${baseFolder}product-media/`;
-const variantFolderName = `${baseFolder}product-variant-images/`;
-const shopImageFolderName = `${baseFolder}shop-images/`;
+const variantFolderName = `${baseFolder}product-variant-media/`;
+const shopImageFolderName = `${baseFolder}shop-image/`;
 const avatarFolderName = `${baseFolder}avatar/`;
 
 const originWhitelist = ["http://localhost:3000", "http://localhost:3001"];
@@ -35,5 +37,6 @@ module.exports = {
   baseVerificationUrl: `${
     isProduction ? "https://yeti.com" : "http://localhost:3000"
   }/verify`,
-  originWhitelist
+  originWhitelist,
+  mongodbUrl: isProduction ? mongoDbUrlProd : mongoDbUrlDev,
 };

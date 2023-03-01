@@ -15,6 +15,7 @@ module.exports = (passport) => {
             message: "Incorrect username or password.",
           });
         }
+        console.log(password);
         if (!user.comparePassword(password)) {
           return callback(null, false, {
             message: "Incorrect username or password.",

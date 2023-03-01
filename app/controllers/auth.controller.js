@@ -8,6 +8,33 @@ const {
   Role = db.role,
   Token = db.token;
 
+const { sessionedUserModelReturn } = require("../scripts/modelDataReturn/user");
+
+exports.getSessionedUser = (req, res, next) => {
+  if (!req.user) return res.status(200).send({});
+
+  User.findOne({ username: req.user.username }, sessionedUserModelReturn)
+    .populate("Shop", "-updatedAt -createdAt -__v")
+    .exec((err, user) => {
+      if (err)
+        return res.status(500).send({
+          message: "There was an error submitting your request",
+        });
+
+      if (!user)
+        return res
+          .status(401)
+          .send({ message: "There was an error submitting your request" });
+
+      let sessionedUser = user._doc;
+      sessionedUser.Addresses = sessionedUser.Addresses.filter(
+        (v) => !v.isDeleted
+      );
+
+      return res.status(200).send({ sessionedUser });
+    });
+};
+
 exports.setupNonEmailProviderAccount = async (req, res, next) => {
   const { username, phoneNumber } = req.body;
   const validation = setupNonEmailProviderSchema.safeParse({

@@ -37,7 +37,7 @@ const UserSchema = new Schema(
       type: String,
       trim: true,
       minlength: 6,
-      maxlength: 60,
+      maxlength: 100,
     },
     phoneNumber: {
       countryCode: {

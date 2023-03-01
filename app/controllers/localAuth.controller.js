@@ -249,7 +249,7 @@ exports.signin = (req, res, next) => {
       isUserUpdated: user.isUserUpdated,
       Addresses: user.Addresses,
       Cart: user.Addresses,
-      // Shop: user.Shop,
+      Shop: user.Shop,
     },
   });
 };

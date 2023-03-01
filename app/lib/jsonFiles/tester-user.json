@@ -1,0 +1,25 @@
+[
+  {
+    "_id": "63ff0c5939fd4066df82219a",
+    "provider": "email",
+    "email": "jmrdc34@gmail.com",
+    "username": "jmrdc34",
+    "password": "$2b$10$gBxGORjEnnTK6KRfw84/pOQj4wVsf38geI3Uyv3PAKgtN6U0/MpLi",
+    "phoneNumber": { "countryCode": 63, "number": 9568080296 },
+    "name": "John Dela Cruz",
+    "isEmailVerified": true,
+    "isUserVerified": true
+  },
+  {
+    "_id": "63ff0e19df46c9f8fc1544c0",
+    "provider": "email",
+    "email": "philip040117@gmail.com",
+    "username": "philip123",
+    "password": "$2b$10$x76TG2/.KVMj9jc96GalH.s2cyLDHbh5gp3YGDbXV.2S7n.Ea5VT2",
+    "phoneNumber": { "countryCode": 63, "number": 9568080444 },
+    "name": "Philip Jackson",
+    "isEmailVerified": true,
+    "isUserVerified": true,
+    "Shop": "63ff0e1bceab49acd7b11c42"
+  }
+]

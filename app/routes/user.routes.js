@@ -8,8 +8,6 @@ const router = Router(),
   upload = multer();
 
 // router.get("/", UserController.getUser);
-
-router.get("/", UserController.getSessionedUser);
 router.patch(
   "/account/email",
   [authMiddleware.checkAuthentication],

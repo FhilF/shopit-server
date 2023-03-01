@@ -2,7 +2,7 @@
   {
     "name": "Women Clothes",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/aHpQv71yYafasDqI.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/aHpQv71yYafasDqI.png",
     "children": [
       {
         "name": "Tops",
@@ -386,7 +386,7 @@
   {
     "name": "Men Clothes",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/TiIlyIkLe4YUMXoS.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/TiIlyIkLe4YUMXoS.png",
     "children": [
       {
         "name": "Jeans",
@@ -596,7 +596,7 @@
   {
     "name": "Beauty",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/iDJabVsMvoJen4me.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/iDJabVsMvoJen4me.png",
     "children": [
       {
         "name": "Hand, Foot & Nail Care",
@@ -868,7 +868,7 @@
   {
     "name": "Health",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/QLwgvXtE1Hghsjop.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/QLwgvXtE1Hghsjop.png",
     "children": [
       {
         "name": "Food Supplement",
@@ -1028,7 +1028,7 @@
   {
     "name": "Fashion Accessories",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/GMhqloiAB6w0nlSm.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/GMhqloiAB6w0nlSm.png",
     "children": [
       {
         "name": "Rings",
@@ -1103,7 +1103,7 @@
       {
         "name": "Eyewear",
         "isDisabled": false,
-        "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/1G5s44jtn4MUTEDr.png",
+        "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/1G5s44jtn4MUTEDr.png",
         "children": [
           {
             "name": "Sunglasses",
@@ -1212,7 +1212,7 @@
   {
     "name": "Home Appliances",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/NSfZp0haUDyc0wSA.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/NSfZp0haUDyc0wSA.png",
     "children": [
       {
         "name": "Projectors & Accessories",
@@ -1508,7 +1508,7 @@
   {
     "name": "Men Shoes",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/svwU9AJPek4dltgp.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/svwU9AJPek4dltgp.png",
     "children": [
       {
         "name": "Boots",
@@ -1618,7 +1618,7 @@
   {
     "name": "Mobile & Gadgets",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/WPyPqommKI5lXJgU.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/WPyPqommKI5lXJgU.png",
     "children": [
       {
         "name": "Sim Cards",
@@ -1750,7 +1750,7 @@
   {
     "name": "Travel & Luggage",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/ahWbWAA1tgpTlJi4.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/ahWbWAA1tgpTlJi4.png",
     "children": [
       {
         "name": "Luggage",
@@ -1835,7 +1835,7 @@
   {
     "name": "Women Bags",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/sJWlT4HnQBX6Mc2O.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/sJWlT4HnQBX6Mc2O.png",
     "children": [
       {
         "name": "Backpacks",
@@ -1959,7 +1959,7 @@
   {
     "name": "Women Shoes",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/trciBdwuJtj2eYFM.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/trciBdwuJtj2eYFM.png",
     "children": [
       {
         "name": "Boots",
@@ -2086,7 +2086,7 @@
   {
     "name": "Men Bags",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/9M6yc6RYV1DfqbRJ.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/9M6yc6RYV1DfqbRJ.png",
     "children": [
       {
         "name": "Backpacks",
@@ -2180,7 +2180,7 @@
   {
     "name": "Watches",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/jfApd4wJ5CTsc11z.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/jfApd4wJ5CTsc11z.png",
     "children": [
       {
         "name": "Women Watches",
@@ -2237,7 +2237,7 @@
   {
     "name": "Audio",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/RavUXpSLFViCbRBY.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/RavUXpSLFViCbRBY.png",
     "children": [
       {
         "name": "Earphones, Headphones & Headsets",
@@ -2317,7 +2317,7 @@
   {
     "name": "Food & Beverages",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/lafzN3eOgd8qPPBw.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/lafzN3eOgd8qPPBw.png",
     "children": [
       {
         "name": "Convenience / Ready-to-eat",
@@ -2740,7 +2740,7 @@
   {
     "name": "Pets",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/Q4LFkXMJuYvbzdJV.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/Q4LFkXMJuYvbzdJV.png",
     "children": [
       {
         "name": "Pet Food",
@@ -2944,7 +2944,7 @@
   {
     "name": "Mom & Baby",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/Z3Xw2sUdcIjk3C2D.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/Z3Xw2sUdcIjk3C2D.png",
     "children": [
       {
         "name": "Baby Travel Essentials",
@@ -3310,7 +3310,7 @@
   },
   {
     "name": "Baby & Kids Fashion",
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/Mhw2yrwYVbfmjiJk.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/Mhw2yrwYVbfmjiJk.png",
     "isDisabled": false,
     "children": [
       {
@@ -3592,7 +3592,7 @@
   {
     "name": "Gaming & Consoles",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/5f6ZiniPXbvE40sL.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/5f6ZiniPXbvE40sL.png",
     "children": [
       {
         "name": "Console Machines",
@@ -3697,7 +3697,7 @@
   {
     "name": "Cameras & Drones",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/bDY9VcMf7aR7mwM5.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/bDY9VcMf7aR7mwM5.png",
     "children": [
       {
         "name": "Cameras",
@@ -3894,7 +3894,7 @@
   {
     "name": "Home & Living",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/rGP5a8pL89F7t12J.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/rGP5a8pL89F7t12J.png",
     "children": [
       {
         "name": "Home Fragrance & Aromatherapy",
@@ -4575,7 +4575,7 @@
   {
     "name": "Sports & Outdoors",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/4UdxQ1MmXzPsTEez.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/4UdxQ1MmXzPsTEez.png",
     "children": [
       {
         "name": "Sports & Outdoor Recreation Equipments",
@@ -4839,7 +4839,7 @@
   {
     "name": "Stationery",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/V2Jn06TiJinTLdoV.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/V2Jn06TiJinTLdoV.png",
     "children": [
       {
         "name": "Gift & Wrapping",
@@ -5107,7 +5107,7 @@
   {
     "name": "Hobbies & Collections",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/htNTOm3J7Lh9YuKu.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/htNTOm3J7Lh9YuKu.png",
     "children": [
       {
         "name": "Collectible Items",
@@ -5287,7 +5287,7 @@
   {
     "name": "Automobiles",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/lWTOCOT7628qmJzy.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/lWTOCOT7628qmJzy.png",
     "children": [
       {
         "name": "Automobile Interior Accessories",
@@ -5572,7 +5572,7 @@
   {
     "name": "Motorcycles",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/5Hy3FxOOC3MluXKk.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/5Hy3FxOOC3MluXKk.png",
     "children": [
       {
         "name": "Motorcycles",
@@ -5706,7 +5706,7 @@
   {
     "name": "Books & Magazines",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/uoO7LgJY9P1QXKXs.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/uoO7LgJY9P1QXKXs.png",
     "children": [
       {
         "name": "Magazines & Newspaper",
@@ -5887,7 +5887,7 @@
   {
     "name": "Computers & Accessories",
     "isDisabled": false,
-    "imageUrl": "https://yeti-product-bucket.s3.us-east-2.amazonaws.com/departments/224pd4wJ0E2Nc11z.png",
+    "imageUrl": "https://shop-it-bucket.s3.us-east-2.amazonaws.com/department-images/224pd4wJ0E2Nc11z.png",
     "children": [
       {
         "name": "Desktop Computers",

@@ -16,7 +16,7 @@ const db = require("./db"),
   config = require("./app/config");
 
 const { initTransporter } = require("./app/services/nodeMailer");
-const { originWhitelist } = require("./app/config");
+const { originWhitelist, mongodbUrl } = require("./app/config");
 
 const app = express(),
   nodeEnv = process.env.NODE_ENV,
@@ -73,7 +73,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI,
+      mongoUrl: mongodbUrl,
     }),
     cookie: {
       path: "/",
