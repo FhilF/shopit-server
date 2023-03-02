@@ -21,7 +21,6 @@ const { originWhitelist, mongodbUrl } = require("./app/config");
 const app = express(),
   nodeEnv = process.env.NODE_ENV,
   // cookieSecret =
-  port = process.env.PORT || 5000,
   User = db.user;
 
 db.connect();
@@ -113,6 +112,6 @@ initTransporter();
 // app.disable("x-powered-by");
 
 app.use(routes);
-app.listen(port, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log(`server has started on port ${port}`);
 });
