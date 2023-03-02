@@ -66,7 +66,7 @@ app.use(
     cookie: {
       path: "/",
       maxAge: config.cookieSessionExpiration,
-      secure: config.isProduction,
+      secure: false,
     },
   })
 );
