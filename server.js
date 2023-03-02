@@ -23,11 +23,7 @@ const app = express(),
 
 db.connect();
 
-if (isProduction) {
-  app.use(express.static("client/build"));
-} else {
-  app.use(express.static(path.join(__dirname, "public")));
-}
+app.use(express.static(path.join(__dirname, "public")));
 app.use(helmet());
 app.use(
   cors({
@@ -62,7 +58,7 @@ app.use(
       path: "/",
       maxAge: config.cookieSessionExpiration,
       secure: config.isProduction,
-      sameSite: "none",
+      sameSite: config.isProduction ? "none" : "Lax",
     },
   })
 );
