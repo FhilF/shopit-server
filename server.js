@@ -19,8 +19,7 @@ const { initTransporter } = require("./app/services/nodeMailer");
 const { originWhitelist, mongodbUrl } = require("./app/config");
 
 const app = express(),
-  nodeEnv = process.env.NODE_ENV,
-  User = db.user;
+ PORT = process.env.PORT || 3000;
 
 db.connect();
 
@@ -90,6 +89,6 @@ initTransporter();
 
 
 app.use(routes);
-app.listen(process.env.PORT || 5000, () => {
-  console.log(`server has started on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`server has started on port ${PORT}`);
 });
