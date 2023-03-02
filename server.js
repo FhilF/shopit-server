@@ -36,8 +36,6 @@ app.use(
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
 );
-app.set("trust proxy", 1);
-
 app.use(express.json()); //req.body
 app.use(cookieParser(config.cookieSecretKey));
 app.use(bodyParser.json({ limit: "80mb" }));
@@ -49,6 +47,8 @@ app.use(
 //   res.header("Access-Control-Allow-Origin", "*");
 //   next();
 // });
+
+app.set("trust proxy", 1);
 
 app.use(
   session({
@@ -62,6 +62,7 @@ app.use(
       path: "/",
       maxAge: config.cookieSessionExpiration,
       secure: config.isProduction,
+      sameSite: "none",
     },
   })
 );
