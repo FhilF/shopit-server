@@ -7,7 +7,8 @@
     "node": "16.13.1"
   },
   "scripts": {
-    "start": "npm run build && node server.js",
+    "build": "npm run build",
+    "start": "node server.js",
     "dev": "cross-env NODE_ENV=development nodemon"
   },
   "author": "",
