@@ -19,7 +19,7 @@ const { initTransporter } = require("./app/services/nodeMailer");
 const { originWhitelist, mongodbUrl } = require("./app/config");
 
 const app = express(),
- PORT = process.env.PORT || 3000;
+  PORT = process.env.PORT || 5000;
 
 db.connect();
 
@@ -32,6 +32,16 @@ app.use(
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
 );
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header("Access-Control-Allow-Origin", req.headers.origin);
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
+  );
+  next();
+});
 
 app.use(express.json()); //req.body
 app.use(cookieParser(config.cookieSecretKey));
@@ -48,7 +58,7 @@ app.use(
 app.use(
   session({
     secret: config.cookieSecretKey,
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     store: MongoStore.create({
       mongoUrl: mongodbUrl,
@@ -86,7 +96,6 @@ passport.deserializeUser(function (user, cb) {
 app.use(passport.initialize());
 app.use(passport.session());
 initTransporter();
-
 
 app.use(routes);
 app.listen(PORT, () => {
