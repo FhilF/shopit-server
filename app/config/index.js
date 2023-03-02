@@ -19,7 +19,12 @@ const variantFolderName = `${baseFolder}product-variant-media/`;
 const shopImageFolderName = `${baseFolder}shop-image/`;
 const avatarFolderName = `${baseFolder}avatar/`;
 
-const originWhitelist = ["http://localhost:3000", "http://localhost:3001", "https://shopit-demo.com"];
+const originWhitelist = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "https://shopit-demo.com",
+  "https://seller.shopit-demo.com",
+];
 
 module.exports = {
   mediaFolderName,
