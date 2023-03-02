@@ -16,14 +16,21 @@ const db = require("./db"),
   config = require("./app/config");
 
 const { initTransporter } = require("./app/services/nodeMailer");
-const { originWhitelist, mongodbUrl } = require("./app/config");
+const { originWhitelist, mongodbUrl, isProduction } = require("./app/config");
 
 const app = express(),
   PORT = process.env.PORT || 5000;
 
 db.connect();
 
-app.use(express.static(path.join(__dirname, "public")));
+if (isProduction) {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+} else {
+  app.use(express.static(path.join(__dirname, "public")));
+}
 app.use(helmet());
 app.use(
   cors({
