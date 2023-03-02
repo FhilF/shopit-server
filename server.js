@@ -43,6 +43,8 @@ app.use(function (req, res, next) {
   next();
 });
 
+console.log(config)
+
 app.use(express.json()); //req.body
 app.use(cookieParser(config.cookieSecretKey));
 app.use(bodyParser.json({ limit: "80mb" }));
@@ -66,7 +68,7 @@ app.use(
     cookie: {
       path: "/",
       maxAge: config.cookieSessionExpiration,
-      secure: false,
+      secure: config.isProduction,
     },
   })
 );
