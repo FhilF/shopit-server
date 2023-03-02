@@ -1,3 +1,5 @@
+const { isProduction } = require("../config");
+
 const GoogleStrategy = require("passport-google-oauth2").Strategy,
   db = require("../models"),
   Role = db.role,
@@ -9,7 +11,7 @@ module.exports = (passport) => {
       {
         clientID: process.env.GOOGLE_OAUTH_CLIENT_ID,
         clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
-        callbackURL: "http://localhost:5000/auth/google/callback",
+        callbackURL: `${isProduction ? "https://powerful-basin-06059.herokuapp.com": "http://localhost:5000"}/auth/google/callback`,
         proxy: true,
         // passReqToCallback: true,
       },
