@@ -35,7 +35,7 @@ module.exports = {
   smtpEmail: isProduction ? smtpEmailDev : smtpEmailDev,
   smtpPassword: isProduction ? smtpPasswordDev : smtpPasswordDev,
   baseVerificationUrl: `${
-    isProduction ? "https://yeti.com" : "http://localhost:3000"
+    isProduction ? "https://shopit-demo.com" : "http://localhost:3000"
   }/verify`,
   originWhitelist,
   mongodbUrl: isProduction ? mongoDbUrlProd : mongoDbUrlDev,

@@ -22,7 +22,7 @@ module.exports = (passport) => {
           const newUser = new User({
             provider: "google",
             googleId: profile.id,
-            username: `yeti_user_${profile.id}`,
+            username: `shopit_user_${profile.id}`,
             email: profile.emails[0].value,
             name: profile.displayName,
             isEmailVerified: true,
