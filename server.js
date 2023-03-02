@@ -20,30 +20,10 @@ const { originWhitelist, mongodbUrl } = require("./app/config");
 
 const app = express(),
   nodeEnv = process.env.NODE_ENV,
-  // cookieSecret =
   User = db.user;
 
 db.connect();
 
-var whitelist = [
-  "http://localhost:5000/*",
-  "http://localhost:3000",
-  "http://localhost:3001",
-  "http://localhost:3002",
-];
-
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-};
-
-// app.set("trust proxy", 1);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(helmet());
 app.use(
@@ -85,7 +65,6 @@ app.use(
 require("./app/services/localStrategy")(passport);
 require("./app/services/googleStrategy")(passport);
 require("./app/services/jwtStrategy")(passport);
-// require("./app/services/nodeMailer");
 
 passport.serializeUser(function (user, cb) {
   process.nextTick(function () {
@@ -109,7 +88,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 initTransporter();
 
-// app.disable("x-powered-by");
 
 app.use(routes);
 app.listen(process.env.PORT || 5000, () => {
